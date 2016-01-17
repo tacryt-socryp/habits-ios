@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		020A71081C4C15D300E3BCB7 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020A71071C4C15D300E3BCB7 /* Habit.swift */; };
 		020A710A1C4C15DE00E3BCB7 /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020A71091C4C15DE00E3BCB7 /* Priority.swift */; };
+		020A710C1C4C179900E3BCB7 /* RealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020A710B1C4C179900E3BCB7 /* RealmHelper.swift */; };
 		02701E0B1C4C14570092E4D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02701E0A1C4C14570092E4D3 /* AppDelegate.swift */; };
 		02701E0D1C4C14570092E4D3 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02701E0C1C4C14570092E4D3 /* MasterViewController.swift */; };
 		02701E0F1C4C14570092E4D3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02701E0E1C4C14570092E4D3 /* DetailViewController.swift */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		020A71071C4C15D300E3BCB7 /* Habit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 		020A71091C4C15DE00E3BCB7 /* Priority.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Priority.swift; sourceTree = "<group>"; };
+		020A710B1C4C179900E3BCB7 /* RealmHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmHelper.swift; sourceTree = "<group>"; };
 		02701E071C4C14570092E4D3 /* HabitTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HabitTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02701E0A1C4C14570092E4D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02701E0C1C4C14570092E4D3 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				02701E131C4C14570092E4D3 /* Assets.xcassets */,
 				02701E151C4C14570092E4D3 /* LaunchScreen.storyboard */,
 				02701E101C4C14570092E4D3 /* Main.storyboard */,
+				020A710B1C4C179900E3BCB7 /* RealmHelper.swift */,
 			);
 			path = HabitTracker;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02701E0F1C4C14570092E4D3 /* DetailViewController.swift in Sources */,
+				020A710C1C4C179900E3BCB7 /* RealmHelper.swift in Sources */,
 				02701E0D1C4C14570092E4D3 /* MasterViewController.swift in Sources */,
 				020A71081C4C15D300E3BCB7 /* Habit.swift in Sources */,
 				020A710A1C4C15DE00E3BCB7 /* Priority.swift in Sources */,

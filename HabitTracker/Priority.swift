@@ -17,15 +17,4 @@ class Priority: Object {
     override static func indexedProperties() -> [String] {
         return ["priorityOrder"]
     }
-
-    required init() {
-        super.init()
-    }
-
-    init(name: String, active: Bool, priorityOrder: Int) {
-        super.init()
-
-        self.name = name
-        self.priorityOrder = priorityOrder
-    }
 }

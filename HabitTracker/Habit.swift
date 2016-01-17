@@ -17,16 +17,4 @@ class Habit: Object {
     override static func indexedProperties() -> [String] {
         return ["habitOrder"]
     }
-
-    required init() {
-        super.init()
-    }
-
-    init(name: String, active: Bool, habitOrder: Int) {
-        super.init()
-
-        self.name = name
-        self.active = active
-        self.habitOrder = habitOrder
-    }
 }
