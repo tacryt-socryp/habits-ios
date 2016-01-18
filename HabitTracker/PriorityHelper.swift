@@ -10,6 +10,8 @@ import RealmSwift
 
 class PriorityHelper {
 
+    static let realmQueue = dispatch_queue_create("priorityDB", DISPATCH_QUEUE_SERIAL)
+
     static func queryPriorities(active: Bool) -> Results<Priority>? {
         do {
             let realm = try Realm()
@@ -25,17 +27,22 @@ class PriorityHelper {
         }
     }
 
-    static func createPriority(uuid: String, name: String, priorityOrder: Int, habits: [Habit]) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+    static func createPriority(name: String, priorityOrder: Int, habitUUIDs: [String]) {
+        dispatch_async(realmQueue) {
             autoreleasepool {
                 do {
                     let realm = try Realm()
                     realm.beginWrite()
 
+                    var habits = [Habit]()
+                    for uuid in habitUUIDs {
+                        if let habit = realm.objectForPrimaryKey(Habit.self, key: uuid) {
+                            habits.append(habit)
+                        }
+                    }
                     realm.create(
                         Priority.self,
                         value: [
-                            "uuid": uuid,
                             "name": name,
                             "priorityOrder": priorityOrder,
                             "habits": habits
@@ -50,8 +57,8 @@ class PriorityHelper {
         }
     }
 
-    static func updatePriority(uuid: String, name: String?, priorityOrder: Int?, habits: [Habit]?) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+    static func updatePriority(uuid: String, name: String? = nil, priorityOrder: Int? = nil, habitUUIDs: [String]? = nil) {
+        dispatch_async(realmQueue) {
             autoreleasepool {
                 do {
                     let realm = try Realm()
@@ -66,8 +73,14 @@ class PriorityHelper {
                     if let p = priorityOrder {
                         value.updateValue(p, forKey: "priorityOrder")
                     }
-                    if let h = habits {
-                        value.updateValue(h, forKey: "habits")
+                    if let hU = habitUUIDs {
+                        var habits = [Habit]()
+                        for uuid in hU {
+                            if let habit = realm.objectForPrimaryKey(Habit.self, key: uuid) {
+                                habits.append(habit)
+                            }
+                        }
+                        value.updateValue(habits, forKey: "habits")
                     }
 
                     realm.create(
@@ -85,7 +98,7 @@ class PriorityHelper {
     }
 
     static func deletePriority(uuid: String) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+        dispatch_async(realmQueue) {
             autoreleasepool {
                 do {
                     let realm = try Realm()
@@ -106,7 +119,7 @@ class PriorityHelper {
     }
 
     static func deleteAllObjects() {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+        dispatch_async(realmQueue) {
             autoreleasepool {
                 do {
                     let realm = try Realm()

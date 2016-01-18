@@ -12,13 +12,25 @@ import RealmSwift
 class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
-    var objects = [AnyObject]()
+
+    var priorities: Results<Priority>? = nil
+    var habits: Results<Habit>? = nil
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(Realm.Configuration.defaultConfiguration.path!)
+        //HabitHelper.deleteAllObjects()
+        //HabitHelper.createHabit("Running", active: true, habitOrder: 0)
+        //HabitHelper.createHabit("Weight Lifting", active: true, habitOrder: 1)
+        habits = HabitHelper.queryHabits(true)
+        print(habits)
 
-        HabitHelper.createHabit("Running", active: true, habitOrder: 0)
+        //let healthHabits = habits?.map({ $0.uuid }) ?? [String]()
+        //PriorityHelper.createPriority("Health", priorityOrder: 0, habitUUIDs: healthHabits)
+        //PriorityHelper.updatePriority("914AB4A7-1A65-4F7B-85AF-1A319066528B", habitUUIDs: healthHabits)
+        priorities = PriorityHelper.queryPriorities(true)
+        print(priorities)
 
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
@@ -42,7 +54,6 @@ class MasterViewController: UITableViewController {
     }
 
     func insertNewObject(sender: AnyObject) {
-        objects.insert(NSDate(), atIndex: 0)
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
         self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     }
@@ -52,11 +63,14 @@ class MasterViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let object = objects[indexPath.row] as! NSDate
-                let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
-                controller.detailItem = object
-                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
-                controller.navigationItem.leftItemsSupplementBackButton = true
+                if let habit = habits?[indexPath.row] {
+                    let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
+                    controller.detailItem = habit
+                    controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+                    controller.navigationItem.leftItemsSupplementBackButton = true
+                } else {
+                    // do an error message
+                }
             }
         }
     }
@@ -64,19 +78,14 @@ class MasterViewController: UITableViewController {
     // MARK: - Table View
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return priorities?.count ?? 0
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return objects.count
-    }
-
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-
-        let object = objects[indexPath.row] as! NSDate
-        cell.textLabel!.text = object.description
-        return cell
+        if numberOfSectionsInTableView(tableView) == 0 {
+            return 0
+        }
+        return habits?.count ?? 0
     }
 
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -84,10 +93,26 @@ class MasterViewController: UITableViewController {
         return true
     }
 
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell")!
+        print(cell)
+
+        if let habit = habits?[indexPath.row] {
+            cell.textLabel?.text = habit.uuid
+        }
+
+        return cell
+    }
+
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            objects.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            if let habit = habits?[indexPath.row] {
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                HabitHelper.deleteHabit(habit.uuid)
+            } else {
+                // do an error message
+            }
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
