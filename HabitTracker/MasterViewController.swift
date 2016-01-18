@@ -108,6 +108,7 @@ class MasterViewController: UITableViewController {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             if let habit = habits?[indexPath.row] {
+                habits = habits?.filter("uuid != '\(habit.uuid)'")
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
                 HabitHelper.deleteHabit(habit.uuid)
             } else {
