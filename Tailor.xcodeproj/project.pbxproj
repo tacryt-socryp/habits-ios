@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02075B431C4D91C500D0522D /* AddHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02075B421C4D91C500D0522D /* AddHabitViewController.swift */; };
 		020A71081C4C15D300E3BCB7 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020A71071C4C15D300E3BCB7 /* Habit.swift */; };
 		020A710A1C4C15DE00E3BCB7 /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020A71091C4C15DE00E3BCB7 /* Priority.swift */; };
 		02701E0B1C4C14570092E4D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02701E0A1C4C14570092E4D3 /* AppDelegate.swift */; };
@@ -21,9 +22,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		02075B421C4D91C500D0522D /* AddHabitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddHabitViewController.swift; sourceTree = "<group>"; };
 		020A71071C4C15D300E3BCB7 /* Habit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 		020A71091C4C15DE00E3BCB7 /* Priority.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Priority.swift; sourceTree = "<group>"; };
-		02701E071C4C14570092E4D3 /* HabitTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HabitTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		02701E071C4C14570092E4D3 /* Tailor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tailor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02701E0A1C4C14570092E4D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02701E0C1C4C14570092E4D3 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		02701E0E1C4C14570092E4D3 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 			children = (
 				02701E0E1C4C14570092E4D3 /* DetailViewController.swift */,
 				02701E0C1C4C14570092E4D3 /* MasterViewController.swift */,
+				02075B421C4D91C500D0522D /* AddHabitViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -78,7 +81,7 @@
 		02701DFE1C4C14570092E4D3 = {
 			isa = PBXGroup;
 			children = (
-				02701E091C4C14570092E4D3 /* HabitTracker */,
+				02701E091C4C14570092E4D3 /* Tailor */,
 				02701E081C4C14570092E4D3 /* Products */,
 				998BCF99F20A62D79A236D6B /* Pods */,
 				C2E021F7F535C0918DF345CE /* Frameworks */,
@@ -88,12 +91,12 @@
 		02701E081C4C14570092E4D3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				02701E071C4C14570092E4D3 /* HabitTracker.app */,
+				02701E071C4C14570092E4D3 /* Tailor.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		02701E091C4C14570092E4D3 /* HabitTracker */ = {
+		02701E091C4C14570092E4D3 /* Tailor */ = {
 			isa = PBXGroup;
 			children = (
 				020A71031C4C151400E3BCB7 /* Models */,
@@ -102,11 +105,12 @@
 				02701E0A1C4C14570092E4D3 /* AppDelegate.swift */,
 				02A0158C1C4D32B600641475 /* HabitHelper.swift */,
 				02A0158E1C4D32BF00641475 /* PriorityHelper.swift */,
-				02701E181C4C14570092E4D3 /* Info.plist */,
 				02701E101C4C14570092E4D3 /* Main.storyboard */,
 				02701E151C4C14570092E4D3 /* LaunchScreen.storyboard */,
 				02701E131C4C14570092E4D3 /* Assets.xcassets */,
+				02701E181C4C14570092E4D3 /* Info.plist */,
 			);
+			name = Tailor;
 			path = HabitTracker;
 			sourceTree = "<group>";
 		};
@@ -130,9 +134,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		02701E061C4C14570092E4D3 /* HabitTracker */ = {
+		02701E061C4C14570092E4D3 /* Tailor */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 02701E1B1C4C14570092E4D3 /* Build configuration list for PBXNativeTarget "HabitTracker" */;
+			buildConfigurationList = 02701E1B1C4C14570092E4D3 /* Build configuration list for PBXNativeTarget "Tailor" */;
 			buildPhases = (
 				2ECA46F8F1E746BE1926F4E7 /* Check Pods Manifest.lock */,
 				02701E031C4C14570092E4D3 /* Sources */,
@@ -145,9 +149,9 @@
 			);
 			dependencies = (
 			);
-			name = HabitTracker;
+			name = Tailor;
 			productName = HabitTracker;
-			productReference = 02701E071C4C14570092E4D3 /* HabitTracker.app */;
+			productReference = 02701E071C4C14570092E4D3 /* Tailor.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -166,7 +170,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 02701E021C4C14570092E4D3 /* Build configuration list for PBXProject "HabitTracker" */;
+			buildConfigurationList = 02701E021C4C14570092E4D3 /* Build configuration list for PBXProject "Tailor" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -179,7 +183,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				02701E061C4C14570092E4D3 /* HabitTracker */,
+				02701E061C4C14570092E4D3 /* Tailor */,
 			);
 		};
 /* End PBXProject section */
@@ -257,6 +261,7 @@
 				020A71081C4C15D300E3BCB7 /* Habit.swift in Sources */,
 				020A710A1C4C15DE00E3BCB7 /* Priority.swift in Sources */,
 				02701E0B1C4C14570092E4D3 /* AppDelegate.swift in Sources */,
+				02075B431C4D91C500D0522D /* AddHabitViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,8 +377,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = HabitTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.loganallenc.HabitTracker;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.loganallenc.Tailor;
+				PRODUCT_NAME = Tailor;
 			};
 			name = Debug;
 		};
@@ -384,15 +389,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = HabitTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.loganallenc.HabitTracker;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.loganallenc.Tailor;
+				PRODUCT_NAME = Tailor;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		02701E021C4C14570092E4D3 /* Build configuration list for PBXProject "HabitTracker" */ = {
+		02701E021C4C14570092E4D3 /* Build configuration list for PBXProject "Tailor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				02701E191C4C14570092E4D3 /* Debug */,
@@ -401,7 +406,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		02701E1B1C4C14570092E4D3 /* Build configuration list for PBXNativeTarget "HabitTracker" */ = {
+		02701E1B1C4C14570092E4D3 /* Build configuration list for PBXNativeTarget "Tailor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				02701E1C1C4C14570092E4D3 /* Debug */,

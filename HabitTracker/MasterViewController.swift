@@ -65,6 +65,7 @@ class MasterViewController: UITableViewController {
     func insertNewObject(sender: AnyObject) {
         HabitHelper.createHabit("Running", active: true, habitOrder: 0, priorityUUID: "914AB4A7-1A65-4F7B-85AF-1A319066528B")
         refreshRealm()
+        self.performSegueWithIdentifier("showAddHabit", sender: nil)
     }
 
     // MARK: - Segues
@@ -74,7 +75,7 @@ class MasterViewController: UITableViewController {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 if let habit = habits?[indexPath.row] {
                     let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
-                    controller.detailItem = habit
+                    controller.habitItem = habit
                     controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                     controller.navigationItem.leftItemsSupplementBackButton = true
                 } else {
