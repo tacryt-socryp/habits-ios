@@ -17,8 +17,9 @@ class MasterViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(Realm.Configuration.defaultConfiguration.path!)
-        RealmHelper.writeHabit()
+
+        RealmHelper.createHabit("Running", active: true, habitOrder: 0)
+
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
