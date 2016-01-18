@@ -28,7 +28,7 @@ class HabitHelper {
         }
     }
 
-    static func createHabit(name: String, active: Bool, habitOrder: Int) {
+    static func createHabit(name: String, active: Bool, habitOrder: Int, priorityUUID: String? = nil) {
         dispatch_async(realmQueue) {
             autoreleasepool {
                 // Get realm and table instances for this thread
@@ -39,7 +39,7 @@ class HabitHelper {
                     realm.beginWrite()
 
                     // Add row via dictionary. Property order is ignored.
-                    realm.create(
+                    let habit = realm.create(
                         Habit.self,
                         value: [
                             "name": name,
@@ -47,6 +47,14 @@ class HabitHelper {
                             "habitOrder": habitOrder
                         ]
                     )
+
+                    if priorityUUID != nil {
+                        if let p = realm.objectForPrimaryKey(Priority.self, key: priorityUUID!) {
+                            var habitUUIDs = p.habits.map({ $0.uuid })
+                            habitUUIDs.append(habit.uuid)
+                            PriorityHelper.updatePriority(p.uuid, habitUUIDs: habitUUIDs)
+                        }
+                    }
 
                     // Commit the write transaction
                     // to make this data available to other threads

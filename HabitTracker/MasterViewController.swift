@@ -15,22 +15,26 @@ class MasterViewController: UITableViewController {
 
     var priorities: Results<Priority>? = nil
     var habits: Results<Habit>? = nil
+    var realm: Realm? = nil
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        do {
+            realm = try Realm()
+        } catch let err1 as NSError {
+            print(err1)
+        }
         print(Realm.Configuration.defaultConfiguration.path!)
         //HabitHelper.deleteAllObjects()
         //HabitHelper.createHabit("Running", active: true, habitOrder: 0)
         //HabitHelper.createHabit("Weight Lifting", active: true, habitOrder: 1)
         habits = HabitHelper.queryHabits(true)
-        print(habits)
 
         //let healthHabits = habits?.map({ $0.uuid }) ?? [String]()
         //PriorityHelper.createPriority("Health", priorityOrder: 0, habitUUIDs: healthHabits)
         //PriorityHelper.updatePriority("914AB4A7-1A65-4F7B-85AF-1A319066528B", habitUUIDs: healthHabits)
         priorities = PriorityHelper.queryPriorities(true)
-        print(priorities)
 
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
@@ -53,8 +57,14 @@ class MasterViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func refreshRealm() {
+        realm?.refresh()
+        tableView.reloadData()
+    }
+
     func insertNewObject(sender: AnyObject) {
-        //self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        HabitHelper.createHabit("Running", active: true, habitOrder: 0, priorityUUID: "914AB4A7-1A65-4F7B-85AF-1A319066528B")
+        refreshRealm()
     }
 
     // MARK: - Segues
@@ -109,8 +119,8 @@ class MasterViewController: UITableViewController {
         if editingStyle == .Delete {
             if let habit = habits?[indexPath.row] {
                 habits = habits?.filter("uuid != '\(habit.uuid)'")
-                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
                 HabitHelper.deleteHabit(habit.uuid)
+                refreshRealm()
             } else {
                 // do an error message
             }
