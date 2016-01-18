@@ -18,7 +18,7 @@ class MasterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        RealmHelper.createHabit("Running", active: true, habitOrder: 0)
+        HabitHelper.createHabit("Running", active: true, habitOrder: 0)
 
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
