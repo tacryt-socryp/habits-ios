@@ -12,6 +12,7 @@ class HabitHelper {
 
     static let realmQueue = dispatch_queue_create("habitDB", DISPATCH_QUEUE_SERIAL)
 
+
     static func queryHabits(active: Bool) -> Results<Habit>? {
         do {
             let realm = try Realm()

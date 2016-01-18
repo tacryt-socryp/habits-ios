@@ -12,6 +12,7 @@ class PriorityHelper {
 
     static let realmQueue = dispatch_queue_create("priorityDB", DISPATCH_QUEUE_SERIAL)
 
+
     static func queryPriorities(active: Bool) -> Results<Priority>? {
         do {
             let realm = try Realm()

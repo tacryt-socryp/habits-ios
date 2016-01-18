@@ -54,8 +54,7 @@ class MasterViewController: UITableViewController {
     }
 
     func insertNewObject(sender: AnyObject) {
-        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        //self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     }
 
     // MARK: - Segues
@@ -81,6 +80,10 @@ class MasterViewController: UITableViewController {
         return priorities?.count ?? 0
     }
 
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return priorities?[section].name
+    }
+
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if numberOfSectionsInTableView(tableView) == 0 {
             return 0
@@ -94,12 +97,9 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell")!
-        print(cell)
-
         if let habit = habits?[indexPath.row] {
-            cell.textLabel?.text = habit.uuid
+            cell.textLabel?.text = habit.name
         }
 
         return cell
