@@ -13,8 +13,18 @@ class Habit: Object {
 
     dynamic var uuid = NSUUID().UUIDString
     dynamic var name = ""
-    dynamic var active = false
     dynamic var habitOrder = -1
+
+
+    let numDays = RealmOptional<Int>()
+
+    dynamic var monday = false
+    dynamic var tuesday = false
+    dynamic var wednesday = false
+    dynamic var thursday = false
+    dynamic var friday = false
+    dynamic var saturday = false
+    dynamic var sunday = false
 
 
     override static func primaryKey() -> String? {

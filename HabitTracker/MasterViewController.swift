@@ -27,9 +27,9 @@ class MasterViewController: UITableViewController {
         }
         print(Realm.Configuration.defaultConfiguration.path!)
         //HabitHelper.deleteAllObjects()
-        //HabitHelper.createHabit("Running", active: true, habitOrder: 0)
-        //HabitHelper.createHabit("Weight Lifting", active: true, habitOrder: 1)
-        habits = HabitHelper.queryHabits(true)
+        //HabitHelper.createHabit("Running", habitOrder: 0)
+        //HabitHelper.createHabit("Weight Lifting", habitOrder: 1)
+        habits = HabitHelper.queryHabits()
 
         //let healthHabits = habits?.map({ $0.uuid }) ?? [String]()
         //PriorityHelper.createPriority("Health", priorityOrder: 0, habitUUIDs: healthHabits)
@@ -63,7 +63,7 @@ class MasterViewController: UITableViewController {
     }
 
     func insertNewObject(sender: AnyObject) {
-        HabitHelper.createHabit("Running", active: true, habitOrder: 0, priorityUUID: "914AB4A7-1A65-4F7B-85AF-1A319066528B")
+        HabitHelper.createHabit("Running", habitOrder: 0, priorityUUID: "914AB4A7-1A65-4F7B-85AF-1A319066528B")
         refreshRealm()
         self.performSegueWithIdentifier("showAddHabit", sender: nil)
     }

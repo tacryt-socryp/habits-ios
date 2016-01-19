@@ -7,11 +7,16 @@
 //
 
 import UIKit
+import Eureka
 
-class AddHabitViewController: UIViewController {
+class AddHabitViewController: FormViewController {
 
     func configureView() {
         // Update the user interface.
+        form +++ Section()
+            <<< NameRow("Habit Name") {
+                $0.title =  $0.tag
+            }
     }
 
     override func viewDidLoad() {

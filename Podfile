@@ -3,7 +3,8 @@
 # Uncomment this line if you're using Swift
 use_frameworks!
 
-target 'HabitTracker' do
-pod 'RealmSwift'
+target 'Tailor' do
+  pod 'RealmSwift'
+  pod 'Eureka', '~> 1.3'
 end
 

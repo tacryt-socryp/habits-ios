@@ -10,15 +10,15 @@
 		02075B431C4D91C500D0522D /* AddHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02075B421C4D91C500D0522D /* AddHabitViewController.swift */; };
 		020A71081C4C15D300E3BCB7 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020A71071C4C15D300E3BCB7 /* Habit.swift */; };
 		020A710A1C4C15DE00E3BCB7 /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020A71091C4C15DE00E3BCB7 /* Priority.swift */; };
+		022A6B041C4DDA6C0018E9F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02701E131C4C14570092E4D3 /* Assets.xcassets */; };
 		02701E0B1C4C14570092E4D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02701E0A1C4C14570092E4D3 /* AppDelegate.swift */; };
 		02701E0D1C4C14570092E4D3 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02701E0C1C4C14570092E4D3 /* MasterViewController.swift */; };
 		02701E0F1C4C14570092E4D3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02701E0E1C4C14570092E4D3 /* DetailViewController.swift */; };
 		02701E121C4C14570092E4D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02701E101C4C14570092E4D3 /* Main.storyboard */; };
-		02701E141C4C14570092E4D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02701E131C4C14570092E4D3 /* Assets.xcassets */; };
 		02701E171C4C14570092E4D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02701E151C4C14570092E4D3 /* LaunchScreen.storyboard */; };
 		02A0158D1C4D32B600641475 /* HabitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A0158C1C4D32B600641475 /* HabitHelper.swift */; };
 		02A0158F1C4D32BF00641475 /* PriorityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A0158E1C4D32BF00641475 /* PriorityHelper.swift */; };
-		BC7EF9AD38536460C1166F9F /* Pods_HabitTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C35E1B4C895C687CC5A8AC72 /* Pods_HabitTracker.framework */; };
+		48FDD09376E26968BA1BC4F9 /* Pods_Tailor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5643E0E82BA1DDFE150B4278 /* Pods_Tailor.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,9 +35,9 @@
 		02701E181C4C14570092E4D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		02A0158C1C4D32B600641475 /* HabitHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitHelper.swift; sourceTree = "<group>"; };
 		02A0158E1C4D32BF00641475 /* PriorityHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriorityHelper.swift; sourceTree = "<group>"; };
-		7B715E618C8AF2612F66067E /* Pods-HabitTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HabitTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-HabitTracker/Pods-HabitTracker.release.xcconfig"; sourceTree = "<group>"; };
-		BE60F6ACBE42D1BC3487B187 /* Pods-HabitTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HabitTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HabitTracker/Pods-HabitTracker.debug.xcconfig"; sourceTree = "<group>"; };
-		C35E1B4C895C687CC5A8AC72 /* Pods_HabitTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HabitTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CECB0258948FE0319AD13C2 /* Pods-Tailor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tailor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tailor/Pods-Tailor.debug.xcconfig"; sourceTree = "<group>"; };
+		5643E0E82BA1DDFE150B4278 /* Pods_Tailor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tailor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCEF1651D7AB42BCF6F001B4 /* Pods-Tailor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tailor.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tailor/Pods-Tailor.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,7 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC7EF9AD38536460C1166F9F /* Pods_HabitTracker.framework in Frameworks */,
+				48FDD09376E26968BA1BC4F9 /* Pods_Tailor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,8 +83,8 @@
 			children = (
 				02701E091C4C14570092E4D3 /* Tailor */,
 				02701E081C4C14570092E4D3 /* Products */,
-				998BCF99F20A62D79A236D6B /* Pods */,
-				C2E021F7F535C0918DF345CE /* Frameworks */,
+				E2158195B1FE9CF8E68F28DD /* Pods */,
+				2965B0689DBCE186C7CAC11E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -114,21 +114,21 @@
 			path = HabitTracker;
 			sourceTree = "<group>";
 		};
-		998BCF99F20A62D79A236D6B /* Pods */ = {
+		2965B0689DBCE186C7CAC11E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BE60F6ACBE42D1BC3487B187 /* Pods-HabitTracker.debug.xcconfig */,
-				7B715E618C8AF2612F66067E /* Pods-HabitTracker.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		C2E021F7F535C0918DF345CE /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				C35E1B4C895C687CC5A8AC72 /* Pods_HabitTracker.framework */,
+				5643E0E82BA1DDFE150B4278 /* Pods_Tailor.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E2158195B1FE9CF8E68F28DD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2CECB0258948FE0319AD13C2 /* Pods-Tailor.debug.xcconfig */,
+				FCEF1651D7AB42BCF6F001B4 /* Pods-Tailor.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,12 +138,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 02701E1B1C4C14570092E4D3 /* Build configuration list for PBXNativeTarget "Tailor" */;
 			buildPhases = (
-				2ECA46F8F1E746BE1926F4E7 /* Check Pods Manifest.lock */,
+				433A7D14A1CB3CF076F6F89B /* Check Pods Manifest.lock */,
 				02701E031C4C14570092E4D3 /* Sources */,
 				02701E041C4C14570092E4D3 /* Frameworks */,
 				02701E051C4C14570092E4D3 /* Resources */,
-				91F650A78599ABF1F5EC2D2F /* Embed Pods Frameworks */,
-				30AF864DF8A002C3894C5474 /* Copy Pods Resources */,
+				4F6555F91B96C054AA7E20F1 /* Embed Pods Frameworks */,
+				A239DDCF227EB8B72374F565 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -193,8 +193,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				022A6B041C4DDA6C0018E9F0 /* Assets.xcassets in Resources */,
 				02701E171C4C14570092E4D3 /* LaunchScreen.storyboard in Resources */,
-				02701E141C4C14570092E4D3 /* Assets.xcassets in Resources */,
 				02701E121C4C14570092E4D3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -202,7 +202,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2ECA46F8F1E746BE1926F4E7 /* Check Pods Manifest.lock */ = {
+		433A7D14A1CB3CF076F6F89B /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -217,22 +217,7 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		30AF864DF8A002C3894C5474 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HabitTracker/Pods-HabitTracker-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		91F650A78599ABF1F5EC2D2F /* Embed Pods Frameworks */ = {
+		4F6555F91B96C054AA7E20F1 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -244,7 +229,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HabitTracker/Pods-HabitTracker-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tailor/Pods-Tailor-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A239DDCF227EB8B72374F565 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tailor/Pods-Tailor-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -372,7 +372,7 @@
 		};
 		02701E1C1C4C14570092E4D3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BE60F6ACBE42D1BC3487B187 /* Pods-HabitTracker.debug.xcconfig */;
+			baseConfigurationReference = 2CECB0258948FE0319AD13C2 /* Pods-Tailor.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = HabitTracker/Info.plist;
@@ -384,7 +384,7 @@
 		};
 		02701E1D1C4C14570092E4D3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7B715E618C8AF2612F66067E /* Pods-HabitTracker.release.xcconfig */;
+			baseConfigurationReference = FCEF1651D7AB42BCF6F001B4 /* Pods-Tailor.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = HabitTracker/Info.plist;

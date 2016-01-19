@@ -13,13 +13,10 @@ class HabitHelper {
     static let realmQueue = dispatch_queue_create("habitDB", DISPATCH_QUEUE_SERIAL)
 
 
-    static func queryHabits(active: Bool) -> Results<Habit>? {
+    static func queryHabits() -> Results<Habit>? {
         do {
             let realm = try Realm()
             var habits = realm.objects(Habit)
-            if (active) {
-                habits = habits.filter("active == true")
-            }
             habits = habits.sorted("habitOrder").sorted("name")
             return habits
         } catch let err1 as NSError {
@@ -28,7 +25,7 @@ class HabitHelper {
         }
     }
 
-    static func createHabit(name: String, active: Bool, habitOrder: Int, priorityUUID: String? = nil) {
+    static func createHabit(name: String, habitOrder: Int, priorityUUID: String? = nil) {
         dispatch_async(realmQueue) {
             autoreleasepool {
                 // Get realm and table instances for this thread
@@ -43,7 +40,6 @@ class HabitHelper {
                         Habit.self,
                         value: [
                             "name": name,
-                            "active": active,
                             "habitOrder": habitOrder
                         ]
                     )
@@ -80,15 +76,13 @@ class HabitHelper {
                     for value in habits {
                         if value.count > 2 {
                             let name = value[0] as! String
-                            let active = value[1] as! Int
-                            let habitOrder = value[2] as! Bool
+                            let habitOrder = value[2] as! Int
 
                             // Add row via dictionary. Property order is ignored.
                             realm.create(
                                 Habit.self,
                                 value: [
                                     "name": name,
-                                    "active": active,
                                     "habitOrder": habitOrder
                                 ]
                             )
@@ -105,7 +99,7 @@ class HabitHelper {
         }
     }
 
-    static func updateHabit(uuid: String, name: String? = nil, active: Bool? = nil, habitOrder: Int? = nil) {
+    static func updateHabit(uuid: String, name: String? = nil, habitOrder: Int? = nil) {
         dispatch_async(realmQueue) {
             autoreleasepool {
                 // Get realm and table instances for this thread
@@ -121,9 +115,6 @@ class HabitHelper {
 
                     if let n = name {
                         value.updateValue(n, forKey: "name")
-                    }
-                    if let a = active {
-                        value.updateValue(a, forKey: "active")
                     }
                     if let h = habitOrder {
                         value.updateValue(h, forKey: "habitOrder")
