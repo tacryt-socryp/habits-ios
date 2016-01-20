@@ -53,7 +53,7 @@ class MasterViewController: UITableViewController {
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
+        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addNewHabit")
         self.navigationItem.rightBarButtonItem = addButton
         if let split = self.splitViewController {
             let controllers = split.viewControllers
@@ -66,16 +66,14 @@ class MasterViewController: UITableViewController {
         tableView.reloadData()
     }
 
-    func insertNewObject(sender: AnyObject) {
-        HabitHelper.createHabit("Running", habitOrder: 0, goalUUID: "914AB4A7-1A65-4F7B-85AF-1A319066528B")
-        refreshRealm()
-        self.performSegueWithIdentifier("showAddHabit", sender: nil)
+    func addNewHabit() {
+        self.performSegueWithIdentifier(Constants.Segues.showSelectGoal, sender: nil)
     }
 
     // MARK: - Segues
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showDetail" {
+        if segue.identifier == Constants.Segues.showHabitDetail {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 if let habit = habits?[indexPath.row] {
                     let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
@@ -112,7 +110,7 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell")!
+        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableCells.Cell)!
         if let habit = habits?[indexPath.row] {
             cell.textLabel?.text = habit.name
         }

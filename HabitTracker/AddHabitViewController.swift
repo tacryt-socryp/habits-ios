@@ -22,6 +22,7 @@ class AddHabitViewController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        print("configuring add habit view")
         self.configureView()
     }
 
@@ -60,7 +61,7 @@ class AddHabitViewController: FormViewController {
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showMaster" {
+        if segue.identifier == Constants.Segues.showHabitMaster {
             let controller = (segue.destinationViewController as! UINavigationController).topViewController as! MasterViewController
             controller.refreshRealm()
         }

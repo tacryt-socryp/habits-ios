@@ -16,18 +16,34 @@
                     <view key="view" contentMode="scaleToFill" id="Jel-Rh-W7f">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="x1K-do-Zdz">
-                                <rect key="frame" x="281" y="543" width="39" height="37"/>
-                            </pageControl>
-                        </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.73725490196078436" blue="0.83137254901960778" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add New Habit" id="EgB-Ml-hTw"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mTq-SK-bj4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2147" y="-630"/>
+            <point key="canvasLocation" x="2229" y="-630"/>
+        </scene>
+        <!--Select Goal-->
+        <scene sceneID="p2f-JA-OHu">
+            <objects>
+                <viewController title="Select Goal" id="WXu-uu-dlb" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kSp-nb-TaY"/>
+                        <viewControllerLayoutGuide type="bottom" id="wq7-Wv-Bvv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ADQ-RA-Trl">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Select Goal" id="gYr-gb-bXh"/>
+                    <connections>
+                        <segue destination="9EK-r2-iai" kind="show" identifier="showAddHabit" id="N2i-Be-9RF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vCN-NV-bTV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1424" y="-630"/>
         </scene>
         <!--Add Habit PageVC-->
         <scene sceneID="DO7-eB-A0s">
@@ -35,7 +51,7 @@
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="zaf-Kt-786" customClass="AddHabitPageVC" customModule="Tailor" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p8Q-jh-6zj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1447" y="-630"/>
+            <point key="canvasLocation" x="679" y="-1390"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pY4-Hu-kfo">
@@ -130,7 +146,7 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="showDetail" id="6S0-TO-JiA"/>
+                                    <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="showHabitDetail" id="6S0-TO-JiA"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -142,7 +158,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Tailor" id="Zdf-7t-Un8"/>
                     <connections>
-                        <segue destination="zaf-Kt-786" kind="show" identifier="showAddHabitPages" id="k4G-oT-N8R"/>
+                        <segue destination="WXu-uu-dlb" kind="show" identifier="showSelectGoal" id="awp-un-5kT"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
