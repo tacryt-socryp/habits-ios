@@ -20,6 +20,20 @@ class MasterViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configureView()
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        self.clearsSelectionOnViewWillAppear = self.splitViewController!.collapsed
+        super.viewWillAppear(animated)
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    func configureView() {
         do {
             realm = try Realm()
         } catch let err1 as NSError {
@@ -47,16 +61,6 @@ class MasterViewController: UITableViewController {
         }
     }
 
-    override func viewWillAppear(animated: Bool) {
-        self.clearsSelectionOnViewWillAppear = self.splitViewController!.collapsed
-        super.viewWillAppear(animated)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     func refreshRealm() {
         realm?.refresh()
         tableView.reloadData()
@@ -82,7 +86,7 @@ class MasterViewController: UITableViewController {
                     // do an error message
                 }
             }
-        }
+        } 
     }
 
     // MARK: - Table View

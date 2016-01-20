@@ -1,21 +1,21 @@
 //
-//  AddHabitViewController.swift
-//  HabitTracker
+//  AddGoalViewController.swift
+//  Tailor
 //
-//  Created by Logan Allen on 1/18/16.
+//  Created by Logan Allen on 1/20/16.
 //  Copyright © 2016 Logan Allen. All rights reserved.
 //
+
 
 import UIKit
 import Eureka
 
-class AddHabitViewController: FormViewController {
+class AddGoalViewController: FormViewController {
 
     struct rowNames {
-        static let nameRow = "Habit Name"
-        static let goalRow = "Goals"
+        static let nameRow = "Goal Name"
         static let orderRow = "Select Order"
-        static let createRow = "Add Habit"
+        static let createRow = "Add Goal"
     }
 
 
@@ -31,24 +31,24 @@ class AddHabitViewController: FormViewController {
         form +++ Section()
             <<< NameRow(rowNames.nameRow) {
                 $0.title =  $0.tag
-            }
+        }
         form +++= Section()
             <<< ButtonRow(rowNames.createRow) {
                 $0.title = $0.tag
                 // $0.presentationMode = .SegueName(segueName: "RowsExampleViewControllerSegue", completionCallback: nil)
-            }.onCellSelection {_,_ in
-                if let splitControllers = self.splitViewController?.viewControllers {
-                    let navViewController = splitControllers[0] as! UINavigationController
-                    for controller in navViewController.viewControllers {
-                        if let masterViewController = controller as? MasterViewController {
-                            self.addHabit()
-                            masterViewController.refreshRealm()
-                            navViewController.popToViewController(masterViewController, animated: true)
+                }.onCellSelection {_,_ in
+                    if let splitControllers = self.splitViewController?.viewControllers {
+                        let navViewController = splitControllers[0] as! UINavigationController
+                        for controller in navViewController.viewControllers {
+                            if let masterViewController = controller as? MasterViewController {
+                                self.addHabit()
+                                masterViewController.refreshRealm()
+                                navViewController.popToViewController(masterViewController, animated: true)
+                            }
                         }
-                    }
 
-                }
-            }
+                    }
+        }
     }
 
     func addHabit() {
@@ -65,5 +65,5 @@ class AddHabitViewController: FormViewController {
             controller.refreshRealm()
         }
     }
-
+    
 }
