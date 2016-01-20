@@ -1,34 +1,35 @@
 //
-//  PriorityHelper.swift
-//  HabitTracker
+//  GoalHelper.swift
+//  Tailor
 //
-//  Created by Logan Allen on 1/18/16.
+//  Created by Logan Allen on 1/20/16.
 //  Copyright © 2016 Logan Allen. All rights reserved.
 //
 
+
 import RealmSwift
 
-class PriorityHelper {
+class GoalHelper {
 
-    static let realmQueue = dispatch_queue_create("priorityDB", DISPATCH_QUEUE_SERIAL)
+    static let realmQueue = dispatch_queue_create("goalDB", DISPATCH_QUEUE_SERIAL)
 
 
-    static func queryPriorities(active: Bool) -> Results<Priority>? {
+    static func queryGoals(active: Bool) -> Results<Goal>? {
         do {
             let realm = try Realm()
-            var priorities = realm.objects(Priority)
+            var goals = realm.objects(Goal)
             if active {
-                priorities = priorities.filter("habits.@count > 0")
+                goals = goals.filter("habits.@count > 0")
             }
-            priorities = priorities.sorted("priorityOrder")
-            return priorities
+            goals = goals.sorted("goalOrder")
+            return goals
         } catch let err1 as NSError {
             print(err1)
             return nil
         }
     }
 
-    static func createPriority(name: String, priorityOrder: Int, habitUUIDs: [String]) {
+    static func createGoal(name: String, goalOrder: Int, habitUUIDs: [String]) {
         dispatch_async(realmQueue) {
             autoreleasepool {
                 do {
@@ -42,10 +43,10 @@ class PriorityHelper {
                         }
                     }
                     realm.create(
-                        Priority.self,
+                        Goal.self,
                         value: [
                             "name": name,
-                            "priorityOrder": priorityOrder,
+                            "goalOrder": goalOrder,
                             "habits": habits
                         ]
                     )
@@ -58,7 +59,7 @@ class PriorityHelper {
         }
     }
 
-    static func updatePriority(uuid: String, name: String? = nil, priorityOrder: Int? = nil, habitUUIDs: [String]? = nil) {
+    static func updateGoal(uuid: String, name: String? = nil, goalOrder: Int? = nil, habitUUIDs: [String]? = nil) {
         dispatch_async(realmQueue) {
             autoreleasepool {
                 do {
@@ -71,8 +72,8 @@ class PriorityHelper {
                     if let n = name {
                         value.updateValue(n, forKey: "name")
                     }
-                    if let p = priorityOrder {
-                        value.updateValue(p, forKey: "priorityOrder")
+                    if let p = goalOrder {
+                        value.updateValue(p, forKey: "goalOrder")
                     }
                     if let hU = habitUUIDs {
                         var habits = [Habit]()
@@ -85,7 +86,7 @@ class PriorityHelper {
                     }
 
                     realm.create(
-                        Priority.self,
+                        Goal.self,
                         value: value,
                         update: true
                     )
@@ -98,15 +99,15 @@ class PriorityHelper {
         }
     }
 
-    static func deletePriority(uuid: String) {
+    static func deleteGoal(uuid: String) {
         dispatch_async(realmQueue) {
             autoreleasepool {
                 do {
                     let realm = try Realm()
-                    let priority = realm.objectForPrimaryKey(Priority.self, key: uuid)
+                    let goal = realm.objectForPrimaryKey(Goal.self, key: uuid)
                     realm.beginWrite()
-                    if priority != nil {
-                        realm.delete(priority!)
+                    if goal != nil {
+                        realm.delete(goal!)
                     } else {
                         print("habit was nil")
                     }

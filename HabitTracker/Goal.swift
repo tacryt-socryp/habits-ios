@@ -1,5 +1,5 @@
 //
-//  Priority.swift
+//  Goal.swift
 //  HabitTracker
 //
 //  Created by Logan Allen on 1/17/16.
@@ -9,11 +9,11 @@
 import RealmSwift
 
 // A Priority is a category for Habits. Health, Academics, etc.
-class Priority: Object {
+class Goal: Object {
 
     dynamic var uuid = NSUUID().UUIDString
     dynamic var name = ""
-    dynamic var priorityOrder = -1
+    dynamic var goalOrder = -1
     let habits = List<Habit>()
 
 
@@ -22,6 +22,6 @@ class Priority: Object {
     }
     
     override static func indexedProperties() -> [String] {
-        return ["priorityOrder"]
+        return ["goalOrder"]
     }
 }

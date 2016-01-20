@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		02075B431C4D91C500D0522D /* AddHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02075B421C4D91C500D0522D /* AddHabitViewController.swift */; };
 		020A71081C4C15D300E3BCB7 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020A71071C4C15D300E3BCB7 /* Habit.swift */; };
-		020A710A1C4C15DE00E3BCB7 /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020A71091C4C15DE00E3BCB7 /* Priority.swift */; };
+		020A710A1C4C15DE00E3BCB7 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020A71091C4C15DE00E3BCB7 /* Goal.swift */; };
 		022A6B041C4DDA6C0018E9F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02701E131C4C14570092E4D3 /* Assets.xcassets */; };
 		02701E0B1C4C14570092E4D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02701E0A1C4C14570092E4D3 /* AppDelegate.swift */; };
 		02701E0D1C4C14570092E4D3 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02701E0C1C4C14570092E4D3 /* MasterViewController.swift */; };
@@ -17,14 +17,14 @@
 		02701E121C4C14570092E4D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02701E101C4C14570092E4D3 /* Main.storyboard */; };
 		02701E171C4C14570092E4D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02701E151C4C14570092E4D3 /* LaunchScreen.storyboard */; };
 		02A0158D1C4D32B600641475 /* HabitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A0158C1C4D32B600641475 /* HabitHelper.swift */; };
-		02A0158F1C4D32BF00641475 /* PriorityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A0158E1C4D32BF00641475 /* PriorityHelper.swift */; };
+		02D757E31C4FEE54002680E3 /* GoalHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D757E21C4FEE54002680E3 /* GoalHelper.swift */; };
 		48FDD09376E26968BA1BC4F9 /* Pods_Tailor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5643E0E82BA1DDFE150B4278 /* Pods_Tailor.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		02075B421C4D91C500D0522D /* AddHabitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddHabitViewController.swift; sourceTree = "<group>"; };
 		020A71071C4C15D300E3BCB7 /* Habit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
-		020A71091C4C15DE00E3BCB7 /* Priority.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Priority.swift; sourceTree = "<group>"; };
+		020A71091C4C15DE00E3BCB7 /* Goal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		02701E071C4C14570092E4D3 /* Tailor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tailor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02701E0A1C4C14570092E4D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02701E0C1C4C14570092E4D3 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -34,7 +34,7 @@
 		02701E161C4C14570092E4D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		02701E181C4C14570092E4D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		02A0158C1C4D32B600641475 /* HabitHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitHelper.swift; sourceTree = "<group>"; };
-		02A0158E1C4D32BF00641475 /* PriorityHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriorityHelper.swift; sourceTree = "<group>"; };
+		02D757E21C4FEE54002680E3 /* GoalHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalHelper.swift; sourceTree = "<group>"; };
 		2CECB0258948FE0319AD13C2 /* Pods-Tailor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tailor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tailor/Pods-Tailor.debug.xcconfig"; sourceTree = "<group>"; };
 		5643E0E82BA1DDFE150B4278 /* Pods_Tailor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tailor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCEF1651D7AB42BCF6F001B4 /* Pods-Tailor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tailor.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tailor/Pods-Tailor.release.xcconfig"; sourceTree = "<group>"; };
@@ -56,7 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				020A71071C4C15D300E3BCB7 /* Habit.swift */,
-				020A71091C4C15DE00E3BCB7 /* Priority.swift */,
+				020A71091C4C15DE00E3BCB7 /* Goal.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -104,7 +104,7 @@
 				020A71061C4C154000E3BCB7 /* Controllers */,
 				02701E0A1C4C14570092E4D3 /* AppDelegate.swift */,
 				02A0158C1C4D32B600641475 /* HabitHelper.swift */,
-				02A0158E1C4D32BF00641475 /* PriorityHelper.swift */,
+				02D757E21C4FEE54002680E3 /* GoalHelper.swift */,
 				02701E101C4C14570092E4D3 /* Main.storyboard */,
 				02701E151C4C14570092E4D3 /* LaunchScreen.storyboard */,
 				02701E131C4C14570092E4D3 /* Assets.xcassets */,
@@ -255,11 +255,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				02701E0F1C4C14570092E4D3 /* DetailViewController.swift in Sources */,
-				02A0158F1C4D32BF00641475 /* PriorityHelper.swift in Sources */,
+				02D757E31C4FEE54002680E3 /* GoalHelper.swift in Sources */,
 				02A0158D1C4D32B600641475 /* HabitHelper.swift in Sources */,
 				02701E0D1C4C14570092E4D3 /* MasterViewController.swift in Sources */,
 				020A71081C4C15D300E3BCB7 /* Habit.swift in Sources */,
-				020A710A1C4C15DE00E3BCB7 /* Priority.swift in Sources */,
+				020A710A1C4C15DE00E3BCB7 /* Goal.swift in Sources */,
 				02701E0B1C4C14570092E4D3 /* AppDelegate.swift in Sources */,
 				02075B431C4D91C500D0522D /* AddHabitViewController.swift in Sources */,
 			);

@@ -25,7 +25,7 @@ class HabitHelper {
         }
     }
 
-    static func createHabit(name: String, habitOrder: Int, priorityUUID: String? = nil) {
+    static func createHabit(name: String, habitOrder: Int, goalUUID: String? = nil) {
         dispatch_async(realmQueue) {
             autoreleasepool {
                 // Get realm and table instances for this thread
@@ -44,11 +44,11 @@ class HabitHelper {
                         ]
                     )
 
-                    if priorityUUID != nil {
-                        if let p = realm.objectForPrimaryKey(Priority.self, key: priorityUUID!) {
+                    if goalUUID != nil {
+                        if let p = realm.objectForPrimaryKey(Goal.self, key: goalUUID!) {
                             var habitUUIDs = p.habits.map({ $0.uuid })
                             habitUUIDs.append(habit.uuid)
-                            PriorityHelper.updatePriority(p.uuid, habitUUIDs: habitUUIDs)
+                            GoalHelper.updateGoal(p.uuid, habitUUIDs: habitUUIDs)
                         }
                     }
 
