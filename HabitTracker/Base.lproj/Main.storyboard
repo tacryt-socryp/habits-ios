@@ -8,7 +8,7 @@
         <!--Add New Habit-->
         <scene sceneID="JVD-Go-thz">
             <objects>
-                <viewController title="Add New Habit" id="9EK-r2-iai" customClass="AddHabitViewController" customModule="Tailor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addHabitVC" title="Add New Habit" id="9EK-r2-iai" customClass="AddHabitViewController" customModule="Tailor" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Osg-hE-Ekv"/>
                         <viewControllerLayoutGuide type="bottom" id="MIo-sV-bqQ"/>
@@ -16,13 +16,26 @@
                     <view key="view" contentMode="scaleToFill" id="Jel-Rh-W7f">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="x1K-do-Zdz">
+                                <rect key="frame" x="281" y="543" width="39" height="37"/>
+                            </pageControl>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.73725490196078436" blue="0.83137254901960778" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Add New Habit" id="EgB-Ml-hTw"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mTq-SK-bj4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1463" y="-630"/>
+            <point key="canvasLocation" x="2147" y="-630"/>
+        </scene>
+        <!--Add Habit PageVC-->
+        <scene sceneID="DO7-eB-A0s">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="zaf-Kt-786" customClass="AddHabitPageVC" customModule="Tailor" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p8Q-jh-6zj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1447" y="-630"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pY4-Hu-kfo">
@@ -129,7 +142,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Tailor" id="Zdf-7t-Un8"/>
                     <connections>
-                        <segue destination="9EK-r2-iai" kind="show" identifier="showAddHabit" id="3yD-Ov-eeG"/>
+                        <segue destination="zaf-Kt-786" kind="show" identifier="showAddHabitPages" id="k4G-oT-N8R"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
