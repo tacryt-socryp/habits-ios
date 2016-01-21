@@ -17,6 +17,7 @@
 		02701E0F1C4C14570092E4D3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02701E0E1C4C14570092E4D3 /* DetailViewController.swift */; };
 		02701E121C4C14570092E4D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02701E101C4C14570092E4D3 /* Main.storyboard */; };
 		02701E171C4C14570092E4D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02701E151C4C14570092E4D3 /* LaunchScreen.storyboard */; };
+		029C7B931C513BD600603FA9 /* SelectGoalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029C7B921C513BD600603FA9 /* SelectGoalVC.swift */; };
 		02A0158D1C4D32B600641475 /* HabitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A0158C1C4D32B600641475 /* HabitHelper.swift */; };
 		02C6FEAB1C501A0200E4EA39 /* AddHabitPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6FEAA1C501A0200E4EA39 /* AddHabitPageVC.swift */; };
 		02D757E31C4FEE54002680E3 /* GoalHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D757E21C4FEE54002680E3 /* GoalHelper.swift */; };
@@ -37,6 +38,7 @@
 		02701E131C4C14570092E4D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02701E161C4C14570092E4D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		02701E181C4C14570092E4D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		029C7B921C513BD600603FA9 /* SelectGoalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectGoalVC.swift; sourceTree = "<group>"; };
 		02A0158C1C4D32B600641475 /* HabitHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitHelper.swift; sourceTree = "<group>"; };
 		02C6FEAA1C501A0200E4EA39 /* AddHabitPageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddHabitPageVC.swift; sourceTree = "<group>"; };
 		02D757E21C4FEE54002680E3 /* GoalHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalHelper.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				02701E0C1C4C14570092E4D3 /* MasterViewController.swift */,
 				02075B421C4D91C500D0522D /* AddHabitViewController.swift */,
 				02D757E41C4FF8E6002680E3 /* AddGoalViewController.swift */,
+				029C7B921C513BD600603FA9 /* SelectGoalVC.swift */,
 				02C6FEAA1C501A0200E4EA39 /* AddHabitPageVC.swift */,
 			);
 			name = Controllers;
@@ -268,6 +271,7 @@
 				02701E0F1C4C14570092E4D3 /* DetailViewController.swift in Sources */,
 				02D757E31C4FEE54002680E3 /* GoalHelper.swift in Sources */,
 				02A0158D1C4D32B600641475 /* HabitHelper.swift in Sources */,
+				029C7B931C513BD600603FA9 /* SelectGoalVC.swift in Sources */,
 				02701E0D1C4C14570092E4D3 /* MasterViewController.swift in Sources */,
 				020A71081C4C15D300E3BCB7 /* Habit.swift in Sources */,
 				02C6FEAB1C501A0200E4EA39 /* AddHabitPageVC.swift in Sources */,

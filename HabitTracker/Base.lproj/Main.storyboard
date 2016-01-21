@@ -26,7 +26,7 @@
         <!--Select Goal-->
         <scene sceneID="p2f-JA-OHu">
             <objects>
-                <viewController title="Select Goal" id="WXu-uu-dlb" sceneMemberID="viewController">
+                <viewController title="Select Goal" id="WXu-uu-dlb" customClass="SelectGoalVC" customModule="Tailor" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kSp-nb-TaY"/>
                         <viewControllerLayoutGuide type="bottom" id="wq7-Wv-Bvv"/>

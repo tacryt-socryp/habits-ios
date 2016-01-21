@@ -31,7 +31,7 @@ class AddGoalViewController: FormViewController {
         form +++ Section()
             <<< NameRow(rowNames.nameRow) {
                 $0.title =  $0.tag
-        }
+            }
         form +++= Section()
             <<< ButtonRow(rowNames.createRow) {
                 $0.title = $0.tag
@@ -48,7 +48,7 @@ class AddGoalViewController: FormViewController {
                         }
 
                     }
-        }
+            }
     }
 
     func addHabit() {
