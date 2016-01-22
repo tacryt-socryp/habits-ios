@@ -40,14 +40,14 @@ class MasterViewController: UITableViewController {
             print(err1)
         }
         print(Realm.Configuration.defaultConfiguration.path!)
-        HabitHelper.deleteAllObjects()
-        //HabitHelper.createHabit("Running", habitOrder: 0)
-        //HabitHelper.createHabit("Weight Lifting", habitOrder: 1)
+        // HabitHelper.deleteAllObjects()
+        // HabitHelper.createHabit("Running", habitOrder: 0)
+        // HabitHelper.createHabit("Weight Lifting", habitOrder: 1)
         habits = HabitHelper.queryHabits()
 
-        //let healthHabits = habits?.map({ $0.uuid }) ?? [String]()
-        //yHelper.createPriority("Health", priorityOrder: 0, habitUUIDs: healthHabits)
-        //PriorityHelper.updatePriority("914AB4A7-1A65-4F7B-85AF-1A319066528B", habitUUIDs: healthHabits)
+        // let healthHabits = habits?.map({ $0.uuid }) ?? [String]()
+        // GoalHelper.createGoal("Health", goalOrder: 0, habitUUIDs: healthHabits)
+        // GoalHelper.updateGoal("914AB4A7-1A65-4F7B-85AF-1A319066528B", habitUUIDs: healthHabits)
         goals = GoalHelper.queryGoals(true)
 
         // Do any additional setup after loading the view, typically from a nib.
@@ -84,7 +84,7 @@ class MasterViewController: UITableViewController {
                     // do an error message
                 }
             }
-        } 
+        }
     }
 
     // MARK: - Table View

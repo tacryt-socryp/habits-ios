@@ -21,7 +21,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mTq-SK-bj4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2229" y="-630"/>
+            <point key="canvasLocation" x="2312" y="-275"/>
         </scene>
         <!--Select Goal-->
         <scene sceneID="p2f-JA-OHu">
@@ -39,11 +39,31 @@
                     <navigationItem key="navigationItem" title="Select Goal" id="gYr-gb-bXh"/>
                     <connections>
                         <segue destination="9EK-r2-iai" kind="show" identifier="showAddHabit" id="N2i-Be-9RF"/>
+                        <segue destination="Qpu-oX-sAu" kind="show" identifier="showAddGoal" id="llW-nR-4RG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vCN-NV-bTV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1424" y="-630"/>
+        </scene>
+        <!--Add New Goal-->
+        <scene sceneID="tOF-5c-MbW">
+            <objects>
+                <viewController title="Add New Goal" id="Qpu-oX-sAu" customClass="AddGoalViewController" customModule="Tailor" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wAR-b5-J2c"/>
+                        <viewControllerLayoutGuide type="bottom" id="f0c-V8-IFc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="da6-UQ-2aa">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add New Goal" id="Nui-Us-cQQ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WFs-6V-ZaV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2312" y="-958"/>
         </scene>
         <!--Add Habit PageVC-->
         <scene sceneID="DO7-eB-A0s">

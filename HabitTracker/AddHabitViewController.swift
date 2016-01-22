@@ -18,11 +18,11 @@ class AddHabitViewController: FormViewController {
         static let createRow = "Add Habit"
     }
 
+    var goalUUID: String? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        print("configuring add habit view")
         self.configureView()
     }
 
@@ -33,6 +33,10 @@ class AddHabitViewController: FormViewController {
             <<< NameRow(rowNames.nameRow) {
                 $0.title =  $0.tag
             }
+            <<< IntRow(rowNames.orderRow) { // TODO: do this automatically, allow changing afterwards
+                $0.title = $0.tag
+            }
+
         form +++= Section()
             <<< ButtonRow(rowNames.createRow) {
                 $0.title = $0.tag
@@ -47,7 +51,6 @@ class AddHabitViewController: FormViewController {
                             navViewController.popToViewController(masterViewController, animated: true)
                         }
                     }
-
                 }
             }
     }
@@ -55,9 +58,9 @@ class AddHabitViewController: FormViewController {
     func addHabit() {
         let values = form.values()
         let name = values[rowNames.nameRow] as! String
-        //let habitOrder = values[rowNames.orderRow] as! Int
+        let habitOrder = values[rowNames.orderRow] as! Int
 
-        HabitHelper.createHabit(name, habitOrder: 0)
+        HabitHelper.createHabit(name, habitOrder: habitOrder, goalUUID: goalUUID)
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

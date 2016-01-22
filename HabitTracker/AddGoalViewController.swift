@@ -15,8 +15,10 @@ class AddGoalViewController: FormViewController {
     struct rowNames {
         static let nameRow = "Goal Name"
         static let orderRow = "Select Order"
-        static let createRow = "Add Goal"
+        static let createRow = "Create Goal"
     }
+
+    var maxGoalOrder: Int = 0
 
 
     override func viewDidLoad() {
@@ -30,40 +32,34 @@ class AddGoalViewController: FormViewController {
         navigationOptions = .Disabled
         form +++ Section()
             <<< NameRow(rowNames.nameRow) {
-                $0.title =  $0.tag
+                $0.title = $0.tag
             }
+
         form +++= Section()
             <<< ButtonRow(rowNames.createRow) {
                 $0.title = $0.tag
-                // $0.presentationMode = .SegueName(segueName: "RowsExampleViewControllerSegue", completionCallback: nil)
-                }.onCellSelection {_,_ in
-                    if let splitControllers = self.splitViewController?.viewControllers {
-                        let navViewController = splitControllers[0] as! UINavigationController
-                        for controller in navViewController.viewControllers {
-                            if let masterViewController = controller as? MasterViewController {
-                                self.addHabit()
-                                masterViewController.refreshRealm()
-                                navViewController.popToViewController(masterViewController, animated: true)
-                            }
+            }.onCellSelection {_,_ in
+                if let splitControllers = self.splitViewController?.viewControllers {
+                    let navViewController = splitControllers[0] as! UINavigationController
+                    for controller in navViewController.viewControllers {
+                        if let selectGoal = controller as? SelectGoalVC {
+                            self.addGoal(selectGoal)
+                            navViewController.popToViewController(selectGoal, animated: true)
                         }
-
                     }
+                }
             }
     }
 
-    func addHabit() {
+    func addGoal(vc: SelectGoalVC? = nil) {
         let values = form.values()
         let name = values[rowNames.nameRow] as! String
-        //let habitOrder = values[rowNames.orderRow] as! Int
 
-        HabitHelper.createHabit(name, habitOrder: 0)
-    }
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showMaster" {
-            let controller = (segue.destinationViewController as! UINavigationController).topViewController as! MasterViewController
-            controller.refreshRealm()
-        }
+        GoalHelper.createGoal(name, goalOrder: maxGoalOrder, habitUUIDs: [String](), complete: { () -> () in
+            dispatch_async(dispatch_get_main_queue()) {
+                vc?.refreshRealm()
+            }
+        })
     }
     
 }

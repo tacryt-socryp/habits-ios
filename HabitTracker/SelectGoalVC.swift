@@ -8,13 +8,32 @@
 
 import UIKit
 import Eureka
+import RealmSwift
 
 class SelectGoalVC: FormViewController {
 
     struct rowNames {
         static let goalRow = "Select Goal"
-        static let createRow = "Add Goal"
+        static let createRow = "Create New Goal"
         static let nextRow = "Next"
+    }
+
+    var realm: Realm? = nil
+    var goalResults: Results<Goal>? = nil
+
+    var selectedGoalUUID: String? = nil
+    var goalDicts: [String:Goal] { // Goal Name : Goal
+        var dict = [String:Goal]()
+        goalResults?.forEach { goal in
+            dict.updateValue(goal, forKey:goal.name)
+        }
+        return dict
+    }
+
+    var pickerGoals: [String] { // Goal Name
+        return goalResults?.map { goal in
+            return goal.name
+        } ?? [String]()
     }
 
 
@@ -24,44 +43,85 @@ class SelectGoalVC: FormViewController {
         self.configureView()
     }
 
-    func getValues() -> NSDictionary {
-        // let values = form.values()
-        // return values
-        var values = form.values()
-        var retValues = [String:AnyObject]()
-        if let goal = values[rowNames.goalRow] {
-            print(goal)
-            retValues.updateValue(goal as! String, forKey: rowNames.goalRow)
-        }
-        return retValues as NSDictionary
-    }
-
     func configureView() {
         // Update the user interface.
+        do {
+            realm = try Realm()
+        } catch let err1 as NSError {
+            print(err1)
+        }
+        goalResults = GoalHelper.queryGoals(false) // setting goal results calls configureView
+
         navigationOptions = .Disabled
-        form +++ Section()
-            <<< PickerInlineRow<String>(rowNames.goalRow) {
-                $0.title = $0.tag
-                $0.options = []
-                for i in 1...10{
-                    $0.options.append("option \(i)")
-                }
+        let goalPicker = PickerInlineRow<String>(rowNames.goalRow) {
+            $0.title = $0.tag
+            $0.options = self.pickerGoals
+            $0.hidden = Condition.Function([rowNames.goalRow], {row in
+                return self.pickerGoals.count == 0
+            })
+        }.onChange { [weak self] row in
+            if row.value != nil {
+                self?.selectedGoalUUID = self?.goalDicts[row.value!]?.uuid
+                print(self?.selectedGoalUUID)
             }
+        }
 
-        form +++= Section()
-            <<< ButtonRow(rowNames.createRow) {
-                $0.title = $0.tag
-                // $0.presentationMode = .SegueName(segueName: "RowsExampleViewControllerSegue", completionCallback: nil)
-            }.onCellSelection {_,_ in
-                self.performSegueWithIdentifier(Constants.Segues.showAddGoal, sender: nil)
-            }
+        let createButton = ButtonRow(rowNames.createRow) {
+            $0.title = $0.tag
+        }.onCellSelection {_,_ in
+            self.performSegueWithIdentifier(Constants.Segues.showAddGoal, sender: nil)
+        }
 
-        form +++= Section()
-            <<< ButtonRow(rowNames.nextRow) {
-                $0.title = $0.tag
-            }.onCellSelection {_,_ in
-                self.performSegueWithIdentifier(Constants.Segues.showAddHabit, sender: self.getValues())
+        if goalResults?.count > 0 {
+            form +++ Section()
+                <<< goalPicker
+                <<< createButton
+        } else {
+            form +++= createButton
+        }
+
+        let nextButton = ButtonRow(rowNames.nextRow) {
+            $0.title = $0.tag
+            $0.disabled = Condition.Function([rowNames.goalRow], {row in
+                return self.selectedGoalUUID == nil
+            })
+        }.onCellSelection { _,row in
+            if row.isDisabled {
+                // show alert to say that this is disabled
+            } else {
+                self.performSegueWithIdentifier(Constants.Segues.showAddHabit, sender: nil)
             }
+        }
+
+        form +++= nextButton
+    }
+
+    func getGoalUUID() -> String? {
+        let values = form.values()
+        return values[rowNames.goalRow] as? String
+    }
+
+    func refreshRealm() {
+        realm?.refresh()
+        refreshView()
+    }
+
+    func refreshView() {
+        let goalRow: PickerInlineRow<String>? = form.rowByTag(rowNames.goalRow)
+        goalRow?.collapseInlineRow()
+        goalRow?.options = pickerGoals
+    }
+
+    // MARK: - Segues
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == Constants.Segues.showAddGoal {
+            let controller = segue.destinationViewController as! AddGoalViewController
+            controller.maxGoalOrder = goalResults?.count ?? 0
+        } else if segue.identifier == Constants.Segues.showAddHabit {
+            let controller = segue.destinationViewController as! AddHabitViewController
+            controller.goalUUID = self.getGoalUUID()
+        }
     }
 
 }

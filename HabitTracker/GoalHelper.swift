@@ -29,7 +29,7 @@ class GoalHelper {
         }
     }
 
-    static func createGoal(name: String, goalOrder: Int, habitUUIDs: [String]) {
+    static func createGoal(name: String, goalOrder: Int, habitUUIDs: [String], complete: (() -> ())? = nil) {
         dispatch_async(realmQueue) {
             autoreleasepool {
                 do {
@@ -52,6 +52,9 @@ class GoalHelper {
                     )
 
                     try realm.commitWrite()
+                    if let c = complete {
+                        c()
+                    }
                 } catch let err1 as NSError {
                     print(err1)
                 }
