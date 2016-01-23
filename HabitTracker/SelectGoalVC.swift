@@ -19,6 +19,7 @@ class SelectGoalVC: FormViewController {
     }
 
     var realm: Realm? = nil
+    var habitResults: Results<Habit>? = nil
     var goalResults: Results<Goal>? = nil
 
     var selectedGoalUUID: String? = nil
@@ -51,6 +52,7 @@ class SelectGoalVC: FormViewController {
             print(err1)
         }
         goalResults = GoalHelper.queryGoals(false) // setting goal results calls configureView
+        habitResults = HabitHelper.queryHabits()
 
         navigationOptions = .Disabled
         let goalPicker = PickerInlineRow<String>(rowNames.goalRow) {
@@ -114,6 +116,7 @@ class SelectGoalVC: FormViewController {
             controller.maxGoalOrder = goalResults?.count ?? 0
         } else if segue.identifier == Constants.Segues.showAddHabit {
             let controller = segue.destinationViewController as! AddHabitViewController
+            controller.maxHabitOrder = habitResults?.count ?? 0
             controller.goalUUID = self.selectedGoalUUID
         }
     }

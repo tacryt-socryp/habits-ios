@@ -14,6 +14,7 @@ class Habit: Object {
     dynamic var uuid = NSUUID().UUIDString
     dynamic var name = ""
     dynamic var habitOrder = -1
+    let entries = List<Entry>()
 
 
     let numDays = RealmOptional<Int>()

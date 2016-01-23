@@ -17,7 +17,7 @@ class HabitHelper {
         do {
             let realm = try Realm()
             var habits = realm.objects(Habit)
-            habits = habits.sorted("habitOrder").sorted("name")
+            habits = habits.sorted("habitOrder")
             return habits
         } catch let err1 as NSError {
             print(err1)
@@ -137,7 +137,7 @@ class HabitHelper {
         }
     }
 
-    static func deleteHabit(uuid: String) {
+    static func deleteHabit(uuid: String, complete: (() -> ())? = nil) {
         dispatch_async(realmQueue) {
             autoreleasepool {
                 do {
@@ -151,6 +151,9 @@ class HabitHelper {
                     }
 
                     try realm.commitWrite()
+                    if let c = complete {
+                        c()
+                    }
                 } catch let err1 as NSError {
                     print(err1)
                 }

@@ -14,11 +14,11 @@ class AddHabitViewController: FormViewController {
     struct rowNames {
         static let nameRow = "Habit Name"
         static let goalRow = "Goals"
-        static let orderRow = "Select Order"
         static let createRow = "Add Habit"
     }
 
     var goalUUID: String? = nil
+    var maxHabitOrder: Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +32,6 @@ class AddHabitViewController: FormViewController {
         form +++ Section()
             <<< NameRow(rowNames.nameRow) {
                 $0.title =  $0.tag
-            }
-            <<< IntRow(rowNames.orderRow) { // TODO: do this automatically, allow changing afterwards
-                $0.title = $0.tag
             }
 
         form +++= Section()
@@ -58,10 +55,8 @@ class AddHabitViewController: FormViewController {
     func addHabit(mV: MasterViewController? = nil) {
         let values = form.values()
         let name = values[rowNames.nameRow] as! String
-        let habitOrder = values[rowNames.orderRow] as! Int
-        print(goalUUID)
 
-        HabitHelper.createHabit(name, habitOrder: habitOrder, goalUUID: goalUUID, complete: { () -> () in
+        HabitHelper.createHabit(name, habitOrder: maxHabitOrder, goalUUID: goalUUID, complete: { () -> () in
             dispatch_async(dispatch_get_main_queue()) {
                 mV?.refreshRealm()
             }

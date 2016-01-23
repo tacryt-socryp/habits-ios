@@ -21,6 +21,7 @@
 		02C6FEAB1C501A0200E4EA39 /* AddHabitPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6FEAA1C501A0200E4EA39 /* AddHabitPageVC.swift */; };
 		02D757E31C4FEE54002680E3 /* GoalHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D757E21C4FEE54002680E3 /* GoalHelper.swift */; };
 		02D757E51C4FF8E6002680E3 /* AddGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D757E41C4FF8E6002680E3 /* AddGoalViewController.swift */; };
+		02E75F251C53E1CC003B448F /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E75F241C53E1CC003B448F /* Entry.swift */; };
 		02ECD5E31C52A972005762E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02ECD5E11C52A972005762E4 /* Main.storyboard */; };
 		48FDD09376E26968BA1BC4F9 /* Pods_Tailor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5643E0E82BA1DDFE150B4278 /* Pods_Tailor.framework */; };
 /* End PBXBuildFile section */
@@ -42,6 +43,7 @@
 		02C6FEAA1C501A0200E4EA39 /* AddHabitPageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddHabitPageVC.swift; sourceTree = "<group>"; };
 		02D757E21C4FEE54002680E3 /* GoalHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalHelper.swift; sourceTree = "<group>"; };
 		02D757E41C4FF8E6002680E3 /* AddGoalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGoalViewController.swift; sourceTree = "<group>"; };
+		02E75F241C53E1CC003B448F /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		02ECD5E21C52A972005762E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2CECB0258948FE0319AD13C2 /* Pods-Tailor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tailor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tailor/Pods-Tailor.debug.xcconfig"; sourceTree = "<group>"; };
 		5643E0E82BA1DDFE150B4278 /* Pods_Tailor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tailor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,6 +67,7 @@
 			children = (
 				020A71071C4C15D300E3BCB7 /* Habit.swift */,
 				020A71091C4C15DE00E3BCB7 /* Goal.swift */,
+				02E75F241C53E1CC003B448F /* Entry.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 			files = (
 				02D757E51C4FF8E6002680E3 /* AddGoalViewController.swift in Sources */,
 				023BA3561C502E99003DC61C /* Constants.swift in Sources */,
+				02E75F251C53E1CC003B448F /* Entry.swift in Sources */,
 				02701E0F1C4C14570092E4D3 /* DetailViewController.swift in Sources */,
 				02D757E31C4FEE54002680E3 /* GoalHelper.swift in Sources */,
 				02A0158D1C4D32B600641475 /* HabitHelper.swift in Sources */,
