@@ -56,11 +56,11 @@ class AddHabitViewController: FormViewController {
         let values = form.values()
         let name = values[rowNames.nameRow] as! String
 
-        HabitHelper.createHabit(name, habitOrder: maxHabitOrder, goalUUID: goalUUID, complete: { () -> () in
+        HabitHelper.createHabit(name, habitOrder: maxHabitOrder, goalUUID: goalUUID) { () -> () in
             dispatch_async(dispatch_get_main_queue()) {
                 mV?.refreshRealm()
             }
-        })
+        }
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

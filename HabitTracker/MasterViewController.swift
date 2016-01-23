@@ -123,7 +123,6 @@ class MasterViewController: UITableViewController {
             if let habit = goals?[indexPath.section].habits[indexPath.row] {
                 HabitHelper.deleteHabit(habit.uuid) {
                     dispatch_async(dispatch_get_main_queue()) {
-                        print(self)
                         self.refreshRealm()
                     }
                 }

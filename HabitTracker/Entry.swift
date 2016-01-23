@@ -8,13 +8,10 @@
 
 import RealmSwift
 
-// A Priority is a category for Habits. Health, Academics, etc.
+// An Entry is an action that is categorized into habits.
 class Entry: Object {
 
     dynamic var date = NSDate()
     dynamic var note = ""
 
-    override static func primaryKey() -> String? {
-        return "date"
-    }
 }

@@ -73,13 +73,9 @@ class SelectGoalVC: FormViewController {
             self.performSegueWithIdentifier(Constants.Segues.showAddGoal, sender: nil)
         }
 
-        if goalResults?.count > 0 {
-            form +++ Section()
-                <<< goalPicker
-                <<< createButton
-        } else {
-            form +++= createButton
-        }
+        form +++ Section()
+            <<< goalPicker
+            <<< createButton
 
         let nextButton = ButtonRow(rowNames.nextRow) {
             $0.title = $0.tag
@@ -99,13 +95,15 @@ class SelectGoalVC: FormViewController {
 
     func refreshRealm() {
         realm?.refresh()
-        refreshView()
+        // refreshView()
     }
 
     func refreshView() {
         let goalRow: PickerInlineRow<String>? = form.rowByTag(rowNames.goalRow)
         goalRow?.collapseInlineRow()
         goalRow?.options = pickerGoals
+        goalRow?.evaluateHidden()
+        goalRow?.updateCell()
     }
 
     // MARK: - Segues

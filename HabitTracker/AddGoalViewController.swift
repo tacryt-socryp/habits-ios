@@ -55,11 +55,12 @@ class AddGoalViewController: FormViewController {
         let values = form.values()
         let name = values[rowNames.nameRow] as! String
 
-        GoalHelper.createGoal(name, goalOrder: maxGoalOrder, habitUUIDs: [String](), complete: { () -> () in
+        GoalHelper.createGoal(name, goalOrder: maxGoalOrder, habitUUIDs: [String]()) { () -> () in
             dispatch_async(dispatch_get_main_queue()) {
                 vc?.refreshRealm()
+                vc?.refreshView()
             }
-        })
+        }
     }
     
 }
