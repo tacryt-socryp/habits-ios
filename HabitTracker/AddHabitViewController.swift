@@ -46,7 +46,7 @@ class AddHabitViewController: FormViewController {
                     let navViewController = splitControllers[0] as! UINavigationController
                     for controller in navViewController.viewControllers {
                         if let masterViewController = controller as? MasterViewController {
-                            self.addHabit()
+                            self.addHabit(masterViewController)
                             masterViewController.refreshRealm()
                             navViewController.popToViewController(masterViewController, animated: true)
                         }
@@ -55,18 +55,23 @@ class AddHabitViewController: FormViewController {
             }
     }
 
-    func addHabit() {
+    func addHabit(mV: MasterViewController? = nil) {
         let values = form.values()
         let name = values[rowNames.nameRow] as! String
         let habitOrder = values[rowNames.orderRow] as! Int
+        print(goalUUID)
 
-        HabitHelper.createHabit(name, habitOrder: habitOrder, goalUUID: goalUUID)
+        HabitHelper.createHabit(name, habitOrder: habitOrder, goalUUID: goalUUID, complete: { () -> () in
+            dispatch_async(dispatch_get_main_queue()) {
+                mV?.refreshRealm()
+            }
+        })
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == Constants.Segues.showHabitMaster {
-            let controller = (segue.destinationViewController as! UINavigationController).topViewController as! MasterViewController
-            controller.refreshRealm()
+            // let controller = (segue.destinationViewController as! UINavigationController).topViewController as! MasterViewController
+            // controller.refreshRealm()
         }
     }
 

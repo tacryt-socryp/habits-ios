@@ -62,7 +62,6 @@ class SelectGoalVC: FormViewController {
         }.onChange { [weak self] row in
             if row.value != nil {
                 self?.selectedGoalUUID = self?.goalDicts[row.value!]?.uuid
-                print(self?.selectedGoalUUID)
             }
         }
 
@@ -96,11 +95,6 @@ class SelectGoalVC: FormViewController {
         form +++= nextButton
     }
 
-    func getGoalUUID() -> String? {
-        let values = form.values()
-        return values[rowNames.goalRow] as? String
-    }
-
     func refreshRealm() {
         realm?.refresh()
         refreshView()
@@ -120,7 +114,7 @@ class SelectGoalVC: FormViewController {
             controller.maxGoalOrder = goalResults?.count ?? 0
         } else if segue.identifier == Constants.Segues.showAddHabit {
             let controller = segue.destinationViewController as! AddHabitViewController
-            controller.goalUUID = self.getGoalUUID()
+            controller.goalUUID = self.selectedGoalUUID
         }
     }
 

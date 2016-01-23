@@ -25,7 +25,7 @@ class HabitHelper {
         }
     }
 
-    static func createHabit(name: String, habitOrder: Int, goalUUID: String? = nil) {
+    static func createHabit(name: String, habitOrder: Int, goalUUID: String? = nil, complete: (() -> ())? = nil) {
         dispatch_async(realmQueue) {
             autoreleasepool {
                 // Get realm and table instances for this thread
@@ -55,6 +55,9 @@ class HabitHelper {
                     // Commit the write transaction
                     // to make this data available to other threads
                     try realm.commitWrite()
+                    if let c = complete {
+                        c()
+                    }
                 } catch let err1 as NSError {
                     print(err1)
                 }
