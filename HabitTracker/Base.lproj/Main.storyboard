@@ -21,57 +21,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mTq-SK-bj4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2312" y="-275"/>
-        </scene>
-        <!--Select Goal-->
-        <scene sceneID="p2f-JA-OHu">
-            <objects>
-                <viewController title="Select Goal" id="WXu-uu-dlb" customClass="SelectGoalVC" customModule="Tailor" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="kSp-nb-TaY"/>
-                        <viewControllerLayoutGuide type="bottom" id="wq7-Wv-Bvv"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ADQ-RA-Trl">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Select Goal" id="gYr-gb-bXh"/>
-                    <connections>
-                        <segue destination="9EK-r2-iai" kind="show" identifier="showAddHabit" id="N2i-Be-9RF"/>
-                        <segue destination="Qpu-oX-sAu" kind="show" identifier="showAddGoal" id="llW-nR-4RG"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vCN-NV-bTV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1424" y="-630"/>
-        </scene>
-        <!--Add New Goal-->
-        <scene sceneID="tOF-5c-MbW">
-            <objects>
-                <viewController title="Add New Goal" id="Qpu-oX-sAu" customClass="AddGoalViewController" customModule="Tailor" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="wAR-b5-J2c"/>
-                        <viewControllerLayoutGuide type="bottom" id="f0c-V8-IFc"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="da6-UQ-2aa">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Add New Goal" id="Nui-Us-cQQ"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WFs-6V-ZaV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2312" y="-958"/>
-        </scene>
-        <!--Add Habit PageVC-->
-        <scene sceneID="DO7-eB-A0s">
-            <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="zaf-Kt-786" customClass="AddHabitPageVC" customModule="Tailor" customModuleProvider="target" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="p8Q-jh-6zj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="679" y="-1390"/>
+            <point key="canvasLocation" x="1400" y="-630"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pY4-Hu-kfo">
@@ -143,13 +93,13 @@
         <scene sceneID="smW-Zh-WAh">
             <objects>
                 <tableViewController title="HabitList" clearsSelectionOnViewWillAppear="NO" id="7bK-jq-Zjz" userLabel="HabitList" customClass="MasterViewController" customModule="Tailor" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="r7i-6Z-zg0">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="r7i-6Z-zg0">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="Gh7-LV-DNf" style="IBUITableViewCellStyleDefault" id="WCw-Qf-5nD">
-                                <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="Gh7-LV-DNf" style="IBUITableViewCellStyleDefault" id="WCw-Qf-5nD">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WCw-Qf-5nD" id="37f-cq-3Eg">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -178,7 +128,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Tailor" id="Zdf-7t-Un8"/>
                     <connections>
-                        <segue destination="WXu-uu-dlb" kind="show" identifier="showSelectGoal" id="awp-un-5kT"/>
+                        <segue destination="9EK-r2-iai" kind="show" identifier="showAddHabit" id="6ob-cE-x2C"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>

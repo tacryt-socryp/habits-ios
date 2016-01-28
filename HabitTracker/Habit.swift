@@ -13,6 +13,7 @@ class Habit: Object {
 
     dynamic var uuid = NSUUID().UUIDString
     dynamic var name = ""
+    dynamic var goal = ""
     dynamic var habitOrder = -1
     let entries = List<Entry>()
 

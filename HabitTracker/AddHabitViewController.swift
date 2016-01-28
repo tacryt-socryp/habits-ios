@@ -13,11 +13,10 @@ class AddHabitViewController: FormViewController {
 
     struct rowNames {
         static let nameRow = "Habit Name"
-        static let goalRow = "Goals"
         static let createRow = "Add Habit"
     }
 
-    var goalUUID: String? = nil
+    var habitUUID: String? = nil // if habitUUID is set, edit mode, not create.
     var maxHabitOrder: Int = 0
 
     override func viewDidLoad() {
@@ -56,7 +55,7 @@ class AddHabitViewController: FormViewController {
         let values = form.values()
         let name = values[rowNames.nameRow] as! String
 
-        HabitHelper.createHabit(name, habitOrder: maxHabitOrder, goalUUID: goalUUID) { () -> () in
+        HabitHelper.writeHabit(name, habitOrder: maxHabitOrder, uuid: habitUUID) { () -> () in
             dispatch_async(dispatch_get_main_queue()) {
                 mV?.refreshRealm()
             }

@@ -25,7 +25,7 @@ class HabitHelper {
         }
     }
 
-    static func createHabit(name: String, habitOrder: Int, goalUUID: String? = nil, complete: (() -> ())? = nil) {
+    static func writeHabit(name: String, habitOrder: Int, uuid: String? = nil, complete: (() -> ())? = nil) {
         dispatch_async(realmQueue) {
             autoreleasepool {
                 // Get realm and table instances for this thread
@@ -36,21 +36,14 @@ class HabitHelper {
                     realm.beginWrite()
 
                     // Add row via dictionary. Property order is ignored.
-                    let habit = realm.create(
+                    realm.create(
                         Habit.self,
                         value: [
                             "name": name,
                             "habitOrder": habitOrder
-                        ]
+                        ],
+                        update: (uuid != nil)
                     )
-
-                    if goalUUID != nil {
-                        if let p = realm.objectForPrimaryKey(Goal.self, key: goalUUID!) {
-                            var habitUUIDs = p.habits.map({ $0.uuid })
-                            habitUUIDs.append(habit.uuid)
-                            GoalHelper.updateGoal(p.uuid, habitUUIDs: habitUUIDs)
-                        }
-                    }
 
                     // Commit the write transaction
                     // to make this data available to other threads
@@ -66,7 +59,7 @@ class HabitHelper {
     }
 
     // Send a string, int, bool
-    static func createHabits(habits: [[AnyObject]]) {
+    static func writeHabits(habits: [[AnyObject]]) {
         dispatch_async(realmQueue) {
             autoreleasepool {
                 // Get realm and table instances for this thread
@@ -94,41 +87,6 @@ class HabitHelper {
 
                     // Commit the write transaction
                     // to make this data available to other threads
-                    try realm.commitWrite()
-                } catch let err1 as NSError {
-                    print(err1)
-                }
-            }
-        }
-    }
-
-    static func updateHabit(uuid: String, name: String? = nil, habitOrder: Int? = nil) {
-        dispatch_async(realmQueue) {
-            autoreleasepool {
-                // Get realm and table instances for this thread
-                do {
-                    let realm = try Realm()
-                    // Break up the writing blocks into smaller portions
-                    // by starting a new transaction
-                    realm.beginWrite()
-
-                    // Add row via dictionary. Property order is ignored.
-                    var value = [String:AnyObject]()
-                    value.updateValue(uuid, forKey: "uuid")
-
-                    if let n = name {
-                        value.updateValue(n, forKey: "name")
-                    }
-                    if let h = habitOrder {
-                        value.updateValue(h, forKey: "habitOrder")
-                    }
-
-                    realm.create(
-                        Habit.self,
-                        value: value,
-                        update: true
-                    )
-
                     try realm.commitWrite()
                 } catch let err1 as NSError {
                     print(err1)

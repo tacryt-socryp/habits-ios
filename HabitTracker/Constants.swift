@@ -23,8 +23,6 @@ struct Constants {
     struct Segues {
         static let showHabitDetail = "showHabitDetail"
         static let showHabitMaster = "showHabitMaster"
-        static let showSelectGoal = "showSelectGoal"
-        static let showAddGoal = "showAddGoal"
         static let showAddHabit = "showAddHabit"
     }
 

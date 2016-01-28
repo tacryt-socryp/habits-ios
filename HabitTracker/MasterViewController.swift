@@ -13,7 +13,7 @@ class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
 
-    var goals: Results<Goal>? = nil
+    var habits: Results<Habit>? = nil
     var realm: Realm? = nil
 
 
@@ -42,12 +42,7 @@ class MasterViewController: UITableViewController {
         // HabitHelper.deleteAllObjects()
         // HabitHelper.createHabit("Running", habitOrder: 0)
         // HabitHelper.createHabit("Weight Lifting", habitOrder: 1)
-        // habits = HabitHelper.queryHabits()
-
-        // let healthHabits = habits?.map({ $0.uuid }) ?? [String]()
-        // GoalHelper.createGoal("Health", goalOrder: 0, habitUUIDs: healthHabits)
-        // GoalHelper.updateGoal("914AB4A7-1A65-4F7B-85AF-1A319066528B", habitUUIDs: healthHabits)
-        goals = GoalHelper.queryGoals(true)
+        habits = HabitHelper.queryHabits()
 
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
@@ -66,7 +61,7 @@ class MasterViewController: UITableViewController {
     }
 
     func addNewHabit() {
-        self.performSegueWithIdentifier(Constants.Segues.showSelectGoal, sender: nil)
+        self.performSegueWithIdentifier(Constants.Segues.showAddHabit, sender: nil)
     }
 
     // MARK: - Segues
@@ -74,7 +69,7 @@ class MasterViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == Constants.Segues.showHabitDetail {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                if let habit = goals?[indexPath.section].habits[indexPath.row] {
+                if let habit = habits?[indexPath.row] {
                     let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
                     controller.habitItem = habit
                     controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
@@ -88,20 +83,8 @@ class MasterViewController: UITableViewController {
 
     // MARK: - Table View
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return goals?.count ?? 0
-    }
-
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return goals?[section].name
-    }
-
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if numberOfSectionsInTableView(tableView) == 0 {
-            return 0
-        }
-        return goals?[section].habits.count ?? 0
-        //return habits?.count ?? 0
+        return habits?.count ?? 0
     }
 
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -111,7 +94,7 @@ class MasterViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableCells.Cell)!
-        if let habit = goals?[indexPath.section].habits[indexPath.row] {
+        if let habit = habits?[indexPath.row] {
             cell.textLabel?.text = habit.name
         }
 
@@ -120,7 +103,7 @@ class MasterViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            if let habit = goals?[indexPath.section].habits[indexPath.row] {
+            if let habit = habits?[indexPath.row] {
                 HabitHelper.deleteHabit(habit.uuid) {
                     dispatch_async(dispatch_get_main_queue()) {
                         self.refreshRealm()
