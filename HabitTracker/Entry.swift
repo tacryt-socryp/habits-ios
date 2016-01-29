@@ -2,16 +2,24 @@
 //  Entry.swift
 //  Tailor
 //
-//  Created by Logan Allen on 1/23/16.
+//  Created by Logan Allen on 1/29/16.
 //  Copyright © 2016 Logan Allen. All rights reserved.
 //
 
-import RealmSwift
+import Foundation
+import CoreData
 
-// An Entry is an action that is categorized into habits.
-class Entry: Object {
 
-    dynamic var date = NSDate()
-    dynamic var note = ""
+class Entry: NSManagedObject {
 
+// Insert code here to add functionality to your managed object subclass
+
+}
+
+extension Entry {
+
+    @NSManaged var note: String?
+    @NSManaged var date: NSDate?
+    @NSManaged var habit: Habit?
+    
 }

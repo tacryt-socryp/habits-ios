@@ -42,7 +42,7 @@ class MasterViewController: UITableViewController {
         // HabitHelper.deleteAllObjects()
         // HabitHelper.createHabit("Running", habitOrder: 0)
         // HabitHelper.createHabit("Weight Lifting", habitOrder: 1)
-        habits = HabitHelper.queryHabits()
+        // habits = HabitHelper.queryHabits()
 
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
@@ -104,11 +104,11 @@ class MasterViewController: UITableViewController {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             if let habit = habits?[indexPath.row] {
-                HabitHelper.deleteHabit(habit.uuid) {
+                /*HabitHelper.deleteHabit(habit.uuid) {
                     dispatch_async(dispatch_get_main_queue()) {
                         self.refreshRealm()
                     }
-                }
+                }*/
             } else {
                 // do an error message
             }

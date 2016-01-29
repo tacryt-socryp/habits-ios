@@ -1,39 +1,36 @@
 //
 //  Habit.swift
-//  HabitTracker
+//  Tailor
 //
-//  Created by Logan Allen on 1/17/16.
+//  Created by Logan Allen on 1/29/16.
 //  Copyright © 2016 Logan Allen. All rights reserved.
 //
 
-import RealmSwift
-
-// A Habit is a trackable part of your life that can be searched, filtered, or sorted by Priorities.
-class Habit: Object {
-
-    dynamic var uuid = NSUUID().UUIDString
-    dynamic var name = ""
-    dynamic var goal = ""
-    dynamic var habitOrder = -1
-    let entries = List<Entry>()
+import Foundation
+import CoreData
 
 
-    let numDays = RealmOptional<Int>()
+class Habit: NSManagedObject {
 
-    dynamic var monday = false
-    dynamic var tuesday = false
-    dynamic var wednesday = false
-    dynamic var thursday = false
-    dynamic var friday = false
-    dynamic var saturday = false
-    dynamic var sunday = false
+// Insert code here to add functionality to your managed object subclass
 
+}
 
-    override static func primaryKey() -> String? {
-        return "uuid"
-    }
+extension Habit {
 
-    override static func indexedProperties() -> [String] {
-        return ["habitOrder"]
-    }
+    @NSManaged var name: String?
+    @NSManaged var uuid: String?
+    @NSManaged var goal: String?
+    @NSManaged var order: NSNumber?
+    @NSManaged var useNumDays: NSNumber?
+    @NSManaged var numDays: NSNumber?
+    @NSManaged var monday: NSNumber?
+    @NSManaged var tuesday: NSNumber?
+    @NSManaged var wednesday: NSNumber?
+    @NSManaged var thursday: NSNumber?
+    @NSManaged var friday: NSNumber?
+    @NSManaged var saturday: NSNumber?
+    @NSManaged var sunday: NSNumber?
+    @NSManaged var entries: NSOrderedSet?
+    
 }

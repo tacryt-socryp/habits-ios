@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SugarRecord
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
@@ -56,6 +57,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         }
         return false
     }
+/*
+
+    // MARK: - iCloud
+    // This handles the updates to the data via iCLoud updates
+
+    func registerCoordinatorForStoreNotifications (coordinator : NSPersistentStoreCoordinator) {
+        let nc : NSNotificationCenter = NSNotificationCenter.defaultCenter();
+
+        nc.addObserver(self, selector: "handleStoresWillChange:",
+            name: NSPersistentStoreCoordinatorStoresWillChangeNotification,
+            object: coordinator)
+
+        nc.addObserver(self, selector: "handleStoresDidChange:",
+            name: NSPersistentStoreCoordinatorStoresDidChangeNotification,
+            object: coordinator)
+
+        nc.addObserver(self, selector: "handleStoresWillRemove:",
+            name: NSPersistentStoreCoordinatorWillRemoveStoreNotification,
+            object: coordinator)
+        
+        nc.addObserver(self, selector: "handleStoreChangedUbiquitousContent:",
+            name: NSPersistentStoreDidImportUbiquitousContentChangesNotification,
+            object: coordinator)
+    }
+*/
 
 }
 
