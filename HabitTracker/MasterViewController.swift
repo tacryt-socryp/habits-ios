@@ -24,7 +24,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         super.viewDidLoad()
 
         let request = NSFetchRequest(entityName: "Habit")
-        let orderSort = NSSortDescriptor(key: "habit.order", ascending: true)
+        let orderSort = NSSortDescriptor(key: "order", ascending: true)
         request.sortDescriptors = [orderSort]
 
         let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).dataController.managedObjectContext

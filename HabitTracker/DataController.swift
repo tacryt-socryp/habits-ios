@@ -33,9 +33,11 @@ class DataController: NSObject {
             /* The directory the application uses to store the Core Data store file.
             This code uses a file named "DataModel.sqlite" in the application's documents directory.
             */
-            let storeURL = docURL.URLByAppendingPathComponent("TailorModel.sqlite")
+            let localStoreURL = docURL.URLByAppendingPathComponent("TailorModel.sqlite")
             do {
-                try psc.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil)
+                try psc.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: localStoreURL, options: [
+                    NSPersistentStoreUbiquitousContentNameKey: "TailorCloudStore"
+                ])
             } catch {
                 fatalError("Error migrating store: \(error)")
             }
