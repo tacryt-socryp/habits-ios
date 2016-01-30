@@ -43,7 +43,7 @@ class DataController: NSObject {
 
     }
 
-    func insertObject() {
+    func insertObject() -> Habit {
         let habit = NSEntityDescription.insertNewObjectForEntityForName("Habit", inManagedObjectContext: self.managedObjectContext) as! Habit
         // set properties
 
@@ -52,6 +52,20 @@ class DataController: NSObject {
         } catch {
             fatalError("Failure to save context: \(error)")
         }
+        return habit
+    }
+
+    func fetchObjects() -> [Habit]? {
+        let habitsFetch = NSFetchRequest(entityName: "Habit")
+        // habitsFetch.predicate = NSPredicate(format: "name == %@", firstName) // can filter results using predicates
+
+        do {
+            let fetchedHabits = try self.managedObjectContext.executeFetchRequest(habitsFetch) as! [Habit]
+            return fetchedHabits
+        } catch {
+            fatalError("Failed to fetch employees: \(error)")
+        }
+        return nil
     }
     
 }

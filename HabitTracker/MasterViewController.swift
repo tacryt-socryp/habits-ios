@@ -8,33 +8,39 @@
 
 import UIKit
 import CoreData
-import RealmSwift
 
 class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
-    lazy var fetchedResults: NSFetchedResultsController = {
+    // MARK: - Attributes
+
+    var fetchedResults: NSFetchedResultsController!
+
+    var detailViewController: DetailViewController? = nil
+
+
+    // MARK: - Initialization
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
         let request = NSFetchRequest(entityName: "Habit")
         let orderSort = NSSortDescriptor(key: "habit.order", ascending: true)
         request.sortDescriptors = [orderSort]
 
-        let moc = self.dataController.managedObjectContext
-        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: "department.name", cacheName: "rootCache")
+        let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).dataController.managedObjectContext
+        self.fetchedResults = NSFetchedResultsController(
+            fetchRequest: request,
+            managedObjectContext: moc,
+            sectionNameKeyPath: nil,
+            cacheName: "rootCache"
+        )
         self.fetchedResults.delegate = self
 
         do {
             try self.fetchedResults.performFetch()
         } catch {
-            fatalError("Failed to initialize FetchedResultsController: \(error)")
+            fatalError("Failed to initialize FetchedResults: \(error)")
         }
-    }()
-    var detailViewController: DetailViewController? = nil
-
-    var habits: Results<Habit>? = nil
-    var realm: Realm? = nil
-
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
         self.configureView()
     }
 
@@ -43,18 +49,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         super.viewWillAppear(animated)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     func configureView() {
-        do {
-            realm = try Realm()
-        } catch let err1 as NSError {
-            print(err1)
-        }
-        print(Realm.Configuration.defaultConfiguration.path!)
         // HabitHelper.deleteAllObjects()
         // HabitHelper.createHabit("Running", habitOrder: 0)
         // HabitHelper.createHabit("Weight Lifting", habitOrder: 1)
@@ -71,21 +66,17 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         }
     }
 
-    func refreshRealm() {
-        realm?.refresh()
-        tableView.reloadData()
-    }
+
+    // MARK: - Segues
 
     func addNewHabit() {
         self.performSegueWithIdentifier(Constants.Segues.showAddHabit, sender: nil)
     }
 
-    // MARK: - Segues
-
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == Constants.Segues.showHabitDetail {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                if let habit = habits?[indexPath.row] {
+                if let habit = self.fetchedResults.objectAtIndexPath(indexPath) as? Habit {
                     let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
                     controller.habitItem = habit
                     controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
@@ -97,10 +88,24 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         }
     }
 
+
     // MARK: - Table View
+    func configureCell(cell: UITableViewCell, indexPath: NSIndexPath) {
+        let habit = self.fetchedResults.objectAtIndexPath(indexPath) as! Habit
+        // Populate cell from the NSManagedObject instance
+        cell.textLabel?.text = habit.name
+    }
+
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableCells.Cell, forIndexPath: indexPath) 
+        // Set up the cell
+        self.configureCell(cell, indexPath: indexPath)
+        return cell
+    }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return habits?.count ?? 0
+        let sections = self.fetchedResults.sections
+        return sections?[section].numberOfObjects ?? 0
     }
 
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -108,18 +113,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         return true
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableCells.Cell)!
-        if let habit = habits?[indexPath.row] {
-            cell.textLabel?.text = habit.name
-        }
-
-        return cell
-    }
-
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            if let habit = habits?[indexPath.row] {
+            if let habit = self.fetchedResults.objectAtIndexPath(indexPath) as? Habit {
                 /*HabitHelper.deleteHabit(habit.uuid) {
                     dispatch_async(dispatch_get_main_queue()) {
                         self.refreshRealm()
@@ -131,6 +127,30 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
+    }
+
+
+    // MARK: - Fetched Results Controller Delegate
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        self.tableView.beginUpdates()
+    }
+
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        switch type {
+        case .Insert:
+            self.tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+        case .Delete:
+            self.tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        case .Update:
+            self.configureCell(self.tableView.cellForRowAtIndexPath(indexPath!)!, indexPath: indexPath!)
+        case .Move:
+            self.tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+            self.tableView.insertRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        }
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        self.tableView.endUpdates()
     }
 
 

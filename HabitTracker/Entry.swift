@@ -16,4 +16,9 @@ class Entry: NSManagedObject {
     @NSManaged var date: NSDate?
     @NSManaged var habit: Habit?
 
+    override func awakeFromInsert() {
+        super.awakeFromInsert()
+        self.date = NSDate()
+    }
+
 }

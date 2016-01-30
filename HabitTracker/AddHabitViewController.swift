@@ -43,7 +43,6 @@ class AddHabitViewController: FormViewController {
                     for controller in navViewController.viewControllers {
                         if let masterViewController = controller as? MasterViewController {
                             self.addHabit(masterViewController)
-                            masterViewController.refreshRealm()
                             navViewController.popToViewController(masterViewController, animated: true)
                         }
                     }
