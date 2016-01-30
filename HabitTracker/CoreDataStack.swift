@@ -41,7 +41,6 @@ class CoreDataStack: NSObject {
         db.operation { (context, save) -> Void in
             let newHabit: Habit = try! context.create()
             newHabit.name = name
-            newHabit.uuid = NSUUID().UUIDString
             newHabit.order = order
             newHabit.useNumDays = useNumDays
 

@@ -13,7 +13,6 @@ import CoreData
 class Habit: NSManagedObject {
 
     @NSManaged var name: String?
-    @NSManaged var uuid: String?
     @NSManaged var goal: String?
     @NSManaged var order: NSNumber?
     @NSManaged var useNumDays: NSNumber?

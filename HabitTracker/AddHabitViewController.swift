@@ -16,6 +16,7 @@ class AddHabitViewController: FormViewController {
         static let createRow = "Add Habit"
     }
 
+    var dataController: DataController!
     var habitUUID: String? = nil // if habitUUID is set, edit mode, not create.
     var maxHabitOrder: Int = 0
 
@@ -53,6 +54,7 @@ class AddHabitViewController: FormViewController {
     func addHabit(mV: MasterViewController? = nil) {
         let values = form.values()
         let name = values[rowNames.nameRow] as! String
+        dataController.insertObject()
 
         /*HabitHelper.writeHabit(name, habitOrder: maxHabitOrder, uuid: habitUUID) { () -> () in
             dispatch_async(dispatch_get_main_queue()) {

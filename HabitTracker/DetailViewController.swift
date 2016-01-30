@@ -12,6 +12,7 @@ class DetailViewController: UIViewController {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
 
+    var dataController: DataController!
     var habitItem: Habit? {
         didSet {
             // Update the view.

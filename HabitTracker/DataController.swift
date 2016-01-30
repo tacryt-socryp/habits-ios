@@ -48,6 +48,14 @@ class DataController: NSObject {
     func insertObject() -> Habit {
         let habit = NSEntityDescription.insertNewObjectForEntityForName("Habit", inManagedObjectContext: self.managedObjectContext) as! Habit
         // set properties
+        habit.setValuesForKeysWithDictionary([
+            "name": "Running",
+            "goal": "I will run a 10K in under 42:00.",
+            "order": 0,
+            "useNumDays": 1,
+            "numDays": 4
+        ])
+        print("added to habit!")
 
         do {
             try self.managedObjectContext.save()

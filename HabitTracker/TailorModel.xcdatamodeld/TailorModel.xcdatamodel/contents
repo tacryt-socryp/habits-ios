@@ -22,7 +22,6 @@
         <attribute name="thursday" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="tuesday" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="useNumDays" attributeType="Boolean" syncable="YES"/>
-        <attribute name="uuid" attributeType="String" syncable="YES"/>
         <attribute name="wednesday" optional="YES" attributeType="Boolean" syncable="YES"/>
         <relationship name="entries" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Entry" inverseName="habit" inverseEntity="Entry" syncable="YES"/>
         <compoundIndexes>
@@ -32,7 +31,7 @@
         </compoundIndexes>
     </entity>
     <elements>
-        <element name="Habit" positionX="-63" positionY="-18" width="128" height="253"/>
         <element name="Entry" positionX="189" positionY="195" width="128" height="88"/>
+        <element name="Habit" positionX="-63" positionY="-18" width="128" height="238"/>
     </elements>
 </model>

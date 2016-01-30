@@ -13,6 +13,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     // MARK: - Attributes
 
+    var dataController: DataController!
     var fetchedResults: NSFetchedResultsController!
 
     var detailViewController: DetailViewController? = nil
@@ -27,7 +28,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         let orderSort = NSSortDescriptor(key: "order", ascending: true)
         request.sortDescriptors = [orderSort]
 
-        let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).dataController.managedObjectContext
+        dataController = (UIApplication.sharedApplication().delegate as! AppDelegate).dataController
+        let moc = dataController.managedObjectContext
         self.fetchedResults = NSFetchedResultsController(
             fetchRequest: request,
             managedObjectContext: moc,
@@ -78,6 +80,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 if let habit = self.fetchedResults.objectAtIndexPath(indexPath) as? Habit {
                     let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
+                    controller.dataController = self.dataController
                     controller.habitItem = habit
                     controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                     controller.navigationItem.leftItemsSupplementBackButton = true
@@ -85,6 +88,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                     // do an error message
                 }
             }
+        } else if segue.identifier == Constants.Segues.showAddHabit {
+            let controller = segue.destinationViewController as! AddHabitViewController
+            controller.dataController = self.dataController
         }
     }
 
