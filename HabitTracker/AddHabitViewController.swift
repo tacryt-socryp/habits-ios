@@ -54,13 +54,7 @@ class AddHabitViewController: FormViewController {
     func addHabit(mV: MasterViewController? = nil) {
         let values = form.values()
         let name = values[rowNames.nameRow] as! String
-        dataController.insertObject()
-
-        /*HabitHelper.writeHabit(name, habitOrder: maxHabitOrder, uuid: habitUUID) { () -> () in
-            dispatch_async(dispatch_get_main_queue()) {
-                mV?.refreshRealm()
-            }
-        }*/
+        dataController.insertHabit(name) // add order, numDays, or week days
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

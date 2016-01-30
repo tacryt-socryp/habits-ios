@@ -45,11 +45,11 @@ class DataController: NSObject {
 
     }
 
-    func insertObject() -> Habit {
+    func insertHabit(name: String) -> Habit {
         let habit = NSEntityDescription.insertNewObjectForEntityForName("Habit", inManagedObjectContext: self.managedObjectContext) as! Habit
         // set properties
         habit.setValuesForKeysWithDictionary([
-            "name": "Running",
+            "name": name,
             "goal": "I will run a 10K in under 42:00.",
             "order": 0,
             "useNumDays": 1,

@@ -52,11 +52,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
 
     func configureView() {
-        // HabitHelper.deleteAllObjects()
-        // HabitHelper.createHabit("Running", habitOrder: 0)
-        // HabitHelper.createHabit("Weight Lifting", habitOrder: 1)
-        // habits = HabitHelper.queryHabits()
-
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
