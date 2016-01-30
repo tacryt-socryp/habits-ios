@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SugarRecord
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
@@ -57,10 +57,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         }
         return false
     }
-/*
+
 
     // MARK: - iCloud
-    // This handles the updates to the data via iCLoud updates
+    // This handles the updates to the data via iCloud updates
 
     func registerCoordinatorForStoreNotifications (coordinator : NSPersistentStoreCoordinator) {
         let nc : NSNotificationCenter = NSNotificationCenter.defaultCenter();
@@ -81,7 +81,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             name: NSPersistentStoreDidImportUbiquitousContentChangesNotification,
             object: coordinator)
     }
-*/
 
 }
 

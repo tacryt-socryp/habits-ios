@@ -19,6 +19,7 @@
 		02701E0D1C4C14570092E4D3 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02701E0C1C4C14570092E4D3 /* MasterViewController.swift */; };
 		02701E0F1C4C14570092E4D3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02701E0E1C4C14570092E4D3 /* DetailViewController.swift */; };
 		02701E171C4C14570092E4D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02701E151C4C14570092E4D3 /* LaunchScreen.storyboard */; };
+		02C4ADC21C5C4712001A7C0C /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C4ADC11C5C4712001A7C0C /* DataController.swift */; };
 		02ECD5E31C52A972005762E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02ECD5E11C52A972005762E4 /* Main.storyboard */; };
 		48FDD09376E26968BA1BC4F9 /* Pods_Tailor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5643E0E82BA1DDFE150B4278 /* Pods_Tailor.framework */; };
 /* End PBXBuildFile section */
@@ -39,6 +40,7 @@
 		02701E131C4C14570092E4D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02701E161C4C14570092E4D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		02701E181C4C14570092E4D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		02C4ADC11C5C4712001A7C0C /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		02ECD5E21C52A972005762E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2CECB0258948FE0319AD13C2 /* Pods-Tailor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tailor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tailor/Pods-Tailor.debug.xcconfig"; sourceTree = "<group>"; };
 		5643E0E82BA1DDFE150B4278 /* Pods_Tailor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tailor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +111,7 @@
 				020A71051C4C153300E3BCB7 /* Views */,
 				020A71061C4C154000E3BCB7 /* Controllers */,
 				02701E0A1C4C14570092E4D3 /* AppDelegate.swift */,
+				02C4ADC11C5C4712001A7C0C /* DataController.swift */,
 				02163E3D1C5AECE9002B50D8 /* CoreDataStack.swift */,
 				023BA3551C502E99003DC61C /* Constants.swift */,
 				02ECD5E11C52A972005762E4 /* Main.storyboard */,
@@ -273,6 +276,7 @@
 				02701E0F1C4C14570092E4D3 /* DetailViewController.swift in Sources */,
 				02701E0D1C4C14570092E4D3 /* MasterViewController.swift in Sources */,
 				02163E611C5BCF6C002B50D8 /* Entry.swift in Sources */,
+				02C4ADC21C5C4712001A7C0C /* DataController.swift in Sources */,
 				02163E3E1C5AECE9002B50D8 /* CoreDataStack.swift in Sources */,
 				02163E5F1C5BCF6C002B50D8 /* Habit.swift in Sources */,
 				02701E0B1C4C14570092E4D3 /* AppDelegate.swift in Sources */,

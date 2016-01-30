@@ -7,10 +7,26 @@
 //
 
 import UIKit
+import CoreData
 import RealmSwift
 
-class MasterViewController: UITableViewController {
+class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
+    lazy var fetchedResults: NSFetchedResultsController = {
+        let request = NSFetchRequest(entityName: "Habit")
+        let orderSort = NSSortDescriptor(key: "habit.order", ascending: true)
+        request.sortDescriptors = [orderSort]
+
+        let moc = self.dataController.managedObjectContext
+        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: "department.name", cacheName: "rootCache")
+        self.fetchedResults.delegate = self
+
+        do {
+            try self.fetchedResults.performFetch()
+        } catch {
+            fatalError("Failed to initialize FetchedResultsController: \(error)")
+        }
+    }()
     var detailViewController: DetailViewController? = nil
 
     var habits: Results<Habit>? = nil

@@ -10,6 +10,8 @@ import UIKit
 
 struct Constants {
 
+    static let iCloudID = "iCloud.com.loganallc.TailorHabits"
+
     struct Colors {
         static let darkPrimary = Constants.UIColorConverter(0x0097A7)
         static let normalPrimary = Constants.UIColorConverter(0x00BCD4)

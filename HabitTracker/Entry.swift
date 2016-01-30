@@ -11,15 +11,9 @@ import CoreData
 
 
 class Entry: NSManagedObject {
-
-// Insert code here to add functionality to your managed object subclass
-
-}
-
-extension Entry {
-
+    
     @NSManaged var note: String?
     @NSManaged var date: NSDate?
     @NSManaged var habit: Habit?
-    
+
 }

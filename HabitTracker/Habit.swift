@@ -12,12 +12,6 @@ import CoreData
 
 class Habit: NSManagedObject {
 
-// Insert code here to add functionality to your managed object subclass
-
-}
-
-extension Habit {
-
     @NSManaged var name: String?
     @NSManaged var uuid: String?
     @NSManaged var goal: String?
@@ -32,5 +26,5 @@ extension Habit {
     @NSManaged var saturday: NSNumber?
     @NSManaged var sunday: NSNumber?
     @NSManaged var entries: NSOrderedSet?
-    
+
 }
