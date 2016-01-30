@@ -45,17 +45,36 @@ class DataController: NSObject {
 
     }
 
-    func insertHabit(name: String) -> Habit {
+    func insertHabit(name: String, numDays: Int?, weekDays: Set<WeekDay>?, goal: String?) -> Habit {
         let habit = NSEntityDescription.insertNewObjectForEntityForName("Habit", inManagedObjectContext: self.managedObjectContext) as! Habit
         // set properties
-        habit.setValuesForKeysWithDictionary([
-            "name": name,
-            "goal": "I will run a 10K in under 42:00.",
-            "order": 0,
-            "useNumDays": 1,
-            "numDays": 4
-        ])
-        print("added to habit!")
+        var dict: [String:AnyObject] = [
+            "name": name
+        ]
+
+        if let nD = numDays {
+            dict.updateValue(1, forKey: "useNumDays")
+            dict.updateValue(nD, forKey: "numDays")
+        }
+
+        if let wD = weekDays {
+            dict.updateValue(0, forKey: "useNumDays")
+            dict.updateValue(wD.contains(.Sunday), forKey: "sunday")
+            dict.updateValue(wD.contains(.Monday), forKey: "monday")
+            dict.updateValue(wD.contains(.Tuesday), forKey: "tuesday")
+            dict.updateValue(wD.contains(.Wednesday), forKey: "wednesday")
+            dict.updateValue(wD.contains(.Thursday), forKey: "thursday")
+            dict.updateValue(wD.contains(.Friday), forKey: "friday")
+            dict.updateValue(wD.contains(.Saturday), forKey: "saturday")
+        }
+
+        if let g = goal {
+            dict.updateValue(g, forKey: "goal")
+        }
+
+        // TODO: determine order based on max order within the list
+        dict.updateValue(0, forKey: "order")
+        habit.setValuesForKeysWithDictionary(dict)
 
         do {
             try self.managedObjectContext.save()

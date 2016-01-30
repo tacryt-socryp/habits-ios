@@ -20,6 +20,8 @@
 		02701E0F1C4C14570092E4D3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02701E0E1C4C14570092E4D3 /* DetailViewController.swift */; };
 		02701E171C4C14570092E4D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02701E151C4C14570092E4D3 /* LaunchScreen.storyboard */; };
 		02C4ADC21C5C4712001A7C0C /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C4ADC11C5C4712001A7C0C /* DataController.swift */; };
+		02EBB31C1C5D502900814DBA /* CustomEurekaCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EBB31B1C5D502900814DBA /* CustomEurekaCells.swift */; };
+		02EBB31F1C5D511D00814DBA /* WeekDaysCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02EBB31D1C5D511D00814DBA /* WeekDaysCell.xib */; };
 		02ECD5E31C52A972005762E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02ECD5E11C52A972005762E4 /* Main.storyboard */; };
 		48FDD09376E26968BA1BC4F9 /* Pods_Tailor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5643E0E82BA1DDFE150B4278 /* Pods_Tailor.framework */; };
 /* End PBXBuildFile section */
@@ -41,6 +43,8 @@
 		02701E161C4C14570092E4D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		02701E181C4C14570092E4D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		02C4ADC11C5C4712001A7C0C /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		02EBB31B1C5D502900814DBA /* CustomEurekaCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomEurekaCells.swift; sourceTree = "<group>"; };
+		02EBB31E1C5D511D00814DBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/WeekDaysCell.xib; sourceTree = "<group>"; };
 		02ECD5E21C52A972005762E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2CECB0258948FE0319AD13C2 /* Pods-Tailor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tailor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tailor/Pods-Tailor.debug.xcconfig"; sourceTree = "<group>"; };
 		5643E0E82BA1DDFE150B4278 /* Pods_Tailor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tailor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,10 +120,12 @@
 				023BA3551C502E99003DC61C /* Constants.swift */,
 				02ECD5E11C52A972005762E4 /* Main.storyboard */,
 				02701E151C4C14570092E4D3 /* LaunchScreen.storyboard */,
+				02EBB31D1C5D511D00814DBA /* WeekDaysCell.xib */,
 				02163E451C5BC69D002B50D8 /* TailorModel.xcdatamodeld */,
 				02294C181C5ADFF600998233 /* Tailor.entitlements */,
 				02701E131C4C14570092E4D3 /* Assets.xcassets */,
 				02701E181C4C14570092E4D3 /* Info.plist */,
+				02EBB31B1C5D502900814DBA /* CustomEurekaCells.swift */,
 			);
 			name = Tailor;
 			path = HabitTracker;
@@ -212,6 +218,7 @@
 			files = (
 				02ECD5E31C52A972005762E4 /* Main.storyboard in Resources */,
 				022A6B041C4DDA6C0018E9F0 /* Assets.xcassets in Resources */,
+				02EBB31F1C5D511D00814DBA /* WeekDaysCell.xib in Resources */,
 				02701E171C4C14570092E4D3 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,6 +280,7 @@
 			files = (
 				023BA3561C502E99003DC61C /* Constants.swift in Sources */,
 				02163E471C5BC69D002B50D8 /* TailorModel.xcdatamodeld in Sources */,
+				02EBB31C1C5D502900814DBA /* CustomEurekaCells.swift in Sources */,
 				02701E0F1C4C14570092E4D3 /* DetailViewController.swift in Sources */,
 				02701E0D1C4C14570092E4D3 /* MasterViewController.swift in Sources */,
 				02163E611C5BCF6C002B50D8 /* Entry.swift in Sources */,
@@ -293,6 +301,14 @@
 				02701E161C4C14570092E4D3 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		02EBB31D1C5D511D00814DBA /* WeekDaysCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				02EBB31E1C5D511D00814DBA /* Base */,
+			);
+			name = WeekDaysCell.xib;
 			sourceTree = "<group>";
 		};
 		02ECD5E11C52A972005762E4 /* Main.storyboard */ = {

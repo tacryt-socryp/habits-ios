@@ -13,6 +13,10 @@ class AddHabitViewController: FormViewController {
 
     struct rowNames {
         static let nameRow = "Habit Name"
+        static let useNumberOfDaysRow = "Use Number of Days"
+        static let numberOfDaysRow = "Number of Days"
+        static let weekDaysRow = "Week Days"
+        static let goalRow = "Goal"
         static let createRow = "Add Habit"
     }
 
@@ -31,6 +35,17 @@ class AddHabitViewController: FormViewController {
         navigationOptions = .Disabled
         form +++ Section()
             <<< NameRow(rowNames.nameRow) {
+                $0.title =  $0.tag
+            }
+            <<< SwitchRow(rowNames.useNumberOfDaysRow) {
+                $0.title = $0.tag
+                $0.value = false
+            }
+            <<< WeekDayRow(rowNames.weekDaysRow) {
+                $0.title = $0.tag
+                $0.value = [.Monday, .Tuesday, .Wednesday, .Thursday, .Friday]
+            }
+            <<< TextRow(rowNames.goalRow) {
                 $0.title =  $0.tag
             }
 
@@ -54,7 +69,19 @@ class AddHabitViewController: FormViewController {
     func addHabit(mV: MasterViewController? = nil) {
         let values = form.values()
         let name = values[rowNames.nameRow] as! String
-        dataController.insertHabit(name) // add order, numDays, or week days
+        let goal = values[rowNames.goalRow] as? String
+        let useNumDays = values[rowNames.useNumberOfDaysRow] as! Bool
+
+        var numDays: Int? = nil
+        var weekDays: Set<WeekDay>? = nil
+
+        if useNumDays {
+            numDays = values[rowNames.numberOfDaysRow] as? Int
+        } else {
+            weekDays = values[rowNames.weekDaysRow] as? Set<WeekDay>
+        }
+
+        dataController.insertHabit(name, numDays: numDays, weekDays: weekDays, goal: goal) // add numDays, or week days
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
