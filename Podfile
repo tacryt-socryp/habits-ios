@@ -4,7 +4,6 @@
 use_frameworks!
 
 target 'Tailor' do
-  pod 'SugarRecord'
   pod 'Eureka', '~> 1.3'
 end
 

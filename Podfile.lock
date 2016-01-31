@@ -1,29 +1,10 @@
 PODS:
   - Eureka (1.3.1)
-  - Realm (0.97.0):
-    - Realm/Headers (= 0.97.0)
-  - Realm/Headers (0.97.0)
-  - RealmSwift (0.97.0):
-    - Realm (= 0.97.0)
-  - Result (1.0.1)
-  - SugarRecord (2.1.8):
-    - SugarRecord/CoreData (= 2.1.8)
-    - SugarRecord/Realm (= 2.1.8)
-  - SugarRecord/CoreData (2.1.8):
-    - Result (~> 1.0)
-  - SugarRecord/Realm (2.1.8):
-    - RealmSwift (~> 0.97)
-    - Result (~> 1.0)
 
 DEPENDENCIES:
   - Eureka (~> 1.3)
-  - SugarRecord
 
 SPEC CHECKSUMS:
   Eureka: 10df73e578ed8ec1f30c8fda5b4ffc8739786b74
-  Realm: b498a6fb9d288b171ff98d0e2d4384c295be8990
-  RealmSwift: d014810dec75c9a3f1a33926d2dabfed855c582c
-  Result: caef80340451e1f07492fa1e89117f83613bce24
-  SugarRecord: a02389c58cab12061f08d71f7e6aff582483573a
 
 COCOAPODS: 0.39.0
