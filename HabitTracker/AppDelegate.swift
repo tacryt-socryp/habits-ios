@@ -87,11 +87,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func handleStoresWillChange(notification: NSNotification) {
         print("will change")
-        dataController.managedObjectContext.performBlock {
-            self.dataController.managedObjectContext.reset()
+        // will change occurs when iCloud is first set up, and when an account transition happens. each should be handled differently, based on userInfo in notification
+
+        if (notification.userInfo?.indexForKey(NSAddedPersistentStoresKey) != nil) {
+            // iCloud first time setup
+            dataController.managedObjectContext.performBlock {
+                self.dataController.managedObjectContext.reset()
+            }
+        } else if (notification.userInfo?.indexForKey(NSPersistentStoreUbiquitousTransitionTypeKey) != nil) {
+            // iCloud account transition
+            dataController.managedObjectContext.performBlock {
+                self.dataController.managedObjectContext.reset()
+            }
+            // disable UI
+            // basically go back to onboarding screen?
         }
-        // drop any managed object references
-        // disable user interface with setEnabled: or an overlay
         print(notification)
     }
 
@@ -111,6 +121,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func handleStoreChangedUbiquitousContent(notification: NSNotification) {
         print("changed ubiquitous content")
+        dataController.managedObjectContext.performBlock {
+            // decide whether to merge in memory or just refetch
+            self.dataController.managedObjectContext.mergeChangesFromContextDidSaveNotification(notification) // merge in memory
+        }
         print(notification)
     }
 

@@ -38,7 +38,9 @@ class DataController: NSObject {
             let localStoreURL = docURL.URLByAppendingPathComponent("TailorModel.sqlite")
             do {
                 try psc.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: localStoreURL, options: [
-                    NSPersistentStoreUbiquitousContentNameKey: "TailorCloudStore"
+                    NSPersistentStoreUbiquitousContentNameKey: "TailorCloudStore",
+                    NSMigratePersistentStoresAutomaticallyOption: true,
+                    NSInferMappingModelAutomaticallyOption: true
                 ])
             } catch {
                 fatalError("Error migrating store: \(error)")
