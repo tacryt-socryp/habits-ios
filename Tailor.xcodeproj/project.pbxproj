@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		02075B431C4D91C500D0522D /* AddHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02075B421C4D91C500D0522D /* AddHabitViewController.swift */; };
 		02163E3A1C5AE934002B50D8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02294C1E1C5AE33B00998233 /* CoreData.framework */; };
-		02163E3E1C5AECE9002B50D8 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02163E3D1C5AECE9002B50D8 /* CoreDataStack.swift */; };
 		02163E471C5BC69D002B50D8 /* TailorModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 02163E451C5BC69D002B50D8 /* TailorModel.xcdatamodeld */; };
 		02163E5F1C5BCF6C002B50D8 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02163E5B1C5BCF6C002B50D8 /* Habit.swift */; };
 		02163E611C5BCF6C002B50D8 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02163E5D1C5BCF6C002B50D8 /* Entry.swift */; };
@@ -28,7 +27,6 @@
 
 /* Begin PBXFileReference section */
 		02075B421C4D91C500D0522D /* AddHabitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddHabitViewController.swift; sourceTree = "<group>"; };
-		02163E3D1C5AECE9002B50D8 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		02163E461C5BC69D002B50D8 /* TailorModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TailorModel.xcdatamodel; sourceTree = "<group>"; };
 		02163E5B1C5BCF6C002B50D8 /* Habit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 		02163E5D1C5BCF6C002B50D8 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
@@ -67,6 +65,7 @@
 		020A71031C4C151400E3BCB7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				02163E451C5BC69D002B50D8 /* TailorModel.xcdatamodeld */,
 				02163E5B1C5BCF6C002B50D8 /* Habit.swift */,
 				02163E5D1C5BCF6C002B50D8 /* Entry.swift */,
 			);
@@ -76,6 +75,7 @@
 		020A71051C4C153300E3BCB7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				02EBB31B1C5D502900814DBA /* CustomEurekaCells.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -115,17 +115,14 @@
 				020A71051C4C153300E3BCB7 /* Views */,
 				020A71061C4C154000E3BCB7 /* Controllers */,
 				02701E0A1C4C14570092E4D3 /* AppDelegate.swift */,
-				02C4ADC11C5C4712001A7C0C /* DataController.swift */,
-				02163E3D1C5AECE9002B50D8 /* CoreDataStack.swift */,
 				023BA3551C502E99003DC61C /* Constants.swift */,
+				02C4ADC11C5C4712001A7C0C /* DataController.swift */,
 				02ECD5E11C52A972005762E4 /* Main.storyboard */,
 				02701E151C4C14570092E4D3 /* LaunchScreen.storyboard */,
 				02EBB31D1C5D511D00814DBA /* WeekDaysCell.xib */,
-				02163E451C5BC69D002B50D8 /* TailorModel.xcdatamodeld */,
 				02294C181C5ADFF600998233 /* Tailor.entitlements */,
 				02701E131C4C14570092E4D3 /* Assets.xcassets */,
 				02701E181C4C14570092E4D3 /* Info.plist */,
-				02EBB31B1C5D502900814DBA /* CustomEurekaCells.swift */,
 			);
 			name = Tailor;
 			path = HabitTracker;
@@ -285,7 +282,6 @@
 				02701E0D1C4C14570092E4D3 /* MasterViewController.swift in Sources */,
 				02163E611C5BCF6C002B50D8 /* Entry.swift in Sources */,
 				02C4ADC21C5C4712001A7C0C /* DataController.swift in Sources */,
-				02163E3E1C5AECE9002B50D8 /* CoreDataStack.swift in Sources */,
 				02163E5F1C5BCF6C002B50D8 /* Habit.swift in Sources */,
 				02701E0B1C4C14570092E4D3 /* AppDelegate.swift in Sources */,
 				02075B431C4D91C500D0522D /* AddHabitViewController.swift in Sources */,

@@ -38,11 +38,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         )
         self.fetchedResults.delegate = self
 
-        do {
-            try self.fetchedResults.performFetch()
-        } catch {
-            fatalError("Failed to initialize FetchedResults: \(error)")
-        }
+        self.fetchTableData()
+        self.registerTableViewNotifications()
         self.configureView()
     }
 
@@ -60,6 +57,23 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
+        }
+    }
+
+
+    func registerTableViewNotifications() {
+        let nc : NSNotificationCenter = NSNotificationCenter.defaultCenter();
+
+        nc.addObserver(self, selector: "fetchTableData", name: Constants.Notifications.fetchTableData, object: nil)
+    }
+
+    func fetchTableData() {
+        do {
+            print("fetching")
+            try self.fetchedResults.performFetch()
+            self.tableView.reloadData()
+        } catch {
+            fatalError("Failed to initialize FetchedResults: \(error)")
         }
     }
 
@@ -117,11 +131,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             if let habit = self.fetchedResults.objectAtIndexPath(indexPath) as? Habit {
-                /*HabitHelper.deleteHabit(habit.uuid) {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.refreshRealm()
-                    }
-                }*/
+                dataController.deleteHabit(habit)
             } else {
                 // do an error message
             }
@@ -136,21 +146,41 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         self.tableView.beginUpdates()
     }
 
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+        print("changing sections")
         switch type {
         case .Insert:
+            self.tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
+        case .Delete:
+            self.tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
+        case .Move:
+            break
+        case .Update:
+            break
+        }
+    }
+
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        print("changing content!")
+        switch type {
+        case .Insert:
+            print("insert")
             self.tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
         case .Delete:
+            print("delete")
             self.tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
         case .Update:
+            print("update")
             self.configureCell(self.tableView.cellForRowAtIndexPath(indexPath!)!, indexPath: indexPath!)
         case .Move:
+            print("move")
             self.tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
             self.tableView.insertRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
         }
     }
-    
+
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        print("ending table updates")
         self.tableView.endUpdates()
     }
 

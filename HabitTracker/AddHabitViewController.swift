@@ -52,7 +52,6 @@ class AddHabitViewController: FormViewController {
         form +++= Section()
             <<< ButtonRow(rowNames.createRow) {
                 $0.title = $0.tag
-                // $0.presentationMode = .SegueName(segueName: "RowsExampleViewControllerSegue", completionCallback: nil)
             }.onCellSelection {_,_ in
                 if let splitControllers = self.splitViewController?.viewControllers {
                     let navViewController = splitControllers[0] as! UINavigationController
@@ -81,14 +80,7 @@ class AddHabitViewController: FormViewController {
             weekDays = values[rowNames.weekDaysRow] as? Set<WeekDay>
         }
 
-        dataController.insertHabit(name, numDays: numDays, weekDays: weekDays, goal: goal) // add numDays, or week days
-    }
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == Constants.Segues.showHabitMaster {
-            // let controller = (segue.destinationViewController as! UINavigationController).topViewController as! MasterViewController
-            // controller.refreshRealm()
-        }
+        dataController.insertHabit(name, numDays: numDays, weekDays: weekDays, goal: goal)
     }
 
 }

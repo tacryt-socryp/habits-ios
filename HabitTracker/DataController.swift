@@ -6,6 +6,7 @@
 //  Copyright © 2016 Logan Allen. All rights reserved.
 //
 
+import UIKit
 import CoreData
 
 class DataController: NSObject {
@@ -26,6 +27,7 @@ class DataController: NSObject {
         let psc = NSPersistentStoreCoordinator(managedObjectModel: mom)
         self.managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
         self.managedObjectContext.persistentStoreCoordinator = psc
+        (UIApplication.sharedApplication().delegate as! AppDelegate).registerCoordinatorForStoreNotifications(psc)
 
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
             let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
@@ -44,6 +46,11 @@ class DataController: NSObject {
         }
 
     }
+
+    func getNewManagedObjectContext() {
+    }
+
+    // MARK: - Operations
 
     func insertHabit(name: String, numDays: Int?, weekDays: Set<WeekDay>?, goal: String?) -> Habit {
         let habit = NSEntityDescription.insertNewObjectForEntityForName("Habit", inManagedObjectContext: self.managedObjectContext) as! Habit
@@ -76,12 +83,29 @@ class DataController: NSObject {
         dict.updateValue(0, forKey: "order")
         habit.setValuesForKeysWithDictionary(dict)
 
-        do {
-            try self.managedObjectContext.save()
-        } catch {
-            fatalError("Failure to save context: \(error)")
+        self.managedObjectContext.performBlock {
+            do {
+                try self.managedObjectContext.save()
+                print("successfully added")
+            } catch {
+                fatalError("Failure to save context: \(error)")
+            }
         }
+
         return habit
+    }
+
+    func deleteHabit(habit: Habit) {
+        managedObjectContext.deleteObject(habit)
+
+        self.managedObjectContext.performBlock {
+            do {
+                try self.managedObjectContext.save()
+                print("successfully deleted")
+            } catch {
+                fatalError("Failure to save context: \(error)")
+            }
+        }
     }
 
     func fetchObjects() -> [Habit]? {

@@ -65,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     // MARK: - iCloud
     // This handles the updates to the data via iCloud updates
 
-    func registerCoordinatorForStoreNotifications (coordinator : NSPersistentStoreCoordinator) {
+    func registerCoordinatorForStoreNotifications(coordinator : NSPersistentStoreCoordinator) {
         let nc : NSNotificationCenter = NSNotificationCenter.defaultCenter();
 
         nc.addObserver(self, selector: "handleStoresWillChange:",
@@ -79,10 +79,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         nc.addObserver(self, selector: "handleStoresWillRemove:",
             name: NSPersistentStoreCoordinatorWillRemoveStoreNotification,
             object: coordinator)
-        
+
         nc.addObserver(self, selector: "handleStoreChangedUbiquitousContent:",
             name: NSPersistentStoreDidImportUbiquitousContentChangesNotification,
             object: coordinator)
+    }
+
+    func handleStoresWillChange(notification: NSNotification) {
+        print("will change")
+        dataController.managedObjectContext.performBlock {
+            self.dataController.managedObjectContext.reset()
+        }
+        // drop any managed object references
+        // disable user interface with setEnabled: or an overlay
+        print(notification)
+    }
+
+    func handleStoresDidChange(notification: NSNotification) {
+        print("did change")
+        dataController.managedObjectContext.performBlock {
+            self.dataController.managedObjectContext.mergeChangesFromContextDidSaveNotification(notification)
+            NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notifications.fetchTableData, object: nil)
+        }
+        print(notification)
+    }
+
+    func handleStoresWillRemove(notification: NSNotification) {
+        print("will remove")
+        print(notification)
+    }
+
+    func handleStoreChangedUbiquitousContent(notification: NSNotification) {
+        print("changed ubiquitous content")
+        print(notification)
     }
 
 }

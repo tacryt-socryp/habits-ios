@@ -28,6 +28,10 @@ struct Constants {
         static let showAddHabit = "showAddHabit"
     }
 
+    struct Notifications {
+        static let fetchTableData = "tailorFetchTableData"
+    }
+
     struct TableCells {
         static let Cell = "Cell"
     }
