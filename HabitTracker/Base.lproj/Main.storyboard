@@ -69,6 +69,7 @@
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
                     <connections>
                         <outlet property="detailDescriptionLabel" destination="0XM-y9-sOw" id="deQ-Na-JPF"/>
+                        <segue destination="mgK-Qi-hxh" kind="show" identifier="showEditHabit" id="dXr-f8-Om9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
@@ -149,6 +150,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SLD-UC-DBI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-45" y="129"/>
+        </scene>
+        <!--Edit Habit-->
+        <scene sceneID="Mud-XD-ZCX">
+            <objects>
+                <viewController storyboardIdentifier="editHabitVC" title="Edit Habit" id="mgK-Qi-hxh" customClass="EditHabitViewController" customModule="Tailor" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2Fl-ub-Yzc"/>
+                        <viewControllerLayoutGuide type="bottom" id="57k-LP-lEk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1w0-vF-ygX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Edit Habit" id="IZ3-AI-x5X"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dzq-xC-Fsa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1400" y="129"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

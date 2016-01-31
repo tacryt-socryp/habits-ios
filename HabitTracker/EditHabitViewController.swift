@@ -1,15 +1,15 @@
 //
-//  AddHabitViewController.swift
-//  HabitTracker
+//  EditHabitViewController.swift
+//  Tailor
 //
-//  Created by Logan Allen on 1/18/16.
+//  Created by Logan Allen on 1/31/16.
 //  Copyright © 2016 Logan Allen. All rights reserved.
 //
 
 import UIKit
 import Eureka
 
-class AddHabitViewController: FormViewController {
+class EditHabitViewController: FormViewController {
 
     struct rowNames {
         static let nameRow = "Habit Name"
@@ -17,7 +17,14 @@ class AddHabitViewController: FormViewController {
         static let numberOfDaysRow = "Number of Days"
         static let weekDaysRow = "Week Days"
         static let goalRow = "Goal"
-        static let createRow = "Save Habit"
+        static let updateRow = "Save Habit"
+    }
+
+    var habit: Habit? {
+        didSet {
+            // Update the view.
+            self.configureView()
+        }
     }
 
     var dataController: DataController!
@@ -32,6 +39,7 @@ class AddHabitViewController: FormViewController {
 
     func configureView() {
         // Update the user interface.
+        form.removeAll()
         navigationOptions = .Disabled
         form +++ Section()
             <<< NameRow(rowNames.nameRow) {
@@ -47,25 +55,25 @@ class AddHabitViewController: FormViewController {
             }
             <<< TextRow(rowNames.goalRow) {
                 $0.title =  $0.tag
-            }
+        }
 
         form +++= Section()
-            <<< ButtonRow(rowNames.createRow) {
+            <<< ButtonRow(rowNames.updateRow) {
                 $0.title = $0.tag
-            }.onCellSelection {_,_ in
-                if let splitControllers = self.splitViewController?.viewControllers {
-                    let navViewController = splitControllers[0] as! UINavigationController
-                    for controller in navViewController.viewControllers {
-                        if let masterViewController = controller as? MasterViewController {
-                            self.addHabit(masterViewController)
-                            navViewController.popToViewController(masterViewController, animated: true)
+                }.onCellSelection {_,_ in
+                    if let splitControllers = self.splitViewController?.viewControllers {
+                        let navViewController = splitControllers[0] as! UINavigationController
+                        for controller in navViewController.viewControllers {
+                            if let masterViewController = controller as? MasterViewController {
+                                self.updateHabit(masterViewController)
+                                navViewController.popToViewController(masterViewController, animated: true)
+                            }
                         }
                     }
-                }
-            }
+        }
     }
 
-    func addHabit(mV: MasterViewController? = nil) {
+    func updateHabit(mV: MasterViewController? = nil) {
         let values = form.values()
         let name = values[rowNames.nameRow] as! String
         let goal = values[rowNames.goalRow] as? String
@@ -79,8 +87,7 @@ class AddHabitViewController: FormViewController {
         } else {
             weekDays = values[rowNames.weekDaysRow] as? Set<WeekDay>
         }
-
-        dataController.insertHabit(name, numDays: numDays, weekDays: weekDays, goal: goal)
+        dataController.updateHabit(habit!.objectID, name: name, numDays: numDays, weekDays: weekDays, goal: goal)
     }
-
+    
 }

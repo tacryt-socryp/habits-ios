@@ -49,6 +49,7 @@ class DataController: NSObject {
 
     }
 
+    
     // MARK: - Habit Operations
 
     func insertHabit(name: String, numDays: Int?, weekDays: Set<WeekDay>?, goal: String?) -> Habit {
@@ -94,55 +95,48 @@ class DataController: NSObject {
         return habit
     }
 
-    func updateHabit(id: Int, name: String?, numDays: Int?, weekDays: Set<WeekDay>?, goal: String?) -> Habit? {
-        let habitsFetched = NSFetchRequest(entityName: "Habit")
-        habitsFetched.predicate = NSPredicate(format: "id == %@", id)
+    func updateHabit(id: NSManagedObjectID, name: String?, numDays: Int?, weekDays: Set<WeekDay>?, goal: String?) -> Habit? {
+        let habit = managedObjectContext.objectWithID(id) as? Habit
 
-        do {
-            let habit = try self.managedObjectContext.executeFetchRequest(habitsFetched).first as? Habit
-
-            var dict = [String:AnyObject]()
-            if let n = name {
-                dict.updateValue(n, forKey: "name")
-            }
-
-            if let nD = numDays {
-                dict.updateValue(1, forKey: "useNumDays")
-                dict.updateValue(nD, forKey: "numDays")
-            }
-
-            if let wD = weekDays {
-                dict.updateValue(0, forKey: "useNumDays")
-                dict.updateValue(wD.contains(.Sunday), forKey: "sunday")
-                dict.updateValue(wD.contains(.Monday), forKey: "monday")
-                dict.updateValue(wD.contains(.Tuesday), forKey: "tuesday")
-                dict.updateValue(wD.contains(.Wednesday), forKey: "wednesday")
-                dict.updateValue(wD.contains(.Thursday), forKey: "thursday")
-                dict.updateValue(wD.contains(.Friday), forKey: "friday")
-                dict.updateValue(wD.contains(.Saturday), forKey: "saturday")
-            }
-
-            if let g = goal {
-                dict.updateValue(g, forKey: "goal")
-            }
-
-            // TODO: determine order based on max order within the list
-            dict.updateValue(0, forKey: "order")
-            habit?.setValuesForKeysWithDictionary(dict)
-
-            self.managedObjectContext.performBlock {
-                do {
-                    try self.managedObjectContext.save()
-                    print("successfully added")
-                } catch {
-                    fatalError("Failed to update habit: \(error)")
-                }
-            }
-            return habit
-        } catch {
-            fatalError("Failed to fetch habit for updating: \(error)")
+        var dict = [String:AnyObject]()
+        if let n = name {
+            dict.updateValue(n, forKey: "name")
         }
-        return nil
+
+        if let nD = numDays {
+            dict.updateValue(1, forKey: "useNumDays")
+            dict.updateValue(nD, forKey: "numDays")
+        }
+
+        if let wD = weekDays {
+            dict.updateValue(0, forKey: "useNumDays")
+            dict.updateValue(wD.contains(.Sunday), forKey: "sunday")
+            dict.updateValue(wD.contains(.Monday), forKey: "monday")
+            dict.updateValue(wD.contains(.Tuesday), forKey: "tuesday")
+            dict.updateValue(wD.contains(.Wednesday), forKey: "wednesday")
+            dict.updateValue(wD.contains(.Thursday), forKey: "thursday")
+            dict.updateValue(wD.contains(.Friday), forKey: "friday")
+            dict.updateValue(wD.contains(.Saturday), forKey: "saturday")
+        }
+
+        if let g = goal {
+            dict.updateValue(g, forKey: "goal")
+        }
+
+        // TODO: determine order based on max order within the list
+        dict.updateValue(0, forKey: "order")
+        habit?.setValuesForKeysWithDictionary(dict)
+
+        self.managedObjectContext.performBlock {
+            do {
+                try self.managedObjectContext.save()
+                print("successfully added")
+            } catch {
+                fatalError("Failed to update habit: \(error)")
+            }
+        }
+
+        return habit
     }
 
     func deleteHabit(habit: Habit) {
@@ -184,35 +178,27 @@ class DataController: NSObject {
         return entry
     }
 
-    func updateEntry(id: Int, note: String? = nil) -> Entry? {
-        let entriesFetched = NSFetchRequest(entityName: "Entry")
-        entriesFetched.predicate = NSPredicate(format: "id == %@", id)
+    func updateEntry(id: NSManagedObjectID, note: String? = nil) -> Entry? {
+        let entry = managedObjectContext.objectWithID(id) as? Entry
+        // set properties
+        var dict = [String:AnyObject]()
 
-        do {
-            let entry = try self.managedObjectContext.executeFetchRequest(entriesFetched).first as? Entry
-            // set properties
-            var dict = [String:AnyObject]()
-
-            if let n = note {
-                dict.updateValue(n, forKey: "note")
-            }
-            // TODO: determine order based on max order within the list
-            entry?.setValuesForKeysWithDictionary(dict)
-
-            self.managedObjectContext.performBlock {
-                do {
-                    try self.managedObjectContext.save()
-                    print("successfully added")
-                } catch {
-                    fatalError("Failed to update entry: \(error)")
-                }
-            }
-            
-            return entry
-        } catch {
-            fatalError("Failed to fetch entry for updating: \(error)")
+        if let n = note {
+            dict.updateValue(n, forKey: "note")
         }
-        return nil
+        // TODO: determine order based on max order within the list
+        entry?.setValuesForKeysWithDictionary(dict)
+
+        self.managedObjectContext.performBlock {
+            do {
+                try self.managedObjectContext.save()
+                print("successfully added")
+            } catch {
+                fatalError("Failed to update entry: \(error)")
+            }
+        }
+        
+        return entry
     }
 
     func deleteEntry(entry: Entry) {

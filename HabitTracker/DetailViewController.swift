@@ -10,6 +10,8 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+    // MARK: - Attributes
+
     @IBOutlet weak var detailDescriptionLabel: UILabel!
 
     var dataController: DataController!
@@ -21,14 +23,7 @@ class DetailViewController: UIViewController {
     }
 
 
-    func configureView() {
-        // Update the user interface for the detail item.
-        if let habit = habitItem {
-            if let label = detailDescriptionLabel {
-                label.text = habit.name
-            }
-        }
-    }
+    // MARK: - Initialization
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +31,32 @@ class DetailViewController: UIViewController {
         self.configureView()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
+    func configureView() {
+        // Update the user interface for the detail item.
+        let editButton = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: "editHabit")
+        self.navigationItem.rightBarButtonItem = editButton
+
+        if let habit = habitItem {
+            if let label = detailDescriptionLabel {
+                label.text = habit.name
+            }
+        }
+    }
+
+
+    // MARK: - Segues
+
+    func editHabit() {
+        self.performSegueWithIdentifier(Constants.Segues.showEditHabit, sender: nil)
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == Constants.Segues.showEditHabit {
+            let controller = segue.destinationViewController as! EditHabitViewController
+            controller.habit = self.habitItem
+            controller.dataController = self.dataController
+        }
     }
 
 }
