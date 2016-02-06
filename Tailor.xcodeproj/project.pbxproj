@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02075B431C4D91C500D0522D /* AddHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02075B421C4D91C500D0522D /* AddHabitViewController.swift */; };
 		02163E3A1C5AE934002B50D8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02294C1E1C5AE33B00998233 /* CoreData.framework */; };
 		02163E471C5BC69D002B50D8 /* TailorModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 02163E451C5BC69D002B50D8 /* TailorModel.xcdatamodeld */; };
 		02163E5F1C5BCF6C002B50D8 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02163E5B1C5BCF6C002B50D8 /* Habit.swift */; };
@@ -16,9 +15,8 @@
 		023BA3561C502E99003DC61C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023BA3551C502E99003DC61C /* Constants.swift */; };
 		02701E0B1C4C14570092E4D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02701E0A1C4C14570092E4D3 /* AppDelegate.swift */; };
 		02701E0D1C4C14570092E4D3 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02701E0C1C4C14570092E4D3 /* MasterViewController.swift */; };
-		02701E0F1C4C14570092E4D3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02701E0E1C4C14570092E4D3 /* DetailViewController.swift */; };
 		02701E171C4C14570092E4D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02701E151C4C14570092E4D3 /* LaunchScreen.storyboard */; };
-		02B5C0071C5E89CD00AB3854 /* EditHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B5C0061C5E89CD00AB3854 /* EditHabitViewController.swift */; };
+		029B3F7F1C65823F00403D1A /* HabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029B3F7E1C65823F00403D1A /* HabitViewController.swift */; };
 		02C4ADC21C5C4712001A7C0C /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C4ADC11C5C4712001A7C0C /* DataController.swift */; };
 		02EBB31C1C5D502900814DBA /* CustomEurekaCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EBB31B1C5D502900814DBA /* CustomEurekaCells.swift */; };
 		02EBB31F1C5D511D00814DBA /* WeekDaysCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02EBB31D1C5D511D00814DBA /* WeekDaysCell.xib */; };
@@ -27,7 +25,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		02075B421C4D91C500D0522D /* AddHabitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddHabitViewController.swift; sourceTree = "<group>"; };
 		02163E461C5BC69D002B50D8 /* TailorModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TailorModel.xcdatamodel; sourceTree = "<group>"; };
 		02163E5B1C5BCF6C002B50D8 /* Habit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 		02163E5D1C5BCF6C002B50D8 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
@@ -37,11 +34,10 @@
 		02701E071C4C14570092E4D3 /* Tailor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tailor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02701E0A1C4C14570092E4D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02701E0C1C4C14570092E4D3 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		02701E0E1C4C14570092E4D3 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		02701E131C4C14570092E4D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02701E161C4C14570092E4D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		02701E181C4C14570092E4D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		02B5C0061C5E89CD00AB3854 /* EditHabitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditHabitViewController.swift; sourceTree = "<group>"; };
+		029B3F7E1C65823F00403D1A /* HabitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitViewController.swift; sourceTree = "<group>"; };
 		02C4ADC11C5C4712001A7C0C /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		02EBB31B1C5D502900814DBA /* CustomEurekaCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomEurekaCells.swift; sourceTree = "<group>"; };
 		02EBB31E1C5D511D00814DBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/WeekDaysCell.xib; sourceTree = "<group>"; };
@@ -87,9 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				02701E0C1C4C14570092E4D3 /* MasterViewController.swift */,
-				02701E0E1C4C14570092E4D3 /* DetailViewController.swift */,
-				02075B421C4D91C500D0522D /* AddHabitViewController.swift */,
-				02B5C0061C5E89CD00AB3854 /* EditHabitViewController.swift */,
+				029B3F7E1C65823F00403D1A /* HabitViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -281,14 +275,12 @@
 				023BA3561C502E99003DC61C /* Constants.swift in Sources */,
 				02163E471C5BC69D002B50D8 /* TailorModel.xcdatamodeld in Sources */,
 				02EBB31C1C5D502900814DBA /* CustomEurekaCells.swift in Sources */,
-				02B5C0071C5E89CD00AB3854 /* EditHabitViewController.swift in Sources */,
-				02701E0F1C4C14570092E4D3 /* DetailViewController.swift in Sources */,
 				02701E0D1C4C14570092E4D3 /* MasterViewController.swift in Sources */,
 				02163E611C5BCF6C002B50D8 /* Entry.swift in Sources */,
+				029B3F7F1C65823F00403D1A /* HabitViewController.swift in Sources */,
 				02C4ADC21C5C4712001A7C0C /* DataController.swift in Sources */,
 				02163E5F1C5BCF6C002B50D8 /* Habit.swift in Sources */,
 				02701E0B1C4C14570092E4D3 /* AppDelegate.swift in Sources */,
-				02075B431C4D91C500D0522D /* AddHabitViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,28 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="H1p-Uh-vWS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="H1p-Uh-vWS">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--Add New Habit-->
-        <scene sceneID="JVD-Go-thz">
-            <objects>
-                <viewController storyboardIdentifier="addHabitVC" title="Add New Habit" id="9EK-r2-iai" customClass="AddHabitViewController" customModule="Tailor" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Osg-hE-Ekv"/>
-                        <viewControllerLayoutGuide type="bottom" id="MIo-sV-bqQ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Jel-Rh-W7f">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Add New Habit" id="EgB-Ml-hTw"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mTq-SK-bj4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1400" y="-630"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="pY4-Hu-kfo">
             <objects>
@@ -41,7 +23,7 @@
         <!--HabitView-->
         <scene sceneID="yUG-lL-AsK">
             <objects>
-                <viewController title="HabitView" id="JEX-9P-axG" customClass="DetailViewController" customModule="Tailor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="HabitView" id="JEX-9P-axG" customClass="HabitViewController" customModule="Tailor" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SYR-Wa-9uf"/>
                         <viewControllerLayoutGuide type="bottom" id="GAO-Cl-Wes"/>
@@ -49,28 +31,10 @@
                     <view key="view" contentMode="scaleToFill" id="svH-Pt-448">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Name" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="0XM-y9-sOw">
-                                <rect key="frame" x="20" y="292" width="560" height="17"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" size="system"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="0XM-y9-sOw" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" constant="20" symbolic="YES" id="Tsc-yG-G1q"/>
-                            <constraint firstItem="0XM-y9-sOw" firstAttribute="centerY" secondItem="svH-Pt-448" secondAttribute="centerY" id="jWN-iV-94e"/>
-                            <constraint firstAttribute="trailing" secondItem="0XM-y9-sOw" secondAttribute="trailing" constant="20" symbolic="YES" id="tHV-ZD-HQj"/>
-                        </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
-                    <connections>
-                        <outlet property="detailDescriptionLabel" destination="0XM-y9-sOw" id="deQ-Na-JPF"/>
-                        <segue destination="mgK-Qi-hxh" kind="show" identifier="showEditHabit" id="dXr-f8-Om9"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
@@ -129,7 +93,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Tailor" id="Zdf-7t-Un8"/>
                     <connections>
-                        <segue destination="9EK-r2-iai" kind="show" identifier="showAddHabit" id="6ob-cE-x2C"/>
+                        <segue destination="JEX-9P-axG" kind="show" identifier="showAddHabit" id="qnJ-mG-32R"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
@@ -151,26 +115,9 @@
             </objects>
             <point key="canvasLocation" x="-45" y="129"/>
         </scene>
-        <!--Edit Habit-->
-        <scene sceneID="Mud-XD-ZCX">
-            <objects>
-                <viewController storyboardIdentifier="editHabitVC" title="Edit Habit" id="mgK-Qi-hxh" customClass="EditHabitViewController" customModule="Tailor" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="2Fl-ub-Yzc"/>
-                        <viewControllerLayoutGuide type="bottom" id="57k-LP-lEk"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="1w0-vF-ygX">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Edit Habit" id="IZ3-AI-x5X"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dzq-xC-Fsa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1400" y="129"/>
-        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="6S0-TO-JiA"/>
+        <segue reference="qnJ-mG-32R"/>
     </inferredMetricsTieBreakers>
 </document>

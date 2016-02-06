@@ -26,7 +26,6 @@ struct Constants {
         static let showHabitDetail = "showHabitDetail"
         static let showHabitMaster = "showHabitMaster"
         static let showAddHabit = "showAddHabit"
-        static let showEditHabit = "showEditHabit"
     }
 
     struct Notifications {

@@ -16,7 +16,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     var dataController: DataController!
     var fetchedResults: NSFetchedResultsController!
 
-    var detailViewController: DetailViewController? = nil
+    var detailViewController: HabitViewController? = nil
 
 
     // MARK: - Initialization
@@ -56,7 +56,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         self.navigationItem.rightBarButtonItem = addButton
         if let split = self.splitViewController {
             let controllers = split.viewControllers
-            self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
+            self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? HabitViewController
         }
     }
 
@@ -88,9 +88,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         if segue.identifier == Constants.Segues.showHabitDetail {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 if let habit = self.fetchedResults.objectAtIndexPath(indexPath) as? Habit {
-                    let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
+                    let controller = (segue.destinationViewController as! UINavigationController).topViewController as! HabitViewController
                     controller.dataController = self.dataController
-                    controller.habitItem = habit
+                    controller.habit = habit
                     controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                     controller.navigationItem.leftItemsSupplementBackButton = true
                 } else {
@@ -98,8 +98,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                 }
             }
         } else if segue.identifier == Constants.Segues.showAddHabit {
-            let controller = segue.destinationViewController as! AddHabitViewController
+            let controller = segue.destinationViewController as! HabitViewController
             controller.dataController = self.dataController
+            controller.currentState = [.Create, .Edit]
         }
     }
 
