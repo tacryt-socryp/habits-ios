@@ -9,7 +9,12 @@
 import UIKit
 import CoreData
 
-class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+protocol HabitTableViewCellDelegate {
+    // indicates that the given item has been deleted
+    func addEntryForToday(habitItem: Habit)
+}
+
+class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate, HabitTableViewCellDelegate {
 
     // MARK: - Attributes
 
@@ -106,14 +111,18 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
 
     // MARK: - Table View
-    func configureCell(cell: UITableViewCell, indexPath: NSIndexPath) {
+    func configureCell(cell: HabitTableViewCell, indexPath: NSIndexPath) {
         let habit = self.fetchedResults.objectAtIndexPath(indexPath) as! Habit
+
+        cell.delegate = self
+        cell.habitItem = habit
         // Populate cell from the NSManagedObject instance
         cell.textLabel?.text = habit.name
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableCells.Cell, forIndexPath: indexPath) 
+        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.TableCells.Cell, forIndexPath: indexPath) as! HabitTableViewCell
+
         // Set up the cell
         self.configureCell(cell, indexPath: indexPath)
         return cell
@@ -127,6 +136,16 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
+    }
+
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let editAction = UITableViewRowAction(style: .Normal, title: "✔︎") { (rowAction:UITableViewRowAction, indexPath:NSIndexPath) -> Void in
+            //TODO: edit the row at indexPath here
+            self.addEntryForToday(self.fetchedResults.objectAtIndexPath(indexPath) as! Habit)
+        }
+        editAction.backgroundColor = UIColor.greenColor()
+        
+        return [editAction]
     }
 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -143,6 +162,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
 
     // MARK: - Fetched Results Controller Delegate
+
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
         self.tableView.beginUpdates()
     }
@@ -158,7 +178,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             self.tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
         case .Update:
             print("update")
-            self.configureCell(self.tableView.cellForRowAtIndexPath(indexPath!)!, indexPath: indexPath!)
+            self.configureCell(self.tableView.cellForRowAtIndexPath(indexPath!) as! HabitTableViewCell, indexPath: indexPath!)
         case .Move:
             print("move")
             self.tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
@@ -166,11 +186,12 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         }
     }
 
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        print("ending table updates")
-        self.tableView.endUpdates()
-    }
+    // MARK: - Habit Table View Delegate
 
+    func addEntryForToday(habitItem: Habit) {
+        // TODO: add an entry for today
+        dataController.insertEntry(habitItem)
+    }
 
 }
 

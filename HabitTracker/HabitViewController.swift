@@ -51,9 +51,6 @@ class HabitViewController: FormViewController {
         // Update the user interface.
         navigationOptions = .Disabled
 
-        var isViewMode: Bool {
-            return currentState.contains(.View)
-        }
         var isEditMode: Bool {
             return currentState.contains(.Edit)
         }
@@ -61,10 +58,10 @@ class HabitViewController: FormViewController {
             return currentState.contains(.Create)
         }
 
-        if isViewMode {
-            let editButton = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: "toggleEditMode")
-            self.navigationItem.rightBarButtonItem = editButton
-        }
+//        if isViewMode {
+//            let editButton = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: "toggleEditMode")
+//            self.navigationItem.rightBarButtonItem = editButton
+//        }
 
         form +++ Section()
             <<< NameRow(rowNames.nameRow) {
@@ -92,9 +89,9 @@ class HabitViewController: FormViewController {
                 if isEditMode {
                     $0.title = $0.tag
                 }
-                $0.hidden = Condition.Function([rowNames.useNumberOfDaysRow]) {_ in
-                    return isViewMode
-                }
+//                $0.hidden = Condition.Function([rowNames.useNumberOfDaysRow]) {_ in
+//                    return isViewMode
+//                }
 
             }
             <<< WeekDayRow(rowNames.weekDaysRow) {

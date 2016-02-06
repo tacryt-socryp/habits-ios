@@ -155,7 +155,7 @@ class DataController: NSObject {
     // MARK: - Entry Operations
 
 
-    func insertEntry(note: String? = nil) -> Entry {
+    func insertEntry(habit: Habit, note: String? = nil) -> Entry {
         let entry = NSEntityDescription.insertNewObjectForEntityForName("Entry", inManagedObjectContext: self.managedObjectContext) as! Entry
         // set properties
         var dict = [String:AnyObject]()
@@ -165,6 +165,7 @@ class DataController: NSObject {
         }
         // TODO: determine order based on max order within the list
         entry.setValuesForKeysWithDictionary(dict)
+        entry.habit = habit
 
         self.managedObjectContext.performBlock {
             do {
