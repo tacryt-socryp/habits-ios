@@ -138,16 +138,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         return true
     }
 
-    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let editAction = UITableViewRowAction(style: .Normal, title: "✔︎") { (rowAction:UITableViewRowAction, indexPath:NSIndexPath) -> Void in
-            //TODO: edit the row at indexPath here
-            self.addEntryForToday(self.fetchedResults.objectAtIndexPath(indexPath) as! Habit)
-        }
-        editAction.backgroundColor = UIColor.greenColor()
-        
-        return [editAction]
-    }
-
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             if let habit = self.fetchedResults.objectAtIndexPath(indexPath) as? Habit {
@@ -158,6 +148,11 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
+    }
+
+    override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        // disable swipe to delete
+        return UITableViewCellEditingStyle.None
     }
 
 
@@ -190,6 +185,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     func addEntryForToday(habitItem: Habit) {
         // TODO: add an entry for today
+        print("added entry for today!")
         dataController.insertEntry(habitItem)
     }
 
