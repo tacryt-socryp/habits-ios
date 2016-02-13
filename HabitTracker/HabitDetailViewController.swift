@@ -33,6 +33,14 @@ class HabitDetailViewController: UIViewController, ChartViewDelegate {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+
+        // if habit is updated, fetch the new one
+        if let h = habit {
+            dataController.fetchHabit(h.objectID, callback: { (habit: Habit?) in
+                self.habit = habit
+            })
+        }
+
         configureBarChart()
     }
 

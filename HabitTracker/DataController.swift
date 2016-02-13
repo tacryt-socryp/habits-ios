@@ -52,6 +52,11 @@ class DataController: NSObject {
     
     // MARK: - Habit Operations
 
+    func fetchHabit(id: NSManagedObjectID, callback: ((habit: Habit?) -> Void)) {
+        let habit = managedObjectContext.objectWithID(id) as? Habit
+        callback(habit: habit)
+    }
+
     func insertHabit(name: String, numDays: Int?, weekDays: Set<WeekDay>?, goal: String?) -> Habit {
         let habit = NSEntityDescription.insertNewObjectForEntityForName("Habit", inManagedObjectContext: self.managedObjectContext) as! Habit
         // set properties

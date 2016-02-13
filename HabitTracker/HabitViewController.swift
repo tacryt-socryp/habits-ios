@@ -58,11 +58,6 @@ class HabitViewController: FormViewController {
             return currentState.contains(.Create)
         }
 
-//        if isViewMode {
-//            let editButton = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: "toggleEditMode")
-//            self.navigationItem.rightBarButtonItem = editButton
-//        }
-
         form +++ Section()
             <<< NameRow(rowNames.nameRow) {
                 if !isCreateMode {
@@ -89,9 +84,6 @@ class HabitViewController: FormViewController {
                 if isEditMode {
                     $0.title = $0.tag
                 }
-//                $0.hidden = Condition.Function([rowNames.useNumberOfDaysRow]) {_ in
-//                    return isViewMode
-//                }
 
             }
             <<< WeekDayRow(rowNames.weekDaysRow) {
@@ -195,27 +187,7 @@ class HabitViewController: FormViewController {
             dataController.insertHabit(name, numDays: numDays, weekDays: weekDays, goal: goal)
         } else {
             dataController.updateHabit(habit!.objectID, name: name, numDays: numDays, weekDays: weekDays, goal: goal)
-            toggleEditMode()
-        }
-    }
-
-
-    // MARK: - Enable Edit Mode
-
-    func toggleEditMode() {
-        if self.currentState.contains(.Edit) {
-            self.currentState.remove(.Edit)
-        } else {
-            self.currentState.insert(.Edit)
-            self.currentState.remove(.View)
-            self.currentState.remove(.Create)
-            self.navigationItem.rightBarButtonItem = nil
-        }
-
-        form.allRows.forEach {
-            $0.updateCell()
-            $0.evaluateDisabled()
-            $0.evaluateHidden()
+            navigationController?.popViewControllerAnimated(true)
         }
     }
 
