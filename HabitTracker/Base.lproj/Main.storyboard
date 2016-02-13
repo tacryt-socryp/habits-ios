@@ -20,10 +20,10 @@
             </objects>
             <point key="canvasLocation" x="-38" y="-630"/>
         </scene>
-        <!--Edit Habit-->
+        <!--Habit Detail-->
         <scene sceneID="yUG-lL-AsK">
             <objects>
-                <viewController title="Edit Habit" id="JEX-9P-axG" customClass="HabitDetailViewController" customModule="Tailor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Habit Detail" id="JEX-9P-axG" customClass="HabitDetailViewController" customModule="Tailor" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SYR-Wa-9uf"/>
                         <viewControllerLayoutGuide type="bottom" id="GAO-Cl-Wes"/>
@@ -31,11 +31,30 @@
                     <view key="view" contentMode="scaleToFill" id="svH-Pt-448">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zsr-Rb-4HF" customClass="BarChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="72" width="600" height="520"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="Zsr-Rb-4HF" secondAttribute="bottom" constant="8" symbolic="YES" id="7XH-Za-vmZ"/>
+                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="Zsr-Rb-4HF" secondAttribute="bottom" constant="207" id="M46-7Y-MFu"/>
+                            <constraint firstAttribute="trailing" secondItem="Zsr-Rb-4HF" secondAttribute="trailing" id="RQV-JW-1sM"/>
+                            <constraint firstItem="Zsr-Rb-4HF" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="Tgs-zd-VbH"/>
+                            <constraint firstItem="Zsr-Rb-4HF" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="8" symbolic="YES" id="gxS-rp-d6V"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="M46-7Y-MFu"/>
+                            </mask>
+                        </variation>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
                     <connections>
+                        <outlet property="barChartView" destination="Zsr-Rb-4HF" id="bot-6g-Jib"/>
                         <segue destination="AYj-9c-wrD" kind="show" identifier="showEditHabit" id="1J5-ud-dRc"/>
                     </connections>
                 </viewController>
@@ -43,10 +62,10 @@
             </objects>
             <point key="canvasLocation" x="679" y="129"/>
         </scene>
-        <!--Habit View Controller-->
+        <!--Write Habit-->
         <scene sceneID="e0r-RA-XDd">
             <objects>
-                <viewController id="AYj-9c-wrD" customClass="HabitViewController" customModule="Tailor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Write Habit" id="AYj-9c-wrD" customClass="HabitViewController" customModule="Tailor" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aqG-MQ-3IC"/>
                         <viewControllerLayoutGuide type="bottom" id="x4o-aF-2Vb"/>
