@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -33,21 +34,36 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zsr-Rb-4HF" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="72" width="600" height="520"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="279"/>
+                                <color key="backgroundColor" red="0.37468397619999999" green="0.39971005920000002" blue="0.59302496910000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.37468397619999999" green="0.39971005920000002" blue="0.59302496910000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="Zsr-Rb-4HF" secondAttribute="bottom" constant="8" symbolic="YES" id="7XH-Za-vmZ"/>
+                            <constraint firstItem="Zsr-Rb-4HF" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="-20" id="0uE-Mz-t3b"/>
+                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="Zsr-Rb-4HF" secondAttribute="bottom" constant="300" id="7XH-Za-vmZ"/>
+                            <constraint firstItem="Zsr-Rb-4HF" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="JZN-Zv-GQj"/>
+                            <constraint firstItem="Zsr-Rb-4HF" firstAttribute="centerX" secondItem="svH-Pt-448" secondAttribute="centerX" id="JvV-bK-EPb"/>
                             <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="Zsr-Rb-4HF" secondAttribute="bottom" constant="207" id="M46-7Y-MFu"/>
-                            <constraint firstAttribute="trailing" secondItem="Zsr-Rb-4HF" secondAttribute="trailing" id="RQV-JW-1sM"/>
+                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="Zsr-Rb-4HF" secondAttribute="bottom" constant="257" id="Mn1-6w-ZJ3"/>
+                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="Zsr-Rb-4HF" secondAttribute="bottom" constant="240" id="PSk-Ik-5i6"/>
+                            <constraint firstItem="Zsr-Rb-4HF" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="-20" id="RMd-5j-N2X"/>
                             <constraint firstItem="Zsr-Rb-4HF" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="Tgs-zd-VbH"/>
-                            <constraint firstItem="Zsr-Rb-4HF" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" constant="8" symbolic="YES" id="gxS-rp-d6V"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Zsr-Rb-4HF" secondAttribute="trailing" id="UA2-eu-ptQ"/>
+                            <constraint firstItem="Zsr-Rb-4HF" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="d22-FV-RQ6"/>
+                            <constraint firstItem="Zsr-Rb-4HF" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="gxS-rp-d6V"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Zsr-Rb-4HF" secondAttribute="trailing" constant="-20" id="qQm-fS-7KE"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="0uE-Mz-t3b"/>
+                                <exclude reference="Tgs-zd-VbH"/>
+                                <exclude reference="UA2-eu-ptQ"/>
+                                <exclude reference="d22-FV-RQ6"/>
+                                <exclude reference="gxS-rp-d6V"/>
+                                <exclude reference="7XH-Za-vmZ"/>
                                 <exclude reference="M46-7Y-MFu"/>
+                                <exclude reference="PSk-Ik-5i6"/>
                             </mask>
                         </variation>
                     </view>

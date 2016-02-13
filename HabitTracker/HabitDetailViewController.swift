@@ -13,11 +13,12 @@ class HabitDetailViewController: UIViewController, ChartViewDelegate {
 
     // MARK: - Attributes
 
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var barChartView: BarChartView!
     var dataController: DataController!
-    var habit: Habit! {
+    var habit: Habit? = nil {
         didSet {
-            self.configureView()
+            self.configureData()
         }
     }
 
@@ -38,6 +39,11 @@ class HabitDetailViewController: UIViewController, ChartViewDelegate {
     func configureView() {
         let editButton = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: "editHabit")
         self.navigationItem.rightBarButtonItem = editButton
+        configureData()
+    }
+
+    func configureData() {
+        self.navigationItem.title = habit?.name
     }
 
 
@@ -48,15 +54,19 @@ class HabitDetailViewController: UIViewController, ChartViewDelegate {
         barChartView.descriptionText = ""
         barChartView.noDataTextDescription = "Data will be loaded soon."
 
-        barChartView.maxVisibleValueCount = 60
+        barChartView.maxVisibleValueCount = 0
+        barChartView.maxVisibleValueCount = 7
+
         barChartView.pinchZoomEnabled = false
         barChartView.drawBordersEnabled = false
-        barChartView.maxVisibleValueCount = 0
-        barChartView.backgroundColor = Constants.Colors.darkPrimary
+        barChartView.scaleXEnabled = false
+        barChartView.scaleYEnabled = false
+        barChartView.doubleTapToZoomEnabled = false
+        barChartView.dragEnabled = false
+
+        barChartView.backgroundColor = Constants.Colors.accent
         barChartView.borderColor = UIColor.whiteColor()
         barChartView.descriptionTextColor = UIColor.whiteColor()
-        // barChartView.gridBackgroundColor
-
         barChartView.legend.textColor = UIColor.whiteColor()
 
         let yAxis = barChartView.getAxis(ChartYAxis.AxisDependency.Left)
@@ -80,12 +90,13 @@ class HabitDetailViewController: UIViewController, ChartViewDelegate {
 
 
         for idx in 0...6 {
-            yVals.append(BarChartDataEntry(value: Double(idx), xIndex: idx))
+            yVals.append(BarChartDataEntry(value: Double(idx + 1), xIndex: idx))
         }
 
         let set1 = BarChartDataSet(yVals: yVals, label: "Day")
         set1.colors = [UIColor.whiteColor()]
         set1.barSpace = 0.25
+        set1.highlightColor = Constants.Colors.normalPrimary
 
         let data = BarChartData(xVals: xVals, dataSet: set1)
         data.setValueFont(UIFont.systemFontOfSize(14))

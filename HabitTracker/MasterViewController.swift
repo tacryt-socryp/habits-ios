@@ -93,7 +93,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         if segue.identifier == Constants.Segues.showHabitDetail {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 if let habit = self.fetchedResults.objectAtIndexPath(indexPath) as? Habit {
-                    print(habit.name)
                     let controller = (segue.destinationViewController as! UINavigationController).topViewController as! HabitDetailViewController
                     controller.dataController = self.dataController
                     controller.habit = habit
