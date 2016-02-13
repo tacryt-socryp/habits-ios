@@ -133,11 +133,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         return sections?[section].numberOfObjects ?? 0
     }
 
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             if let habit = self.fetchedResults.objectAtIndexPath(indexPath) as? Habit {
@@ -152,6 +147,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
         // disable swipe to delete
+        if (self.tableView.editing) {
+            return UITableViewCellEditingStyle.Delete
+        }
         return UITableViewCellEditingStyle.None
     }
 
@@ -163,7 +161,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
 
     func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-        print("changing content!")
         switch type {
         case .Insert:
             print("insert")
@@ -179,6 +176,10 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             self.tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
             self.tableView.insertRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
         }
+    }
+
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        self.tableView.endUpdates()
     }
 
     // MARK: - Habit Table View Delegate

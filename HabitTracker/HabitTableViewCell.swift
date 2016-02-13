@@ -13,7 +13,14 @@ class HabitTableViewCell: UITableViewCell {
     var originalCenter = CGPoint()
     var addEntryOnDragRelease = false
     var delegate: HabitTableViewCellDelegate? = nil
-    var habitItem: Habit? = nil
+    var habitItem: Habit? = nil {
+        didSet {
+            self.configureView()
+        }
+    }
+
+    let uncheckedColor = UIColor.whiteColor()
+    let checkedColor = Constants.Colors.accent
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -25,54 +32,56 @@ class HabitTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+    }
 
-        let swipePan: UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: "handleSwipePan:")
-        swipePan.delegate = self
-        addGestureRecognizer(swipePan)
+    func configureView() {
+        if habitItem != nil {
+            if !habitItem!.isTodayComplete {
+                let swipePan: UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: "handleSwipePan:")
+                swipePan.delegate = self
+                addGestureRecognizer(swipePan)
 
-        // for showing a color underneath the row
-        let textView = UITextView(frame: CGRect(x: -1 * self.frame.width, y: 0, width: self.frame.width, height: self.frame.height))
-        textView.editable = false
-        textView.backgroundColor = Constants.Colors.accent
-        textView.textAlignment = .Right
-        textView.textColor = UIColor.whiteColor()
-        textView.text = "✔︎"
-        textView.font = UIFont.systemFontOfSize(18)
-        textView.textContainerInset = UIEdgeInsets(
-            top: (self.frame.height - textView.font!.lineHeight) / 2.0,
-            left: 0.0,
-            bottom: 0.0,
-            right: 15.0
-        )
+                // for showing a color underneath the row
+                let textView = UITextView(frame: CGRect(x: -1 * self.frame.width, y: 0, width: self.frame.width, height: self.frame.height))
+                textView.editable = false
+                textView.backgroundColor = checkedColor
+                textView.textAlignment = .Right
+                textView.textColor = UIColor.whiteColor()
+                textView.text = "✔︎"
+                textView.font = UIFont.systemFontOfSize(18)
+                textView.textContainerInset = UIEdgeInsets(
+                    top: (self.frame.height - textView.font!.lineHeight) / 2.0,
+                    left: 0.0,
+                    bottom: 0.0,
+                    right: 15.0
+                )
 
 
-        self.addSubview(textView)
+                self.addSubview(textView)
 
-        self.contentView.backgroundColor = UIColor.whiteColor()
-        self.bringSubviewToFront(self.contentView)
+                self.contentView.backgroundColor = UIColor.whiteColor()
+                self.bringSubviewToFront(self.contentView)
+            } else {
+                self.contentView.backgroundColor = checkedColor
+                self.textLabel?.textColor = UIColor.whiteColor()
+            }
+        }
     }
 
 
     // MARK: - horizontal pan gesture methods
 
     func handleSwipePan(recognizer: UIPanGestureRecognizer) {
-        if recognizer.state == .Began {
-            // when the gesture begins, record the current center location
-            print("began")
+        switch recognizer.state {
+        case .Began:
             originalCenter = center
-        }
-
-        if recognizer.state == .Changed {
+        case .Changed:
             let translation = recognizer.translationInView(self)
             center = CGPointMake(originalCenter.x + translation.x, center.y)
 
             // has the user dragged the item halfway?
             addEntryOnDragRelease = frame.origin.x > frame.size.width / 2.0
-            // recognizer.setTranslation(CGPointZero, inView: self)
-        }
-
-        if recognizer.state == .Ended {
-            print("ended")
+        case .Ended:
             // the frame this cell had before user dragged it
             let originalFrame = CGRect(x: 0, y: frame.origin.y,
                 width: bounds.size.width, height: bounds.size.height)
@@ -86,7 +95,8 @@ class HabitTableViewCell: UITableViewCell {
 
             // snap back to the original location
             UIView.animateWithDuration(0.2, animations: {self.frame = originalFrame})
+        default:
+            break
         }
     }
-
 }

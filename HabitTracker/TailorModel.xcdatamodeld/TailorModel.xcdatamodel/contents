@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15C50" minimumToolsVersion="Xcode 7.0">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Xcode 7.0">
     <entity name="Entry" representedClassName=".Entry" syncable="YES">
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="date" attributeType="Date" syncable="YES"/>
+        <attribute name="day" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="month" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="note" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="habit" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Habit" inverseName="entries" inverseEntity="Habit" syncable="YES"/>
+        <attribute name="timezone" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="year" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="habit" maxCount="1" deletionRule="Nullify" destinationEntity="Habit" inverseName="entries" inverseEntity="Habit" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
                 <index value="date"/>
@@ -23,7 +27,7 @@
         <attribute name="tuesday" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="useNumDays" attributeType="Boolean" syncable="YES"/>
         <attribute name="wednesday" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <relationship name="entries" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Entry" inverseName="habit" inverseEntity="Entry" syncable="YES"/>
+        <relationship name="entries" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Entry" inverseName="habit" inverseEntity="Entry" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
                 <index value="order"/>
@@ -31,7 +35,7 @@
         </compoundIndexes>
     </entity>
     <elements>
-        <element name="Entry" positionX="189" positionY="195" width="128" height="88"/>
-        <element name="Habit" positionX="-63" positionY="-18" width="128" height="238"/>
+        <element name="Entry" positionX="189" positionY="195" width="128" height="150"/>
+        <element name="Habit" positionX="-63" positionY="-18" width="128" height="240"/>
     </elements>
 </model>
