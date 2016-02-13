@@ -21,7 +21,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     var dataController: DataController!
     var fetchedResults: NSFetchedResultsController!
 
-    var detailViewController: HabitViewController? = nil
+    var detailViewController: HabitDetailViewController? = nil
 
 
     // MARK: - Initialization
@@ -57,11 +57,11 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addNewHabit")
+        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "createNewHabit")
         self.navigationItem.rightBarButtonItem = addButton
         if let split = self.splitViewController {
             let controllers = split.viewControllers
-            self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? HabitViewController
+            self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? HabitDetailViewController
         }
     }
 
@@ -85,15 +85,16 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     // MARK: - Segues
 
-    func addNewHabit() {
-        self.performSegueWithIdentifier(Constants.Segues.showAddHabit, sender: nil)
+    func createNewHabit() {
+        self.performSegueWithIdentifier(Constants.Segues.showCreateHabit, sender: nil)
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == Constants.Segues.showHabitDetail {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 if let habit = self.fetchedResults.objectAtIndexPath(indexPath) as? Habit {
-                    let controller = (segue.destinationViewController as! UINavigationController).topViewController as! HabitViewController
+                    print(habit.name)
+                    let controller = (segue.destinationViewController as! UINavigationController).topViewController as! HabitDetailViewController
                     controller.dataController = self.dataController
                     controller.habit = habit
                     controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
@@ -102,10 +103,10 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                     // do an error message
                 }
             }
-        } else if segue.identifier == Constants.Segues.showAddHabit {
+        } else if segue.identifier == Constants.Segues.showCreateHabit {
             let controller = segue.destinationViewController as! HabitViewController
             controller.dataController = self.dataController
-            controller.currentState = [.Create, .Edit]
+            controller.currentState = [.Create]
         }
     }
 

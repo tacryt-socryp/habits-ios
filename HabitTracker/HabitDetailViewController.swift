@@ -24,7 +24,22 @@ class HabitDetailViewController: UIViewController {
     }
 
     func configureView() {
+        let editButton = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: "editHabit")
+        self.navigationItem.rightBarButtonItem = editButton
+    }
 
+    func editHabit() {
+        self.performSegueWithIdentifier(Constants.Segues.showEditHabit, sender: nil)
+
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == Constants.Segues.showEditHabit {
+            let controller = segue.destinationViewController as! HabitViewController
+            controller.dataController = self.dataController
+            controller.currentState = [.Edit]
+            controller.habit = habit
+        }
     }
 
 }

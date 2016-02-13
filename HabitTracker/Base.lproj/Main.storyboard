@@ -20,10 +20,10 @@
             </objects>
             <point key="canvasLocation" x="-38" y="-630"/>
         </scene>
-        <!--HabitView-->
+        <!--Edit Habit-->
         <scene sceneID="yUG-lL-AsK">
             <objects>
-                <viewController title="HabitView" id="JEX-9P-axG" customClass="HabitViewController" customModule="Tailor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Edit Habit" id="JEX-9P-axG" customClass="HabitDetailViewController" customModule="Tailor" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SYR-Wa-9uf"/>
                         <viewControllerLayoutGuide type="bottom" id="GAO-Cl-Wes"/>
@@ -35,10 +35,31 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
+                    <connections>
+                        <segue destination="AYj-9c-wrD" kind="show" identifier="showEditHabit" id="1J5-ud-dRc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="679" y="129"/>
+        </scene>
+        <!--Habit View Controller-->
+        <scene sceneID="e0r-RA-XDd">
+            <objects>
+                <viewController id="AYj-9c-wrD" customClass="HabitViewController" customModule="Tailor" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aqG-MQ-3IC"/>
+                        <viewControllerLayoutGuide type="bottom" id="x4o-aF-2Vb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QAf-In-WTA">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OMB-hg-9Zs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1416" y="-330"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">
@@ -93,7 +114,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Tailor" id="Zdf-7t-Un8"/>
                     <connections>
-                        <segue destination="JEX-9P-axG" kind="show" identifier="showAddHabit" id="qnJ-mG-32R"/>
+                        <segue destination="AYj-9c-wrD" kind="show" identifier="showCreateHabit" id="fPV-ZY-xyh"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
@@ -118,6 +139,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="6S0-TO-JiA"/>
-        <segue reference="qnJ-mG-32R"/>
+        <segue reference="1J5-ud-dRc"/>
     </inferredMetricsTieBreakers>
 </document>

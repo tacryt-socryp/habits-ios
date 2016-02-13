@@ -26,8 +26,8 @@ class HabitViewController: FormViewController {
         case Create
     }
 
-    var currentState: Set<viewStates> = [viewStates.View]
-
+    // SET THESE
+    var currentState: Set<viewStates>!
     var dataController: DataController!
     var habit: Habit? = nil {
         didSet {
@@ -116,6 +116,10 @@ class HabitViewController: FormViewController {
                 }
                 if isEditMode {
                     $0.title = $0.tag
+                } else {
+                    $0.disabled = Condition.Function([rowNames.weekDaysRow]) {_ in
+                        return !isEditMode
+                    }
                 }
             }
 
