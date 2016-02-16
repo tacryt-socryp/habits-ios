@@ -137,7 +137,7 @@ class HabitDetailViewController: UIViewController, ChartViewDelegate {
         if segue.identifier == Constants.Segues.showEditHabit {
             let controller = segue.destinationViewController as! HabitViewController
             controller.dataController = self.dataController
-            controller.currentState = [.Edit]
+            controller.currentState = []
             controller.habit = habit
         }
     }

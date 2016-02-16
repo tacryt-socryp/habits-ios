@@ -16,7 +16,6 @@
     </entity>
     <entity name="Habit" representedClassName=".Habit" syncable="YES">
         <attribute name="friday" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="goal" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="monday" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="numDays" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -36,6 +35,6 @@
     </entity>
     <elements>
         <element name="Entry" positionX="189" positionY="195" width="128" height="150"/>
-        <element name="Habit" positionX="-63" positionY="-18" width="128" height="240"/>
+        <element name="Habit" positionX="-63" positionY="-18" width="128" height="225"/>
     </elements>
 </model>

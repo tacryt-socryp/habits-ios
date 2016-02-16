@@ -16,13 +16,10 @@ class HabitViewController: FormViewController {
         static let useNumberOfDaysRow = "Use Number of Days"
         static let numberOfDaysRow = "Number of Days"
         static let weekDaysRow = "Week Days"
-        static let goalRow = "Goal"
         static let createRow = "Save Habit"
     }
 
     enum viewStates {
-        case View
-        case Edit
         case Create
     }
 
@@ -51,9 +48,6 @@ class HabitViewController: FormViewController {
         // Update the user interface.
         navigationOptions = .Disabled
 
-        var isEditMode: Bool {
-            return currentState.contains(.Edit)
-        }
         var isCreateMode: Bool {
             return currentState.contains(.Create)
         }
@@ -66,12 +60,7 @@ class HabitViewController: FormViewController {
                     }
                 }
                 $0.updateCell()
-                if isEditMode {
-                    $0.title = $0.tag
-                }
-                $0.disabled = Condition.Function([rowNames.nameRow]) {_ in
-                    return !isEditMode
-                }
+                $0.title = $0.tag
             }
             <<< SwitchRow(rowNames.useNumberOfDaysRow) {
                 if isCreateMode {
@@ -81,9 +70,8 @@ class HabitViewController: FormViewController {
                         $0.value = h.useNumDays == 1
                     }
                 }
-                if isEditMode {
-                    $0.title = $0.tag
-                }
+
+                $0.title = $0.tag
 
             }
             <<< WeekDayRow(rowNames.weekDaysRow) {
@@ -92,35 +80,13 @@ class HabitViewController: FormViewController {
                 } else {
                     $0.value = self.convertDataToWeekDays()
                 }
-                if isEditMode {
-                    $0.title = $0.tag
-                } else {
-                    $0.disabled = Condition.Function([rowNames.weekDaysRow]) {_ in
-                        return !isEditMode
-                    }
-                }
-            }
-            <<< TextRow(rowNames.goalRow) {
-                if !isCreateMode {
-                    if let h = habit {
-                        $0.value = h.goal
-                    }
-                }
-                if isEditMode {
-                    $0.title = $0.tag
-                } else {
-                    $0.disabled = Condition.Function([rowNames.weekDaysRow]) {_ in
-                        return !isEditMode
-                    }
-                }
+
+                $0.title = $0.tag
             }
 
         form +++= Section()
             <<< ButtonRow(rowNames.createRow) {
                 $0.title = $0.tag
-                $0.hidden = Condition.Function([rowNames.createRow]) {_ in 
-                    return !isEditMode
-                }
             }.onCellSelection {_,_ in
                 self.writeHabit()
                 if isCreateMode {
@@ -133,8 +99,7 @@ class HabitViewController: FormViewController {
                         }
                     }
                 } else {
-                    self.currentState.removeAll()
-                    self.currentState.insert(.View)
+                    self.navigationController?.popViewControllerAnimated(true)
                 }
             }
     }
@@ -171,7 +136,6 @@ class HabitViewController: FormViewController {
     func writeHabit() {
         let values = form.values()
         let name = values[rowNames.nameRow] as! String
-        let goal = values[rowNames.goalRow] as? String
         let useNumDays = values[rowNames.useNumberOfDaysRow] as! Bool
 
         var numDays: Int? = nil
@@ -184,10 +148,9 @@ class HabitViewController: FormViewController {
         }
 
         if currentState.contains(.Create) {
-            dataController.insertHabit(name, numDays: numDays, weekDays: weekDays, goal: goal)
+            dataController.insertHabit(name, numDays: numDays, weekDays: weekDays)
         } else {
-            dataController.updateHabit(habit!.objectID, name: name, numDays: numDays, weekDays: weekDays, goal: goal)
-            navigationController?.popViewControllerAnimated(true)
+            dataController.updateHabit(habit!.objectID, name: name, numDays: numDays, weekDays: weekDays)
         }
     }
 

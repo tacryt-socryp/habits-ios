@@ -57,7 +57,7 @@ class DataController: NSObject {
         callback(habit: habit)
     }
 
-    func insertHabit(name: String, numDays: Int?, weekDays: Set<WeekDay>?, goal: String?) -> Habit {
+    func insertHabit(name: String, numDays: Int?, weekDays: Set<WeekDay>?) -> Habit {
         let habit = NSEntityDescription.insertNewObjectForEntityForName("Habit", inManagedObjectContext: self.managedObjectContext) as! Habit
         // set properties
         var dict: [String:AnyObject] = [
@@ -80,10 +80,6 @@ class DataController: NSObject {
             dict.updateValue(wD.contains(.Saturday), forKey: "saturday")
         }
 
-        if let g = goal {
-            dict.updateValue(g, forKey: "goal")
-        }
-
         // TODO: determine order based on max order within the list
         dict.updateValue(0, forKey: "order")
         habit.setValuesForKeysWithDictionary(dict)
@@ -100,7 +96,7 @@ class DataController: NSObject {
         return habit
     }
 
-    func updateHabit(id: NSManagedObjectID, name: String?, numDays: Int?, weekDays: Set<WeekDay>?, goal: String?) -> Habit? {
+    func updateHabit(id: NSManagedObjectID, name: String?, numDays: Int?, weekDays: Set<WeekDay>?) -> Habit? {
         let habit = managedObjectContext.objectWithID(id) as? Habit
 
         var dict = [String:AnyObject]()
@@ -122,10 +118,6 @@ class DataController: NSObject {
             dict.updateValue(wD.contains(.Thursday), forKey: "thursday")
             dict.updateValue(wD.contains(.Friday), forKey: "friday")
             dict.updateValue(wD.contains(.Saturday), forKey: "saturday")
-        }
-
-        if let g = goal {
-            dict.updateValue(g, forKey: "goal")
         }
 
         // TODO: determine order based on max order within the list

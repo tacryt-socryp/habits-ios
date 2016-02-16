@@ -16,7 +16,6 @@ class Habit: NSManagedObject {
     @NSManaged var order: NSNumber
     @NSManaged var useNumDays: NSNumber?
 
-    @NSManaged var goal: String?
     @NSManaged var numDays: NSNumber?
     @NSManaged var monday: NSNumber?
     @NSManaged var tuesday: NSNumber?
