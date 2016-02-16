@@ -115,14 +115,16 @@ class HabitDetailViewController: UIViewController, ChartViewDelegate {
     }
 
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
+        let chartMarker = FloatingChartMarker()
 
         // let markerPosition = chartView.getMarkerPosition(entry: entry,  highlight: highlight)
 
         // Adding top marker
-//        floatingGraphReader.valueLabel.text = "\(entry.value)"
-//        floatingGraphReader.dateLabel.text = "\(months[entry.xIndex])"
-//        floatingGraphReader.center = CGPointMake(markerPosition.x, markerView.center.y)
-//        floatingGraphReader.hidden = false
+        chartMarker.textLabel = "Hella"
+        // chartMarker.dateLabel.text = "\(months[entry.xIndex])"
+        // chartMarker.center = CGPointMake(markerPosition.x, self.barChartView.center.y)
+        // chartMarker.hidden = false
+        chartView.marker = chartMarker
 
     }
 

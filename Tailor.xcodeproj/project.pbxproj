@@ -20,6 +20,7 @@
 		02C4ADC21C5C4712001A7C0C /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C4ADC11C5C4712001A7C0C /* DataController.swift */; };
 		02C68CBE1C66940400158B2F /* HabitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C68CBD1C66940400158B2F /* HabitTableViewCell.swift */; };
 		02C68CC01C669D3000158B2F /* HabitDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C68CBF1C669D3000158B2F /* HabitDetailViewController.swift */; };
+		02C9CBA11C73D13E008332E8 /* FloatingChartMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C9CBA01C73D13E008332E8 /* FloatingChartMarker.swift */; };
 		02EBB31C1C5D502900814DBA /* CustomEurekaCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EBB31B1C5D502900814DBA /* CustomEurekaCells.swift */; };
 		02EBB31F1C5D511D00814DBA /* WeekDaysCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02EBB31D1C5D511D00814DBA /* WeekDaysCell.xib */; };
 		02ECD5E31C52A972005762E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02ECD5E11C52A972005762E4 /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 		02C4ADC11C5C4712001A7C0C /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		02C68CBD1C66940400158B2F /* HabitTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitTableViewCell.swift; sourceTree = "<group>"; };
 		02C68CBF1C669D3000158B2F /* HabitDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitDetailViewController.swift; sourceTree = "<group>"; };
+		02C9CBA01C73D13E008332E8 /* FloatingChartMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingChartMarker.swift; sourceTree = "<group>"; };
 		02EBB31B1C5D502900814DBA /* CustomEurekaCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomEurekaCells.swift; sourceTree = "<group>"; };
 		02EBB31E1C5D511D00814DBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/WeekDaysCell.xib; sourceTree = "<group>"; };
 		02ECD5E21C52A972005762E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				02EBB31B1C5D502900814DBA /* CustomEurekaCells.swift */,
 				02EBB31D1C5D511D00814DBA /* WeekDaysCell.xib */,
 				02C68CBD1C66940400158B2F /* HabitTableViewCell.swift */,
+				02C9CBA01C73D13E008332E8 /* FloatingChartMarker.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				02163E471C5BC69D002B50D8 /* TailorModel.xcdatamodeld in Sources */,
 				02C68CBE1C66940400158B2F /* HabitTableViewCell.swift in Sources */,
 				02EBB31C1C5D502900814DBA /* CustomEurekaCells.swift in Sources */,
+				02C9CBA11C73D13E008332E8 /* FloatingChartMarker.swift in Sources */,
 				02701E0D1C4C14570092E4D3 /* MasterViewController.swift in Sources */,
 				02163E611C5BCF6C002B50D8 /* Entry.swift in Sources */,
 				029B3F7F1C65823F00403D1A /* HabitViewController.swift in Sources */,
