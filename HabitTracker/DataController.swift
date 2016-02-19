@@ -96,7 +96,12 @@ class DataController: NSObject {
         return habit
     }
 
-    func updateHabit(id: NSManagedObjectID, name: String?, numDays: Int?, weekDays: Set<WeekDay>?) -> Habit? {
+    func updateHabit(id: NSManagedObjectID,
+        name: String? = nil,
+        numDays: Int? = nil,
+        weekDays: Set<WeekDay>? = nil
+    ) -> Habit? {
+
         let habit = managedObjectContext.objectWithID(id) as? Habit
 
         var dict = [String:AnyObject]()
@@ -149,11 +154,104 @@ class DataController: NSObject {
         }
     }
 
-    // MARK: - Entry Operations
 
+    // MARK: - Trigger Operations
+
+    func fetchAllTriggers(callback: ((triggers: [Trigger]?) -> Void)) {
+        let request = NSFetchRequest(entityName: "Trigger")
+        let orderSort = NSSortDescriptor(key: "order", ascending: true)
+        request.sortDescriptors = [orderSort]
+
+        do {
+            let triggers = try managedObjectContext.executeFetchRequest(request) as? [Trigger]
+            callback(triggers: triggers)
+        } catch let error as NSError {
+            callback(triggers: nil)
+            print(error.localizedDescription)
+        }
+    }
+
+    func insertTrigger(
+        habit: Habit,
+        data: AnyObject,
+        type: TriggerTypes,
+        reminderText: String? = nil
+    ) -> Trigger {
+        let trigger = NSEntityDescription.insertNewObjectForEntityForName("Trigger", inManagedObjectContext: self.managedObjectContext) as! Trigger
+
+        // set properties
+        var dict = [String:AnyObject]()
+
+        if let rT = reminderText {
+            dict.updateValue(rT, forKey: "reminderText")
+        }
+
+        trigger.setValuesForKeysWithDictionary(dict)
+        trigger.data = data
+        trigger.type = type.rawValue
+        trigger.habit = habit
+
+        self.managedObjectContext.performBlock {
+            do {
+                try self.managedObjectContext.save()
+                print("successfully added")
+            } catch {
+                fatalError("Failed to create trigger: \(error)")
+            }
+        }
+
+        return trigger
+    }
+
+    func updateTrigger(
+        id: NSManagedObjectID,
+        data: AnyObject? = nil,
+        reminderText: String? = nil
+    ) -> Trigger? {
+        let trigger = managedObjectContext.objectWithID(id) as? Trigger
+
+        // set properties
+        var dict = [String:AnyObject]()
+        if let rT = reminderText {
+            dict.updateValue(rT, forKey: "reminderText")
+        }
+        if let d = data {
+            dict.updateValue(d, forKey: "data")
+        }
+
+        trigger?.setValuesForKeysWithDictionary(dict)
+
+        self.managedObjectContext.performBlock {
+            do {
+                try self.managedObjectContext.save()
+                print("successfully added")
+            } catch {
+                fatalError("Failed to update trigger: \(error)")
+            }
+        }
+
+        return trigger
+    }
+
+    func deleteTrigger(trigger: Trigger) {
+        managedObjectContext.deleteObject(trigger)
+
+        self.managedObjectContext.performBlock {
+            do {
+                try self.managedObjectContext.save()
+                print("successfully deleted")
+            } catch {
+                fatalError("Failed to delete trigger: \(error)")
+            }
+        }
+    }
+
+
+    // MARK: - Entry Operations
 
     func insertEntry(habit: Habit, note: String? = nil) -> Entry {
         let entry = NSEntityDescription.insertNewObjectForEntityForName("Entry", inManagedObjectContext: self.managedObjectContext) as! Entry
+
         // set properties
         var dict = [String:AnyObject]()
 
@@ -169,7 +267,7 @@ class DataController: NSObject {
                 try self.managedObjectContext.save()
                 print("successfully added")
             } catch {
-                fatalError("Failed to create habit: \(error)")
+                fatalError("Failed to create entry: \(error)")
             }
         }
 

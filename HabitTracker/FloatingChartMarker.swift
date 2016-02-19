@@ -17,6 +17,10 @@ public class FloatingChartMarker: ChartMarker {
         return CGSize(width: 6, height: 6)
     }
 
+    public override func refreshContent(entry entry: ChartDataEntry, highlight: ChartHighlight) {
+        // update content
+    }
+
     public override func draw(context context: CGContext, point: CGPoint) {
         CGContextSaveGState(context)
 

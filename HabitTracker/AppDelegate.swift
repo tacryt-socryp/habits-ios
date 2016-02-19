@@ -49,6 +49,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+
+    // MARK: - Local Notifications
+
+    func application(application: UIApplication,
+        didReceiveLocalNotification notification: UILocalNotification) {
+            // TODO: Integrate this into the app!
+            // TODO: Iterate the applicationIconBadgeNumber, decrement when the user does the action.
+    }
+
+
     // MARK: - Split view
 
     func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController:UIViewController, ontoPrimaryViewController primaryViewController:UIViewController) -> Bool {
@@ -109,7 +119,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         print("did change")
         dataController.managedObjectContext.performBlock {
             self.dataController.managedObjectContext.mergeChangesFromContextDidSaveNotification(notification)
+                NotificationController.resetLocalNotifications(self.dataController)
             NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notifications.fetchTableData, object: nil)
+            
         }
         print(notification)
     }
@@ -117,6 +129,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     func handleStoresWillRemove(notification: NSNotification) {
         print("will remove")
         print(notification)
+        NotificationController.cancelLocalNotifications()
     }
 
     func handleStoreChangedUbiquitousContent(notification: NSNotification) {
@@ -124,6 +137,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         dataController.managedObjectContext.performBlock {
             // decide whether to merge in memory or just refetch
             self.dataController.managedObjectContext.mergeChangesFromContextDidSaveNotification(notification) // merge in memory
+            NotificationController.resetLocalNotifications(self.dataController)
         }
         print(notification)
     }

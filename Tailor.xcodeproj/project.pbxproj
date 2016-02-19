@@ -11,6 +11,9 @@
 		02163E471C5BC69D002B50D8 /* TailorModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 02163E451C5BC69D002B50D8 /* TailorModel.xcdatamodeld */; };
 		02163E5F1C5BCF6C002B50D8 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02163E5B1C5BCF6C002B50D8 /* Habit.swift */; };
 		02163E611C5BCF6C002B50D8 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02163E5D1C5BCF6C002B50D8 /* Entry.swift */; };
+		021EE5F61C74F7FD00F6AA3E /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021EE5F51C74F7FD00F6AA3E /* NotificationController.swift */; };
+		0223B6B81C73D9070011C62E /* Trigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223B6B41C73D9070011C62E /* Trigger.swift */; };
+		0223B6BA1C73D9070011C62E /* TimeTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223B6B61C73D9070011C62E /* TimeTrigger.swift */; };
 		022A6B041C4DDA6C0018E9F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02701E131C4C14570092E4D3 /* Assets.xcassets */; };
 		023BA3561C502E99003DC61C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023BA3551C502E99003DC61C /* Constants.swift */; };
 		02701E0B1C4C14570092E4D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02701E0A1C4C14570092E4D3 /* AppDelegate.swift */; };
@@ -31,6 +34,9 @@
 		02163E461C5BC69D002B50D8 /* TailorModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TailorModel.xcdatamodel; sourceTree = "<group>"; };
 		02163E5B1C5BCF6C002B50D8 /* Habit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 		02163E5D1C5BCF6C002B50D8 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		021EE5F51C74F7FD00F6AA3E /* NotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		0223B6B41C73D9070011C62E /* Trigger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trigger.swift; sourceTree = "<group>"; };
+		0223B6B61C73D9070011C62E /* TimeTrigger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTrigger.swift; sourceTree = "<group>"; };
 		02294C181C5ADFF600998233 /* Tailor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Tailor.entitlements; sourceTree = SOURCE_ROOT; };
 		02294C1E1C5AE33B00998233 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		023BA3551C502E99003DC61C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -69,6 +75,8 @@
 		020A71031C4C151400E3BCB7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0223B6B41C73D9070011C62E /* Trigger.swift */,
+				0223B6B61C73D9070011C62E /* TimeTrigger.swift */,
 				02163E451C5BC69D002B50D8 /* TailorModel.xcdatamodeld */,
 				02163E5B1C5BCF6C002B50D8 /* Habit.swift */,
 				02163E5D1C5BCF6C002B50D8 /* Entry.swift */,
@@ -124,6 +132,7 @@
 				02701E0A1C4C14570092E4D3 /* AppDelegate.swift */,
 				023BA3551C502E99003DC61C /* Constants.swift */,
 				02C4ADC11C5C4712001A7C0C /* DataController.swift */,
+				021EE5F51C74F7FD00F6AA3E /* NotificationController.swift */,
 				02ECD5E11C52A972005762E4 /* Main.storyboard */,
 				02701E151C4C14570092E4D3 /* LaunchScreen.storyboard */,
 				02294C181C5ADFF600998233 /* Tailor.entitlements */,
@@ -281,10 +290,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				021EE5F61C74F7FD00F6AA3E /* NotificationController.swift in Sources */,
 				023BA3561C502E99003DC61C /* Constants.swift in Sources */,
 				02163E471C5BC69D002B50D8 /* TailorModel.xcdatamodeld in Sources */,
 				02C68CBE1C66940400158B2F /* HabitTableViewCell.swift in Sources */,
 				02EBB31C1C5D502900814DBA /* CustomEurekaCells.swift in Sources */,
+				0223B6B81C73D9070011C62E /* Trigger.swift in Sources */,
 				02C9CBA11C73D13E008332E8 /* FloatingChartMarker.swift in Sources */,
 				02701E0D1C4C14570092E4D3 /* MasterViewController.swift in Sources */,
 				02163E611C5BCF6C002B50D8 /* Entry.swift in Sources */,
@@ -293,6 +304,7 @@
 				02163E5F1C5BCF6C002B50D8 /* Habit.swift in Sources */,
 				02C68CC01C669D3000158B2F /* HabitDetailViewController.swift in Sources */,
 				02701E0B1C4C14570092E4D3 /* AppDelegate.swift in Sources */,
+				0223B6BA1C73D9070011C62E /* TimeTrigger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

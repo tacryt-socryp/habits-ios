@@ -24,28 +24,28 @@ class Habit: NSManagedObject {
     @NSManaged var friday: NSNumber?
     @NSManaged var saturday: NSNumber?
     @NSManaged var sunday: NSNumber?
-    @NSManaged var entries: NSArray?
+
+    @NSManaged var entries: NSArray
+    @NSManaged var triggers: NSArray
 
     func sortEntries() {
-        let mutableEntries = entries?.mutableCopy() as? NSMutableArray
+        let mutableEntries = entries.mutableCopy() as! NSMutableArray
 
-        mutableEntries?.sortUsingComparator({
+        mutableEntries.sortUsingComparator({
             (($0 as! Entry).date ).compare(($1 as! Entry).date)
         })
         entries = mutableEntries
     }
 
     var isTodayComplete: Bool {
-        if let e = entries {
-            if let lastObject = e.lastObject as? Entry {
-                let formatter = NSDateFormatter()
-                formatter.dateFormat = "yyyy.MM.dd"
-                let todayString = formatter.stringFromDate(NSDate())
-                print(todayString)
-                let mostRecentEntryString = formatter.stringFromDate(lastObject.date)
-                print(mostRecentEntryString)
-                return todayString == mostRecentEntryString
-            }
+        if let lastObject = entries.lastObject as? Entry {
+            let formatter = NSDateFormatter()
+            formatter.dateFormat = "yyyy.MM.dd"
+            let todayString = formatter.stringFromDate(NSDate())
+            print(todayString)
+            let mostRecentEntryString = formatter.stringFromDate(lastObject.date)
+            print(mostRecentEntryString)
+            return todayString == mostRecentEntryString
         }
         return false
     }

@@ -27,14 +27,24 @@
         <attribute name="useNumDays" attributeType="Boolean" syncable="YES"/>
         <attribute name="wednesday" optional="YES" attributeType="Boolean" syncable="YES"/>
         <relationship name="entries" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Entry" inverseName="habit" inverseEntity="Entry" syncable="YES"/>
+        <relationship name="triggers" toMany="YES" deletionRule="Nullify" destinationEntity="Trigger" inverseName="habit" inverseEntity="Trigger" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
                 <index value="order"/>
             </compoundIndex>
         </compoundIndexes>
     </entity>
+    <entity name="TimeTrigger" representedClassName=".TimeTrigger" parentEntity="Trigger" syncable="YES"/>
+    <entity name="Trigger" representedClassName=".Trigger" isAbstract="YES" syncable="YES">
+        <attribute name="data" attributeType="Transformable" syncable="YES"/>
+        <attribute name="reminderText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="habit" maxCount="1" deletionRule="Nullify" destinationEntity="Habit" inverseName="triggers" inverseEntity="Habit" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Entry" positionX="189" positionY="195" width="128" height="150"/>
-        <element name="Habit" positionX="-63" positionY="-18" width="128" height="225"/>
+        <element name="Habit" positionX="-63" positionY="-18" width="128" height="240"/>
+        <element name="TimeTrigger" positionX="72" positionY="144" width="128" height="45"/>
+        <element name="Trigger" positionX="63" positionY="135" width="128" height="105"/>
     </elements>
 </model>
