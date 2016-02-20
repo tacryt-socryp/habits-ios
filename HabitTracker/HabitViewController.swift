@@ -151,7 +151,28 @@ class HabitViewController: FormViewController {
             dataController.insertHabit(name, numDays: numDays, weekDays: weekDays)
         } else {
             dataController.updateHabit(habit!.objectID, name: name, numDays: numDays, weekDays: weekDays)
+            testNotification(habit!)
         }
+    }
+
+
+    // TODO: REMOVE THIS AFTER TESTING
+    func testNotification(habit: Habit) {
+        let dict = NSMutableDictionary()
+        let weekDays: NSSet = [
+            WeekDay.Saturday.rawValue
+        ]
+
+        let repeatInterval: NSCalendarUnit = [.WeekOfYear]
+        // let repeatInterval: NSCalendarUnit = [.Day]
+        let reminderText = "I'm showing you this notification every week!"
+
+        dict.setValue(weekDays, forKey: TimeTrigger.timeDictKeys.weekDays)
+        dict.setValue(NSDate().dateByAddingTimeInterval(60), forKey: TimeTrigger.timeDictKeys.dateInfo)
+        dict.setValue(repeatInterval.rawValue, forKey: TimeTrigger.timeDictKeys.repeatInterval)
+        dict.setValue(reminderText, forKey: TimeTrigger.dictKeys.reminderText)
+
+        dataController.insertTrigger(habit, data: dict, type: TriggerTypes.Time)
     }
 
 }

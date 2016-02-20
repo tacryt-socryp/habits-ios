@@ -27,8 +27,8 @@
         <attribute name="tuesday" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="useNumDays" attributeType="Boolean" syncable="YES"/>
         <attribute name="wednesday" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <relationship name="entries" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Entry" inverseName="habit" inverseEntity="Entry" syncable="YES"/>
-        <relationship name="triggers" toMany="YES" deletionRule="Nullify" destinationEntity="Trigger" inverseName="habit" inverseEntity="Trigger" syncable="YES"/>
+        <relationship name="entries" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Entry" inverseName="habit" inverseEntity="Entry" syncable="YES"/>
+        <relationship name="triggers" toMany="YES" deletionRule="Cascade" destinationEntity="Trigger" inverseName="habit" inverseEntity="Trigger" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
                 <index value="order"/>

@@ -65,7 +65,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         }
     }
 
-
     func registerTableViewNotifications() {
         let nc : NSNotificationCenter = NSNotificationCenter.defaultCenter();
 

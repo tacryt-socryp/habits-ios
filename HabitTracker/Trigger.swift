@@ -13,8 +13,16 @@ enum TriggerTypes: Int {
     case Time
 }
 
+let TriggerTypeToEntityName: [TriggerTypes:String] = [
+    .Time: "TimeTrigger"
+]
+
 class Trigger: NSManagedObject {
-    
+
+    struct dictKeys {
+        static let reminderText = "reminderText"
+    }
+
     @NSManaged var data: AnyObject // Transformable: MUST BE AN NSDictionary
     @NSManaged var type: NSNumber
     @NSManaged var habit: Habit

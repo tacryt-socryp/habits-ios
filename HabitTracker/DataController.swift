@@ -94,12 +94,13 @@ class DataController: NSObject {
 
         // TODO: determine order based on max order within the list
         dict.updateValue(0, forKey: "order")
+        dict.updateValue(0, forKey: "needsAction")
         habit.setValuesForKeysWithDictionary(dict)
 
         self.managedObjectContext.performBlock {
             do {
                 try self.managedObjectContext.save()
-                print("successfully added")
+                print("successfully added habit")
             } catch {
                 fatalError("Failed to create habit: \(error)")
             }
@@ -144,7 +145,7 @@ class DataController: NSObject {
         self.managedObjectContext.performBlock {
             do {
                 try self.managedObjectContext.save()
-                print("successfully added")
+                print("successfully updated habit")
             } catch {
                 fatalError("Failed to update habit: \(error)")
             }
@@ -163,7 +164,7 @@ class DataController: NSObject {
             self.managedObjectContext.performBlock {
                 do {
                     try self.managedObjectContext.save()
-                    print("successfully added")
+                    print("successfully set needs action")
                 } catch {
                     fatalError("Failed to update habit: \(error)")
                 }
@@ -178,7 +179,8 @@ class DataController: NSObject {
         self.managedObjectContext.performBlock {
             do {
                 try self.managedObjectContext.save()
-                print("successfully deleted")
+                self.triggersDidChange()
+                print("successfully deleted habit")
             } catch {
                 fatalError("Failed to delete habit: \(error)")
             }
@@ -188,11 +190,12 @@ class DataController: NSObject {
 
     // MARK: - Trigger Operations
 
-    func fetchAllTriggers(callback: ((triggers: [Trigger]?) -> Void)) {
+    func fetchAllTriggers(callback: ((triggers: [NSManagedObject]?) -> Void)) {
         let request = NSFetchRequest(entityName: "Trigger")
+        request.includesSubentities = true
 
         do {
-            let triggers = try managedObjectContext.executeFetchRequest(request) as? [Trigger]
+            let triggers = try managedObjectContext.executeFetchRequest(request) as? [NSManagedObject]
             callback(triggers: triggers)
         } catch let error as NSError {
             callback(triggers: nil)
@@ -205,39 +208,41 @@ class DataController: NSObject {
         data: AnyObject,
         type: TriggerTypes,
         reminderText: String? = nil
-    ) -> Trigger {
-        let trigger = NSEntityDescription.insertNewObjectForEntityForName("Trigger", inManagedObjectContext: self.managedObjectContext) as! Trigger
+    ) {
+        let entityName = TriggerTypeToEntityName[type]!
+        print(entityName)
+        let trigger = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: self.managedObjectContext)
 
         // set properties
         var dict = [String:AnyObject]()
+
+        dict.updateValue(data, forKey: "data")
+        dict.updateValue(type.rawValue, forKey: "type")
+        dict.updateValue(habit, forKey: "habit")
 
         if let rT = reminderText {
             dict.updateValue(rT, forKey: "reminderText")
         }
 
         trigger.setValuesForKeysWithDictionary(dict)
-        trigger.data = data
-        trigger.type = type.rawValue
-        trigger.habit = habit
 
         self.managedObjectContext.performBlock {
             do {
                 try self.managedObjectContext.save()
-                print("successfully added")
+                self.triggersDidChange()
+                print("successfully added trigger")
             } catch {
                 fatalError("Failed to create trigger: \(error)")
             }
         }
-
-        return trigger
     }
 
     func updateTrigger(
         id: NSManagedObjectID,
         data: AnyObject? = nil,
         reminderText: String? = nil
-    ) -> Trigger? {
-        let trigger = managedObjectContext.objectWithID(id) as? Trigger
+    ) {
+        let trigger = managedObjectContext.objectWithID(id)
 
         // set properties
         var dict = [String:AnyObject]()
@@ -248,31 +253,37 @@ class DataController: NSObject {
             dict.updateValue(d, forKey: "data")
         }
 
-        trigger?.setValuesForKeysWithDictionary(dict)
+        trigger.setValuesForKeysWithDictionary(dict)
 
         self.managedObjectContext.performBlock {
             do {
                 try self.managedObjectContext.save()
-                print("successfully added")
+                self.triggersDidChange()
+                print("successfully updated trigger")
             } catch {
                 fatalError("Failed to update trigger: \(error)")
             }
         }
-
-        return trigger
     }
 
-    func deleteTrigger(trigger: Trigger) {
+    func deleteTrigger(id: NSManagedObjectID) {
+        let trigger = managedObjectContext.objectWithID(id)
         managedObjectContext.deleteObject(trigger)
 
         self.managedObjectContext.performBlock {
             do {
                 try self.managedObjectContext.save()
-                print("successfully deleted")
+                self.triggersDidChange()
+                print("successfully deleted trigger")
             } catch {
                 fatalError("Failed to delete trigger: \(error)")
             }
         }
+    }
+
+    func triggersDidChange() {
+        print("reset local notifications")
+        NotificationController.resetLocalNotifications(self)
     }
 
 
@@ -294,7 +305,7 @@ class DataController: NSObject {
         self.managedObjectContext.performBlock {
             do {
                 try self.managedObjectContext.save()
-                print("successfully added")
+                print("successfully added entry")
             } catch {
                 fatalError("Failed to create entry: \(error)")
             }
@@ -317,7 +328,7 @@ class DataController: NSObject {
         self.managedObjectContext.performBlock {
             do {
                 try self.managedObjectContext.save()
-                print("successfully added")
+                print("successfully updated entry")
             } catch {
                 fatalError("Failed to update entry: \(error)")
             }
@@ -332,7 +343,7 @@ class DataController: NSObject {
         self.managedObjectContext.performBlock {
             do {
                 try self.managedObjectContext.save()
-                print("successfully deleted")
+                print("successfully deleted entry")
             } catch {
                 fatalError("Failed to delete entry: \(error)")
             }

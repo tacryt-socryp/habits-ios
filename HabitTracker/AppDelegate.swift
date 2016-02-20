@@ -24,6 +24,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
         navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
         splitViewController.delegate = self
+
+        // Override point for customization after application launch.
+        if(UIApplication.instancesRespondToSelector(Selector("registerUserNotificationSettings:"))) {
+            // let notificationCategory:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
+            // notificationCategory.identifier = "TRIGGER_CATEGORY"
+            // notificationCategory .setActions([replyAction], forContext: UIUserNotificationActionContext.Default)
+
+            // registering for the notification.
+            application.registerUserNotificationSettings(
+                UIUserNotificationSettings(forTypes:[.Sound, .Alert, .Badge], categories: nil)
+            )
+        } else {
+            print("SOMETHING IS FUCKED UP")
+        }
+
         return true
     }
 
@@ -149,7 +164,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         print("did change")
         dataController.managedObjectContext.performBlock {
             self.dataController.managedObjectContext.mergeChangesFromContextDidSaveNotification(notification)
-                NotificationController.resetLocalNotifications(self.dataController)
+            NotificationController.resetLocalNotifications(self.dataController)
             NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notifications.fetchTableData, object: nil)
             
         }

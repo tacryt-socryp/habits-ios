@@ -45,9 +45,7 @@ class Habit: NSManagedObject {
             let formatter = NSDateFormatter()
             formatter.dateFormat = "yyyy.MM.dd"
             let todayString = formatter.stringFromDate(NSDate())
-            print(todayString)
             let mostRecentEntryString = formatter.stringFromDate(lastObject.date)
-            print(mostRecentEntryString)
             return todayString == mostRecentEntryString
         }
         return false

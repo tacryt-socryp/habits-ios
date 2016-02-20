@@ -11,7 +11,7 @@ import Eureka
 
 //MARK: WeeklyDayCell
 
-public enum WeekDay {
+public enum WeekDay: Int {
     case Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
 }
 

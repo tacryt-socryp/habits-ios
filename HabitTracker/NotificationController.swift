@@ -15,20 +15,22 @@ class NotificationController {
     }
 
     static func resetLocalNotifications(dataController: DataController) {
+        print("resetting local notifications")
         self.cancelLocalNotifications()
 
         dataController.fetchAllTriggers { triggers in
 
             if let allTriggers = triggers {
 
-                allTriggers.forEach { trigger in
-                    if let type = TriggerTypes(rawValue: trigger.type.integerValue) {
-
+                allTriggers.forEach { managedObject in
+                    if let typeNum = managedObject.valueForKey("type") as? NSNumber,
+                        let type = TriggerTypes(rawValue: typeNum.integerValue) {
+                            
                         switch type {
                         case .Time:
-                            let tT: TimeTrigger = trigger as! TimeTrigger
-                            tT.parseFromData()
-                            tT.createLocalNotifications().forEach { notif in
+                            let trigger: TimeTrigger = managedObject as! TimeTrigger
+                            trigger.parseFromData()
+                            trigger.createLocalNotifications().forEach { notif in
                                 if let notification = notif {
                                     self.scheduleLocalNotification(notification)
                                 }
@@ -45,6 +47,8 @@ class NotificationController {
     }
 
     static func scheduleLocalNotification(notification: UILocalNotification) {
+        print("scheduled")
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        print(UIApplication.sharedApplication().scheduledLocalNotifications)
     }
 }
