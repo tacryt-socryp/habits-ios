@@ -52,6 +52,18 @@ class DataController: NSObject {
     
     // MARK: - Habit Operations
 
+    func fetchAllHabits(callback: ((habits: [Habit]?) -> Void)) {
+        let request = NSFetchRequest(entityName: "Habit")
+
+        do {
+            let habits = try managedObjectContext.executeFetchRequest(request) as? [Habit]
+            callback(habits: habits)
+        } catch let error as NSError {
+            callback(habits: nil)
+            print(error.localizedDescription)
+        }
+    }
+
     func fetchHabit(id: NSManagedObjectID, callback: ((habit: Habit?) -> Void)) {
         let habit = managedObjectContext.objectWithID(id) as? Habit
         callback(habit: habit)
@@ -141,6 +153,25 @@ class DataController: NSObject {
         return habit
     }
 
+    func setHabitNeedsAction(id: NSManagedObjectID) {
+        let habit = managedObjectContext.objectWithID(id) as? Habit
+
+        if let isTodayComplete = habit?.isTodayComplete {
+
+            habit?.needsAction = !isTodayComplete
+
+            self.managedObjectContext.performBlock {
+                do {
+                    try self.managedObjectContext.save()
+                    print("successfully added")
+                } catch {
+                    fatalError("Failed to update habit: \(error)")
+                }
+            }
+
+        }
+    }
+
     func deleteHabit(habit: Habit) {
         managedObjectContext.deleteObject(habit)
 
@@ -159,8 +190,6 @@ class DataController: NSObject {
 
     func fetchAllTriggers(callback: ((triggers: [Trigger]?) -> Void)) {
         let request = NSFetchRequest(entityName: "Trigger")
-        let orderSort = NSSortDescriptor(key: "order", ascending: true)
-        request.sortDescriptors = [orderSort]
 
         do {
             let triggers = try managedObjectContext.executeFetchRequest(request) as? [Trigger]

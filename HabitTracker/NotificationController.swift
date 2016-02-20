@@ -30,7 +30,7 @@ class NotificationController {
                             tT.parseFromData()
                             tT.createLocalNotifications().forEach { notif in
                                 if let notification = notif {
-                                    self.setLocalNotification(notification)
+                                    self.scheduleLocalNotification(notification)
                                 }
                             }
                         }
@@ -44,7 +44,7 @@ class NotificationController {
 
     }
 
-    static func setLocalNotification(notification: UILocalNotification) {
+    static func scheduleLocalNotification(notification: UILocalNotification) {
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
 }

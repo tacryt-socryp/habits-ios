@@ -14,9 +14,10 @@ class Habit: NSManagedObject {
 
     @NSManaged var name: String
     @NSManaged var order: NSNumber
-    @NSManaged var useNumDays: NSNumber?
 
+    @NSManaged var useNumDays: NSNumber?
     @NSManaged var numDays: NSNumber?
+
     @NSManaged var monday: NSNumber?
     @NSManaged var tuesday: NSNumber?
     @NSManaged var wednesday: NSNumber?
@@ -27,6 +28,8 @@ class Habit: NSManagedObject {
 
     @NSManaged var entries: NSArray
     @NSManaged var triggers: NSArray
+
+    @NSManaged var needsAction: NSNumber
 
     func sortEntries() {
         let mutableEntries = entries.mutableCopy() as! NSMutableArray

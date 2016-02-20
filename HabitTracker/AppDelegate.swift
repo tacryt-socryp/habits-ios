@@ -54,10 +54,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func application(application: UIApplication,
         didReceiveLocalNotification notification: UILocalNotification) {
-            // TODO: Integrate this into the app!
-            // TODO: Iterate the applicationIconBadgeNumber, decrement when the user does the action.
+            // this means it is time for the user to add an entry today, and they haven't yet
+            // applicationIconBadgeNumber = number of habits with needAction as true
+
+            if let userInfo = notification.userInfo, let habitURI = userInfo["habit"] as? NSURL {
+                if let habitObjectID = dataController.managedObjectContext.persistentStoreCoordinator?
+                    .managedObjectIDForURIRepresentation(habitURI) {
+
+                        dataController.setHabitNeedsAction(habitObjectID)
+                        self.setIconBadgeNumber()
+
+                }
+            }
     }
 
+    func setIconBadgeNumber() {
+        // iterate through habits and set applicationIconBadgeNumber
+        // TODO: Don't just iterate the number!
+        let app = UIApplication.sharedApplication()
+        var appIconBadgeNumber = 0
+        dataController.fetchAllHabits { habits in
+            habits?.forEach { habit in
+                appIconBadgeNumber = appIconBadgeNumber + Int(habit.needsAction)
+            }
+            app.applicationIconBadgeNumber = appIconBadgeNumber
+        }
+    }
+
+    func application(application: UIApplication,
+        handleActionWithIdentifier identifier: String?,
+        forLocalNotification notification: UILocalNotification,
+        completionHandler: () -> Void) {
+            // this is for custom actions
+
+    }
 
     // MARK: - Split view
 

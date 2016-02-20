@@ -76,6 +76,11 @@ class TimeTrigger: Trigger {
                 notification.alertBody = self.reminderText
                 // notification.alertLaunchImage
 
+                var userInfo = [NSObject:AnyObject]()
+                userInfo.updateValue(habit.objectID.URIRepresentation(), forKey: "habit")
+
+                notification.userInfo = userInfo
+
                 if let repeatInterval = repeating {
                     notification.repeatInterval = repeatInterval
                 }
