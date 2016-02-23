@@ -1,19 +1,19 @@
 //
-//  DataController.swift
+//  DatabaseService.swift
 //  Tailor
 //
-//  Created by Logan Allen on 1/29/16.
+//  Created by Logan Allen on 2/22/16.
 //  Copyright © 2016 Logan Allen. All rights reserved.
 //
 
-import UIKit
 import CoreData
 
-class DataController: NSObject {
+class DatabaseService {
 
+    var persistentStoreCoordinator: NSPersistentStoreCoordinator
     var managedObjectContext: NSManagedObjectContext
 
-    override init() {
+    init(coordinator: CoreDataCoordinator) {
         // This resource is the same name as your xcdatamodeld contained in your project.
         guard let modelURL = NSBundle.mainBundle().URLForResource("TailorModel", withExtension:"momd") else {
             fatalError("Error loading model from bundle")
@@ -24,10 +24,15 @@ class DataController: NSObject {
             fatalError("Error initializing mom from: \(modelURL)")
         }
 
-        let psc = NSPersistentStoreCoordinator(managedObjectModel: mom)
+        persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: mom)
         self.managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
-        self.managedObjectContext.persistentStoreCoordinator = psc
-        (UIApplication.sharedApplication().delegate as! AppDelegate).registerCoordinatorForStoreNotifications(psc)
+        self.managedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator
+
+        self.setupWithCoordinator(coordinator)
+    }
+
+    func setupWithCoordinator(coordinator: CoreDataCoordinator) {
+        coordinator.registerCoordinatorForStoreNotifications(persistentStoreCoordinator)
 
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
             let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
@@ -37,19 +42,22 @@ class DataController: NSObject {
             */
             let localStoreURL = docURL.URLByAppendingPathComponent("TailorModel.sqlite")
             do {
-                try psc.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: localStoreURL, options: [
-                    NSPersistentStoreUbiquitousContentNameKey: "TailorCloudStore",
-                    NSMigratePersistentStoresAutomaticallyOption: true,
-                    NSInferMappingModelAutomaticallyOption: true
-                ])
+                try self.persistentStoreCoordinator.addPersistentStoreWithType(
+                    NSSQLiteStoreType,
+                    configuration: nil,
+                    URL: localStoreURL,
+                    options: [
+                        NSPersistentStoreUbiquitousContentNameKey: "TailorCloudStore",
+                        NSMigratePersistentStoresAutomaticallyOption: true,
+                        NSInferMappingModelAutomaticallyOption: true
+                    ])
             } catch {
                 fatalError("Error migrating store: \(error)")
             }
         }
-
     }
 
-    
+
     // MARK: - Habit Operations
 
     func fetchAllHabits(callback: ((habits: [Habit]?) -> Void)) {
@@ -113,45 +121,45 @@ class DataController: NSObject {
         name: String? = nil,
         numDays: Int? = nil,
         weekDays: Set<WeekDay>? = nil
-    ) -> Habit? {
+        ) -> Habit? {
 
-        let habit = managedObjectContext.objectWithID(id) as? Habit
+            let habit = managedObjectContext.objectWithID(id) as? Habit
 
-        var dict = [String:AnyObject]()
-        if let n = name {
-            dict.updateValue(n, forKey: "name")
-        }
-
-        if let nD = numDays {
-            dict.updateValue(1, forKey: "useNumDays")
-            dict.updateValue(nD, forKey: "numDays")
-        }
-
-        if let wD = weekDays {
-            dict.updateValue(0, forKey: "useNumDays")
-            dict.updateValue(wD.contains(.Sunday), forKey: "sunday")
-            dict.updateValue(wD.contains(.Monday), forKey: "monday")
-            dict.updateValue(wD.contains(.Tuesday), forKey: "tuesday")
-            dict.updateValue(wD.contains(.Wednesday), forKey: "wednesday")
-            dict.updateValue(wD.contains(.Thursday), forKey: "thursday")
-            dict.updateValue(wD.contains(.Friday), forKey: "friday")
-            dict.updateValue(wD.contains(.Saturday), forKey: "saturday")
-        }
-
-        // TODO: determine order based on max order within the list
-        dict.updateValue(0, forKey: "order")
-        habit?.setValuesForKeysWithDictionary(dict)
-
-        self.managedObjectContext.performBlock {
-            do {
-                try self.managedObjectContext.save()
-                print("successfully updated habit")
-            } catch {
-                fatalError("Failed to update habit: \(error)")
+            var dict = [String:AnyObject]()
+            if let n = name {
+                dict.updateValue(n, forKey: "name")
             }
-        }
 
-        return habit
+            if let nD = numDays {
+                dict.updateValue(1, forKey: "useNumDays")
+                dict.updateValue(nD, forKey: "numDays")
+            }
+
+            if let wD = weekDays {
+                dict.updateValue(0, forKey: "useNumDays")
+                dict.updateValue(wD.contains(.Sunday), forKey: "sunday")
+                dict.updateValue(wD.contains(.Monday), forKey: "monday")
+                dict.updateValue(wD.contains(.Tuesday), forKey: "tuesday")
+                dict.updateValue(wD.contains(.Wednesday), forKey: "wednesday")
+                dict.updateValue(wD.contains(.Thursday), forKey: "thursday")
+                dict.updateValue(wD.contains(.Friday), forKey: "friday")
+                dict.updateValue(wD.contains(.Saturday), forKey: "saturday")
+            }
+
+            // TODO: determine order based on max order within the list
+            dict.updateValue(0, forKey: "order")
+            habit?.setValuesForKeysWithDictionary(dict)
+
+            self.managedObjectContext.performBlock {
+                do {
+                    try self.managedObjectContext.save()
+                    print("successfully updated habit")
+                } catch {
+                    fatalError("Failed to update habit: \(error)")
+                }
+            }
+
+            return habit
     }
 
     func setHabitNeedsAction(id: NSManagedObjectID) {
@@ -208,62 +216,62 @@ class DataController: NSObject {
         data: AnyObject,
         type: TriggerTypes,
         reminderText: String? = nil
-    ) {
-        let entityName = TriggerTypeToEntityName[type]!
-        print(entityName)
-        let trigger = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: self.managedObjectContext)
+        ) {
+            let entityName = TriggerTypeToEntityName[type]!
+            print(entityName)
+            let trigger = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: self.managedObjectContext)
 
-        // set properties
-        var dict = [String:AnyObject]()
+            // set properties
+            var dict = [String:AnyObject]()
 
-        dict.updateValue(data, forKey: "data")
-        dict.updateValue(type.rawValue, forKey: "type")
-        dict.updateValue(habit, forKey: "habit")
+            dict.updateValue(data, forKey: "data")
+            dict.updateValue(type.rawValue, forKey: "type")
+            dict.updateValue(habit, forKey: "habit")
 
-        if let rT = reminderText {
-            dict.updateValue(rT, forKey: "reminderText")
-        }
-
-        trigger.setValuesForKeysWithDictionary(dict)
-
-        self.managedObjectContext.performBlock {
-            do {
-                try self.managedObjectContext.save()
-                self.triggersDidChange()
-                print("successfully added trigger")
-            } catch {
-                fatalError("Failed to create trigger: \(error)")
+            if let rT = reminderText {
+                dict.updateValue(rT, forKey: "reminderText")
             }
-        }
+
+            trigger.setValuesForKeysWithDictionary(dict)
+
+            self.managedObjectContext.performBlock {
+                do {
+                    try self.managedObjectContext.save()
+                    self.triggersDidChange()
+                    print("successfully added trigger")
+                } catch {
+                    fatalError("Failed to create trigger: \(error)")
+                }
+            }
     }
 
     func updateTrigger(
         id: NSManagedObjectID,
         data: AnyObject? = nil,
         reminderText: String? = nil
-    ) {
-        let trigger = managedObjectContext.objectWithID(id)
+        ) {
+            let trigger = managedObjectContext.objectWithID(id)
 
-        // set properties
-        var dict = [String:AnyObject]()
-        if let rT = reminderText {
-            dict.updateValue(rT, forKey: "reminderText")
-        }
-        if let d = data {
-            dict.updateValue(d, forKey: "data")
-        }
-
-        trigger.setValuesForKeysWithDictionary(dict)
-
-        self.managedObjectContext.performBlock {
-            do {
-                try self.managedObjectContext.save()
-                self.triggersDidChange()
-                print("successfully updated trigger")
-            } catch {
-                fatalError("Failed to update trigger: \(error)")
+            // set properties
+            var dict = [String:AnyObject]()
+            if let rT = reminderText {
+                dict.updateValue(rT, forKey: "reminderText")
             }
-        }
+            if let d = data {
+                dict.updateValue(d, forKey: "data")
+            }
+
+            trigger.setValuesForKeysWithDictionary(dict)
+
+            self.managedObjectContext.performBlock {
+                do {
+                    try self.managedObjectContext.save()
+                    self.triggersDidChange()
+                    print("successfully updated trigger")
+                } catch {
+                    fatalError("Failed to update trigger: \(error)")
+                }
+            }
     }
 
     func deleteTrigger(id: NSManagedObjectID) {
@@ -324,7 +332,7 @@ class DataController: NSObject {
         }
         // TODO: determine order based on max order within the list
         entry?.setValuesForKeysWithDictionary(dict)
-
+        
         self.managedObjectContext.performBlock {
             do {
                 try self.managedObjectContext.save()
@@ -336,10 +344,10 @@ class DataController: NSObject {
         
         return entry
     }
-
+    
     func deleteEntry(entry: Entry) {
         managedObjectContext.deleteObject(entry)
-
+        
         self.managedObjectContext.performBlock {
             do {
                 try self.managedObjectContext.save()

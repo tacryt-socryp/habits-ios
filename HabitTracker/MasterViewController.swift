@@ -18,7 +18,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     // MARK: - Attributes
 
-    var dataController: DataController!
+    var dataController: DatabaseService!
     var fetchedResults: NSFetchedResultsController!
 
     var detailViewController: HabitDetailViewController? = nil

@@ -25,7 +25,7 @@ class HabitViewController: FormViewController {
 
     // SET THESE
     var currentState: Set<viewStates>!
-    var dataController: DataController!
+    var dataController: DatabaseService!
     var habit: Habit? = nil {
         didSet {
             form.allRows.forEach {

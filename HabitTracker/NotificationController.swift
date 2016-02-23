@@ -14,11 +14,10 @@ class NotificationController {
         UIApplication.sharedApplication().cancelAllLocalNotifications()
     }
 
-    static func resetLocalNotifications(dataController: DataController) {
-        print("resetting local notifications")
+    static func resetLocalNotifications(dataController: DatabaseService?) {
         self.cancelLocalNotifications()
 
-        dataController.fetchAllTriggers { triggers in
+        dataController?.fetchAllTriggers { triggers in
 
             if let allTriggers = triggers {
 
@@ -47,8 +46,6 @@ class NotificationController {
     }
 
     static func scheduleLocalNotification(notification: UILocalNotification) {
-        print("scheduled")
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
-        print(UIApplication.sharedApplication().scheduledLocalNotifications)
     }
 }

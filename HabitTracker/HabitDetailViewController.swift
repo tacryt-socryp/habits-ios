@@ -15,7 +15,7 @@ class HabitDetailViewController: UIViewController, ChartViewDelegate {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var barChartView: BarChartView!
-    var dataController: DataController!
+    var dataController: DatabaseService!
     var habit: Habit? = nil {
         didSet {
             self.configureData()
