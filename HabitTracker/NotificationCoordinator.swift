@@ -8,12 +8,13 @@
 
 import UIKit
 
-class NotificationCoordinator {
+class NotificationCoordinator: NSObject {
 
     private var app: UIApplication!
     private var databaseService: DatabaseService!
 
     init(databaseService: DatabaseService, app: UIApplication) {
+        super.init()
         self.databaseService = databaseService
         self.app = app
     }

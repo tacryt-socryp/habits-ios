@@ -5,6 +5,7 @@ use_frameworks!
 
 target 'Tailor' do
   pod 'Eureka', '~> 1.3'
+  pod 'Compass'
   pod 'Charts'
 end
 

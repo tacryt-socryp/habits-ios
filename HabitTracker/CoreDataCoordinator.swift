@@ -8,11 +8,15 @@
 
 import CoreData
 
-class CoreDataCoordinator {
+class CoreDataCoordinator: NSObject {
 
     var databaseService: DatabaseService!
+    private var appCoordinator: AppCoordinator!
+    var isCoreDataSetup = false
 
-    init() {
+    init(coordinator: AppCoordinator) {
+        super.init()
+        self.appCoordinator = coordinator
         self.databaseService = DatabaseService(coordinator: self)
     }
 
@@ -59,10 +63,14 @@ class CoreDataCoordinator {
 
     func handleStoresDidChange(notification: NSNotification) {
         print("did change")
+        if (!isCoreDataSetup) {
+            isCoreDataSetup = true
+            appCoordinator.initializeAfterCoreData()
+        }
         databaseService?.managedObjectContext.performBlock {
             self.databaseService?.managedObjectContext.mergeChangesFromContextDidSaveNotification(notification)
             NotificationController.resetLocalNotifications(self.databaseService)
-            NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notifications.fetchTableData, object: nil)
+            // NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notifications.fetchTableData, object: nil)
 
         }
         print(notification)

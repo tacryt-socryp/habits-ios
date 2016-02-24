@@ -15,7 +15,7 @@ class DatabaseService {
 
     init(coordinator: CoreDataCoordinator) {
         // This resource is the same name as your xcdatamodeld contained in your project.
-        guard let modelURL = NSBundle.mainBundle().URLForResource("TailorModel", withExtension:"momd") else {
+        guard let modelURL = NSBundle.mainBundle().URLForResource("DataModel", withExtension:"momd") else {
             fatalError("Error loading model from bundle")
         }
 
@@ -40,14 +40,14 @@ class DatabaseService {
             /* The directory the application uses to store the Core Data store file.
             This code uses a file named "DataModel.sqlite" in the application's documents directory.
             */
-            let localStoreURL = docURL.URLByAppendingPathComponent("TailorModel.sqlite")
+            let localStoreURL = docURL.URLByAppendingPathComponent("DataModel.sqlite")
             do {
                 try self.persistentStoreCoordinator.addPersistentStoreWithType(
                     NSSQLiteStoreType,
                     configuration: nil,
                     URL: localStoreURL,
                     options: [
-                        NSPersistentStoreUbiquitousContentNameKey: "TailorCloudStore",
+                        NSPersistentStoreUbiquitousContentNameKey: "DataCloudStore",
                         NSMigratePersistentStoresAutomaticallyOption: true,
                         NSInferMappingModelAutomaticallyOption: true
                     ])

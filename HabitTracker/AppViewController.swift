@@ -11,7 +11,9 @@ protocol AppViewController {
 
     var appCoordinator : AppCoordinator? { get set}
 
-    var model : ViewModel? { get set}
+    var viewModel : ViewModel? { get set}
+
+    func setup(viewModel: ViewModel)
 
     // use bond
     func bindModel() -> Bool

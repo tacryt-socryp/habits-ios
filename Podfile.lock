@@ -2,14 +2,20 @@ PODS:
   - Charts (2.2.2):
     - Charts/Core (= 2.2.2)
   - Charts/Core (2.2.2)
+  - Compass (1.4.0):
+    - Sugar
   - Eureka (1.3.1)
+  - Sugar (1.0.5)
 
 DEPENDENCIES:
   - Charts
+  - Compass
   - Eureka (~> 1.3)
 
 SPEC CHECKSUMS:
   Charts: e32b718fa716bdb7693b9e419d6d4a39a3f7992e
+  Compass: f4b8c37f9b315f0ee4f5e4f71888c54c92992d5d
   Eureka: 10df73e578ed8ec1f30c8fda5b4ffc8739786b74
+  Sugar: 8d9788c4630c6bdcab8c19a0f7ff06f10ba353bd
 
 COCOAPODS: 0.39.0

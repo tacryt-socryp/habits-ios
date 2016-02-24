@@ -12,11 +12,15 @@ class HabitGridViewController: UICollectionViewController, AppViewController {
 
     var appCoordinator : AppCoordinator? = nil
 
-    var model : ViewModel? = nil
+    var viewModel : ViewModel? = nil
+
+    func setup(viewModel: ViewModel) {
+        self.viewModel = viewModel
+    }
 
     // use bond
     func bindModel() -> Bool {
-        let vm = self.model as! HabitGridModel
+        let vm = self.viewModel as! HabitGridModel
         return false
     }
 }

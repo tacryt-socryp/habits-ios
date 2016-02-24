@@ -32,20 +32,20 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         let request = NSFetchRequest(entityName: "Habit")
         let orderSort = NSSortDescriptor(key: "order", ascending: true)
         request.sortDescriptors = [orderSort]
-
-        dataController = (UIApplication.sharedApplication().delegate as! AppDelegate).dataController
-        let moc = dataController.managedObjectContext
-        self.fetchedResults = NSFetchedResultsController(
-            fetchRequest: request,
-            managedObjectContext: moc,
-            sectionNameKeyPath: nil,
-            cacheName: "rootCache"
-        )
-        self.fetchedResults.delegate = self
-
-        self.fetchTableData()
-        self.registerTableViewNotifications()
-        self.configureView()
+//
+//        dataController = (UIApplication.sharedApplication().delegate as! AppDelegate).dataController
+//        let moc = dataController.managedObjectContext
+//        self.fetchedResults = NSFetchedResultsController(
+//            fetchRequest: request,
+//            managedObjectContext: moc,
+//            sectionNameKeyPath: nil,
+//            cacheName: "rootCache"
+//        )
+//        self.fetchedResults.delegate = self
+//
+//        self.fetchTableData()
+//        self.registerTableViewNotifications()
+//        self.configureView()
     }
 
     override func viewWillAppear(animated: Bool) {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Compass
 
 protocol AppCoordinatorDelegate {
     // pass this into all view controllers!
@@ -14,39 +15,34 @@ protocol AppCoordinatorDelegate {
 
 // app coordinator has knowledge of view controllers
 
-class AppCoordinator: CoreDataCoordinator {
-
-    private var window: UIWindow!
+class AppCoordinator {
+    
     private var app: UIApplication!
 
-    // MARK: - All View Controllers
-    // TODO: Add all of them.
-    private var navigationViewController: AppViewController!
-    private var currentViewController: AppViewController? = nil
-
     // MARK: - Coordinators
+    var routeCoordinator: RouteCoordinator!
     var databaseCoordinator: CoreDataCoordinator!
-    var notificationCoordinator: NotificationCoordinator!
+    var notificationCoordinator: NotificationCoordinator? = nil
     
-    init(window: UIWindow) {
-        super.init()
-        self.window = window
-        self.app = UIApplication.sharedApplication()
+    init(window: UIWindow, app: UIApplication) {
+        self.app = app
 
-        self.databaseCoordinator = CoreDataCoordinator()
-        self.notificationCoordinator = NotificationCoordinator(databaseService: databaseCoordinator.databaseService, app: app)
+        self.routeCoordinator = RouteCoordinator(coordinator: self, window: window)
+        self.databaseCoordinator = CoreDataCoordinator(coordinator: self)
+    }
+
+    func initializeAfterCoreData() {
+        self.notificationCoordinator = NotificationCoordinator(
+            databaseService: databaseCoordinator.databaseService,
+            app: self.app
+        )
     }
 
     func start() {
         // Basic UI initialization
 
-        // TODO: Start another view controller!
-
-
-//        let splitViewController = self.window!.rootViewController as! UISplitViewController
-//        let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
-//        navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
-        // splitViewController.delegate = self
+        let url: NSURL = NSURL(string: "\(Compass.scheme)allHabits")!
+        self.navigateToRoute(url, options: nil)
 
         // Override point for customization after application launch.
         if(UIApplication.instancesRespondToSelector(Selector("registerUserNotificationSettings:"))) {
@@ -62,9 +58,10 @@ class AppCoordinator: CoreDataCoordinator {
             print("SOMETHING IS FUCKED UP")
         }
     }
-    
-    func transitionToScene(nextViewModel: ViewModel, intent: SceneTransitionIntent) {
 
+    
+    func navigateToRoute(url: NSURL, options: [String : AnyObject]?) -> Bool {
+        return routeCoordinator.navigateToRoute(url, options: options)
     }
 
     /// pop the current scene to go back to the previous scene
