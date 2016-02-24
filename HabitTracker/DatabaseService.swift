@@ -10,10 +10,12 @@ import CoreData
 
 class DatabaseService {
 
+    var coordinator: CoreDataCoordinator!
     var persistentStoreCoordinator: NSPersistentStoreCoordinator
     var managedObjectContext: NSManagedObjectContext
 
     init(coordinator: CoreDataCoordinator) {
+        self.coordinator = coordinator
         // This resource is the same name as your xcdatamodeld contained in your project.
         guard let modelURL = NSBundle.mainBundle().URLForResource("DataModel", withExtension:"momd") else {
             fatalError("Error loading model from bundle")
@@ -28,10 +30,6 @@ class DatabaseService {
         self.managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
         self.managedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator
 
-        self.setupWithCoordinator(coordinator)
-    }
-
-    func setupWithCoordinator(coordinator: CoreDataCoordinator) {
         coordinator.registerCoordinatorForStoreNotifications(persistentStoreCoordinator)
 
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
@@ -52,6 +50,7 @@ class DatabaseService {
                         NSInferMappingModelAutomaticallyOption: true
                     ])
             } catch {
+                print("badness")
                 fatalError("Error migrating store: \(error)")
             }
         }
@@ -291,7 +290,7 @@ class DatabaseService {
 
     func triggersDidChange() {
         print("reset local notifications")
-        NotificationController.resetLocalNotifications(self)
+        self.coordinator.shouldResetLocalNotifications()
     }
 
 

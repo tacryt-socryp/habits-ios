@@ -1,216 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="7QA-yB-KDC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ir7-Hu-4EU">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="pY4-Hu-kfo">
+        <!--Habit Grid View Controller-->
+        <scene sceneID="Fu0-0r-uO4">
             <objects>
-                <navigationController id="RMx-3f-FxP" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Pmd-2v-anx">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="7bK-jq-Zjz" kind="relationship" relationship="rootViewController" id="tsl-Nk-0bq"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8fS-aE-onr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-38" y="-630"/>
-        </scene>
-        <!--Habit Detail-->
-        <scene sceneID="yUG-lL-AsK">
-            <objects>
-                <viewController title="Habit Detail" id="JEX-9P-axG" customClass="HabitDetailViewController" customModule="Tailor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="habitGridVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yq3-oU-KSa" customClass="HabitGridViewController" customModule="Tailor" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="SYR-Wa-9uf"/>
-                        <viewControllerLayoutGuide type="bottom" id="GAO-Cl-Wes"/>
+                        <viewControllerLayoutGuide type="top" id="H1H-gz-cVT"/>
+                        <viewControllerLayoutGuide type="bottom" id="vtl-G9-mt9"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="svH-Pt-448">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zsr-Rb-4HF" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="64" width="600" height="279"/>
-                                <color key="backgroundColor" red="0.37468397619999999" green="0.39971005920000002" blue="0.59302496910000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="0.37468397619999999" green="0.39971005920000002" blue="0.59302496910000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="Zsr-Rb-4HF" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="-20" id="0uE-Mz-t3b"/>
-                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="Zsr-Rb-4HF" secondAttribute="bottom" constant="300" id="7XH-Za-vmZ"/>
-                            <constraint firstItem="Zsr-Rb-4HF" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="JZN-Zv-GQj"/>
-                            <constraint firstItem="Zsr-Rb-4HF" firstAttribute="centerX" secondItem="svH-Pt-448" secondAttribute="centerX" id="JvV-bK-EPb"/>
-                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="Zsr-Rb-4HF" secondAttribute="bottom" constant="207" id="M46-7Y-MFu"/>
-                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="Zsr-Rb-4HF" secondAttribute="bottom" constant="257" id="Mn1-6w-ZJ3"/>
-                            <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="Zsr-Rb-4HF" secondAttribute="bottom" constant="240" id="PSk-Ik-5i6"/>
-                            <constraint firstItem="Zsr-Rb-4HF" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" constant="-20" id="RMd-5j-N2X"/>
-                            <constraint firstItem="Zsr-Rb-4HF" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="Tgs-zd-VbH"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Zsr-Rb-4HF" secondAttribute="trailing" id="UA2-eu-ptQ"/>
-                            <constraint firstItem="Zsr-Rb-4HF" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leadingMargin" id="d22-FV-RQ6"/>
-                            <constraint firstItem="Zsr-Rb-4HF" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="gxS-rp-d6V"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Zsr-Rb-4HF" secondAttribute="trailing" constant="-20" id="qQm-fS-7KE"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="0uE-Mz-t3b"/>
-                                <exclude reference="Tgs-zd-VbH"/>
-                                <exclude reference="UA2-eu-ptQ"/>
-                                <exclude reference="d22-FV-RQ6"/>
-                                <exclude reference="gxS-rp-d6V"/>
-                                <exclude reference="7XH-Za-vmZ"/>
-                                <exclude reference="M46-7Y-MFu"/>
-                                <exclude reference="PSk-Ik-5i6"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
-                    <connections>
-                        <outlet property="barChartView" destination="Zsr-Rb-4HF" id="bot-6g-Jib"/>
-                        <segue destination="AYj-9c-wrD" kind="show" identifier="showEditHabit" id="1J5-ud-dRc"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="679" y="129"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="4q9-R0-eDC">
-            <objects>
-                <viewController storyboardIdentifier="allHabits" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XOB-qV-ObT" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="klM-3M-lY6"/>
-                        <viewControllerLayoutGuide type="bottom" id="Pcm-Ts-nNX"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="x7S-KX-JNg">
+                    <view key="view" contentMode="scaleToFill" id="RdG-Eg-Nl1">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="M5c-mo-M72"/>
+                    <navigationItem key="navigationItem" id="84V-GO-qJy"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hKF-c3-tyz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6nY-tJ-taD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-38" y="937"/>
         </scene>
-        <!--Write Habit-->
-        <scene sceneID="e0r-RA-XDd">
-            <objects>
-                <viewController title="Write Habit" id="AYj-9c-wrD" customClass="HabitViewController" customModule="Tailor" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="aqG-MQ-3IC"/>
-                        <viewControllerLayoutGuide type="bottom" id="x4o-aF-2Vb"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="QAf-In-WTA">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OMB-hg-9Zs" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1416" y="-330"/>
-        </scene>
-        <!--Split View Controller-->
-        <scene sceneID="Nki-YV-4Qg">
-            <objects>
-                <splitViewController id="H1p-Uh-vWS" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <connections>
-                        <segue destination="RMx-3f-FxP" kind="relationship" relationship="masterViewController" id="BlO-5A-QYV"/>
-                        <segue destination="vC3-pB-5Vb" kind="relationship" relationship="detailViewController" id="Tll-UG-LXB"/>
-                    </connections>
-                </splitViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cZU-Oi-B1e" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-856" y="-330"/>
-        </scene>
-        <!--HabitList-->
-        <scene sceneID="smW-Zh-WAh">
-            <objects>
-                <tableViewController title="HabitList" clearsSelectionOnViewWillAppear="NO" id="7bK-jq-Zjz" userLabel="HabitList" customClass="MasterViewController" customModule="Tailor" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="r7i-6Z-zg0">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="Gh7-LV-DNf" style="IBUITableViewCellStyleDefault" id="WCw-Qf-5nD" customClass="HabitTableViewCell" customModule="Tailor" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WCw-Qf-5nD" id="37f-cq-3Eg">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Gh7-LV-DNf">
-                                            <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="showHabitDetail" id="6S0-TO-JiA"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <sections/>
-                        <connections>
-                            <outlet property="dataSource" destination="7bK-jq-Zjz" id="Gho-Na-rnu"/>
-                            <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Tailor" id="Zdf-7t-Un8"/>
-                    <connections>
-                        <segue destination="AYj-9c-wrD" kind="show" identifier="showCreateHabit" id="fPV-ZY-xyh"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="679" y="-630"/>
-        </scene>
         <!--Navigation Controller-->
-        <scene sceneID="r7l-gg-dq7">
+        <scene sceneID="uBf-Zl-PNR">
             <objects>
-                <navigationController id="vC3-pB-5Vb" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="DjV-YW-jjY">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="JEX-9P-axG" kind="relationship" relationship="rootViewController" id="GKi-kA-LjT"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SLD-UC-DBI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-45" y="129"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="qz6-NN-Cwt">
-            <objects>
-                <navigationController storyboardIdentifier="rootNavigation" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7QA-yB-KDC" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="rootNavigation" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ir7-Hu-4EU" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="h3s-mX-4tS">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1XK-qq-tSO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="XOB-qV-ObT" kind="relationship" relationship="rootViewController" id="Mec-GX-wMm"/>
-                    </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DT0-rJ-e9C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p4e-ZN-7Y4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-856" y="937"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="6S0-TO-JiA"/>
-        <segue reference="1J5-ud-dRc"/>
-    </inferredMetricsTieBreakers>
 </document>

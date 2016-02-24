@@ -25,6 +25,10 @@ class CoreDataCoordinator: NSObject {
         self.notificationService = NotificationService(coordinator: self, app: app)
     }
 
+    func shouldResetLocalNotifications() {
+        self.notificationService.resetLocalNotifications()
+    }
+
     // MARK: - iCloud Events
     func registerCoordinatorForStoreNotifications(coordinator : NSPersistentStoreCoordinator) {
         let nc : NSNotificationCenter = NSNotificationCenter.defaultCenter();

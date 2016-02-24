@@ -17,7 +17,15 @@ enum routesEnum: String {
     case settings = "settings"
 }
 
-let routes: [String : CustomRoutable] = [
+let compassRoutes: [String] = [
+    "habitGrid",
+    "createHabit",
+    "viewHabit:{habit}",
+    "editHabit:{habit}",
+    "settings"
+];
+
+let routerRoutes: [String : CustomRoutable] = [
     (routesEnum.habitGrid.rawValue): HabitGridRoute(),
     (routesEnum.createHabit.rawValue): CreateHabitRoute(),
     (routesEnum.viewHabit.rawValue): ViewHabitRoute(),
@@ -28,9 +36,9 @@ let routes: [String : CustomRoutable] = [
 class RouteCoordinator: NSObject {
 
     private var appCoordinator: AppCoordinator!
-    private var window: UIWindow!
     private var navigationController: UINavigationController!
     private var router: CustomRouter!
+    var window: UIWindow!
 
     init(coordinator: AppCoordinator, window: UIWindow) {
         super.init()
@@ -40,18 +48,27 @@ class RouteCoordinator: NSObject {
         print(self.window.rootViewController)
         navigationController = self.window.rootViewController as! UINavigationController
 
-        router.routes = routes
+        // Set up Compass
+        Compass.scheme = "compass"
+        Compass.routes = compassRoutes
+        router.routes = routerRoutes
     }
 
     func navigateToRoute(url: NSURL, options: [String : AnyObject]?) -> Bool {
         // if options specifies viewModel, use that. Otherwise, make one yourself!
-        return Compass.parse(url) { route, arguments in
+        print("yup I'm here too")
+        print(url.absoluteString)
+        let result = Compass.parse(url) { route, arguments in
+            print(route)
+            print(arguments)
             self.router.navigate(route,
                 arguments: arguments,
                 navigationController: self.navigationController,
                 coordinator: self.appCoordinator
             )
         }
+        print(result)
+        return result
     }
 
 }

@@ -41,7 +41,8 @@ class AppCoordinator {
     func start() {
         // Basic UI initialization
 
-        let url: NSURL = NSURL(string: "\(Compass.scheme)allHabits")!
+        print("start")
+        let url: NSURL = NSURL(string: "\(Compass.scheme)\(routesEnum.habitGrid.rawValue)")!
         self.navigateToRoute(url, options: nil)
 
         // Override point for customization after application launch.
@@ -61,6 +62,7 @@ class AppCoordinator {
 
     
     func navigateToRoute(url: NSURL, options: [String : AnyObject]?) -> Bool {
+        print("just got called fam")
         return routeCoordinator.navigateToRoute(url, options: options)
     }
 

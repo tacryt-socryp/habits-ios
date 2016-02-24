@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import Compass
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,9 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Set up Compass
-        Compass.scheme = "compass"
-
         // Set up window
         // window = UIWindow(frame: UIScreen.mainScreen().bounds)
         app = application

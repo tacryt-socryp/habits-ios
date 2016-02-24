@@ -13,10 +13,12 @@ struct HabitGridRoute: CustomRoutable {
     func resolve(arguments: [String: AnyObject], navigationController: UINavigationController, coordinator: AppCoordinator) {
         // guard let username = arguments["username"] else { return }
 
-        let vC = HabitGridViewController()
+        let storyboard = navigationController.storyboard
+        let vC = storyboard?.instantiateViewControllerWithIdentifier("habitGridVC") as! HabitGridViewController
         let viewModel = HabitGridModel(coordinator: coordinator)
         vC.setup(viewModel)
 
+        print("doing some gucci shit")
         navigationController.pushViewController(vC, animated: true)
     }
 }
