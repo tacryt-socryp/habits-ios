@@ -6,18 +6,23 @@
 //  Copyright © 2016 Logan Allen. All rights reserved.
 //
 
+import UIKit
 import CoreData
 
 class CoreDataCoordinator: NSObject {
 
     var databaseService: DatabaseService!
+    var notificationService: NotificationService!
+
     private var appCoordinator: AppCoordinator!
     var isCoreDataSetup = false
 
-    init(coordinator: AppCoordinator) {
+    init(coordinator: AppCoordinator, app: UIApplication) {
         super.init()
         self.appCoordinator = coordinator
         self.databaseService = DatabaseService(coordinator: self)
+
+        self.notificationService = NotificationService(coordinator: self, app: app)
     }
 
     // MARK: - iCloud Events
@@ -47,13 +52,13 @@ class CoreDataCoordinator: NSObject {
 
         if (notification.userInfo?.indexForKey(NSAddedPersistentStoresKey) != nil) {
             // iCloud first time setup
-            databaseService?.managedObjectContext.performBlock {
-                self.databaseService?.managedObjectContext.reset()
+            databaseService.managedObjectContext.performBlock {
+                self.databaseService.managedObjectContext.reset()
             }
         } else if (notification.userInfo?.indexForKey(NSPersistentStoreUbiquitousTransitionTypeKey) != nil) {
             // iCloud account transition
-            databaseService?.managedObjectContext.performBlock {
-                self.databaseService?.managedObjectContext.reset()
+            databaseService.managedObjectContext.performBlock {
+                self.databaseService.managedObjectContext.reset()
             }
             // disable UI
             // basically go back to onboarding screen?
@@ -67,9 +72,9 @@ class CoreDataCoordinator: NSObject {
             isCoreDataSetup = true
             appCoordinator.initializeAfterCoreData()
         }
-        databaseService?.managedObjectContext.performBlock {
-            self.databaseService?.managedObjectContext.mergeChangesFromContextDidSaveNotification(notification)
-            NotificationController.resetLocalNotifications(self.databaseService)
+        databaseService.managedObjectContext.performBlock {
+            self.databaseService.managedObjectContext.mergeChangesFromContextDidSaveNotification(notification)
+            self.notificationService.resetLocalNotifications()
             // NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notifications.fetchTableData, object: nil)
 
         }
@@ -79,15 +84,15 @@ class CoreDataCoordinator: NSObject {
     func handleStoresWillRemove(notification: NSNotification) {
         print("will remove")
         print(notification)
-        NotificationController.cancelLocalNotifications()
+        notificationService.cancelLocalNotifications()
     }
 
     func handleStoreChangedUbiquitousContent(notification: NSNotification) {
         print("changed ubiquitous content")
-        databaseService?.managedObjectContext.performBlock {
+        databaseService.managedObjectContext.performBlock {
             // decide whether to merge in memory or just refetch
-            self.databaseService?.managedObjectContext.mergeChangesFromContextDidSaveNotification(notification) // merge in memory
-            NotificationController.resetLocalNotifications(self.databaseService)
+            self.databaseService.managedObjectContext.mergeChangesFromContextDidSaveNotification(notification) // merge in memory
+            self.notificationService.resetLocalNotifications()
         }
         print(notification)
     }

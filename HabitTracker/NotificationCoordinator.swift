@@ -26,12 +26,9 @@ class NotificationCoordinator: NSObject {
         // applicationIconBadgeNumber = number of habits with needAction as true
 
         if let userInfo = notification.userInfo, let habitURI = userInfo["habit"] as? NSURL {
-            if let habitObjectID = databaseService.managedObjectContext.persistentStoreCoordinator?
-                .managedObjectIDForURIRepresentation(habitURI) {
-
-                    databaseService.setHabitNeedsAction(habitObjectID)
-                    self.setIconBadgeNumber()
-
+            if let habitObjectID = databaseService.persistentStoreCoordinator.managedObjectIDForURIRepresentation(habitURI) {
+                databaseService.setHabitNeedsAction(habitObjectID)
+                self.setIconBadgeNumber()
             }
         }
     }
@@ -39,13 +36,12 @@ class NotificationCoordinator: NSObject {
     func setIconBadgeNumber() {
         // iterate through habits and set applicationIconBadgeNumber
         // TODO: Don't just iterate the number!
-        let app = UIApplication.sharedApplication()
         var appIconBadgeNumber = 0
         databaseService.fetchAllHabits { habits in
             habits?.forEach { habit in
                 appIconBadgeNumber = appIconBadgeNumber + Int(habit.needsAction)
             }
-            app.applicationIconBadgeNumber = appIconBadgeNumber
+            self.app.applicationIconBadgeNumber = appIconBadgeNumber
         }
     }
 

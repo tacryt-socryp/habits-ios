@@ -28,7 +28,7 @@ class AppCoordinator {
         self.app = app
 
         self.routeCoordinator = RouteCoordinator(coordinator: self, window: window)
-        self.databaseCoordinator = CoreDataCoordinator(coordinator: self)
+        self.databaseCoordinator = CoreDataCoordinator(coordinator: self, app: self.app)
     }
 
     func initializeAfterCoreData() {

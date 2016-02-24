@@ -18,7 +18,6 @@
 		0217CA441C7BF4B800B910FF /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0217CA431C7BF4B800B910FF /* AppViewController.swift */; };
 		0217CA4A1C7BFCEE00B910FF /* CoreDataCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0217CA491C7BFCEE00B910FF /* CoreDataCoordinator.swift */; };
 		0217CA4E1C7C037300B910FF /* NotificationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0217CA4D1C7C037300B910FF /* NotificationCoordinator.swift */; };
-		021EE5F61C74F7FD00F6AA3E /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021EE5F51C74F7FD00F6AA3E /* NotificationController.swift */; };
 		0223B6B81C73D9070011C62E /* Trigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223B6B41C73D9070011C62E /* Trigger.swift */; };
 		0223B6BA1C73D9070011C62E /* TimeTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223B6B61C73D9070011C62E /* TimeTrigger.swift */; };
 		022A6B041C4DDA6C0018E9F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02701E131C4C14570092E4D3 /* Assets.xcassets */; };
@@ -38,6 +37,7 @@
 		02D4B6621C7D351F000A60C0 /* HabitGridRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D4B6611C7D351F000A60C0 /* HabitGridRoute.swift */; };
 		02D4B6641C7D373C000A60C0 /* CustomRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D4B6631C7D373C000A60C0 /* CustomRouter.swift */; };
 		02D4B6661C7D3777000A60C0 /* CustomRoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D4B6651C7D3777000A60C0 /* CustomRoutable.swift */; };
+		02D4B6681C7D425A000A60C0 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D4B6671C7D425A000A60C0 /* NotificationService.swift */; };
 		02EBB31C1C5D502900814DBA /* CustomEurekaCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EBB31B1C5D502900814DBA /* CustomEurekaCells.swift */; };
 		02EBB31F1C5D511D00814DBA /* WeekDaysCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02EBB31D1C5D511D00814DBA /* WeekDaysCell.xib */; };
 		02ECD5E31C52A972005762E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02ECD5E11C52A972005762E4 /* Main.storyboard */; };
@@ -55,7 +55,6 @@
 		0217CA431C7BF4B800B910FF /* AppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppViewController.swift; sourceTree = "<group>"; };
 		0217CA491C7BFCEE00B910FF /* CoreDataCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataCoordinator.swift; sourceTree = "<group>"; };
 		0217CA4D1C7C037300B910FF /* NotificationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCoordinator.swift; sourceTree = "<group>"; };
-		021EE5F51C74F7FD00F6AA3E /* NotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		0223B6B41C73D9070011C62E /* Trigger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trigger.swift; sourceTree = "<group>"; };
 		0223B6B61C73D9070011C62E /* TimeTrigger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTrigger.swift; sourceTree = "<group>"; };
 		02294C181C5ADFF600998233 /* Tailor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Tailor.entitlements; sourceTree = SOURCE_ROOT; };
@@ -79,6 +78,7 @@
 		02D4B6611C7D351F000A60C0 /* HabitGridRoute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitGridRoute.swift; sourceTree = "<group>"; };
 		02D4B6631C7D373C000A60C0 /* CustomRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomRouter.swift; sourceTree = "<group>"; };
 		02D4B6651C7D3777000A60C0 /* CustomRoutable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomRoutable.swift; sourceTree = "<group>"; };
+		02D4B6671C7D425A000A60C0 /* NotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		02EBB31B1C5D502900814DBA /* CustomEurekaCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomEurekaCells.swift; sourceTree = "<group>"; };
 		02EBB31E1C5D511D00814DBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/WeekDaysCell.xib; sourceTree = "<group>"; };
 		02ECD5E21C52A972005762E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -181,7 +181,6 @@
 				020A71061C4C154000E3BCB7 /* Controllers */,
 				02701E0A1C4C14570092E4D3 /* AppDelegate.swift */,
 				023BA3551C502E99003DC61C /* Constants.swift */,
-				021EE5F51C74F7FD00F6AA3E /* NotificationController.swift */,
 				02ECD5E11C52A972005762E4 /* Main.storyboard */,
 				02701E151C4C14570092E4D3 /* LaunchScreen.storyboard */,
 				02294C181C5ADFF600998233 /* Tailor.entitlements */,
@@ -196,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				02C197611C7B7CB300F0337A /* DatabaseService.swift */,
+				02D4B6671C7D425A000A60C0 /* NotificationService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -203,9 +203,9 @@
 		02D4B6571C7D3332000A60C0 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
+				02D4B6581C7D3349000A60C0 /* Routes */,
 				02D4B6631C7D373C000A60C0 /* CustomRouter.swift */,
 				02D4B6651C7D3777000A60C0 /* CustomRoutable.swift */,
-				02D4B6581C7D3349000A60C0 /* Routes */,
 				02C1975E1C7B7AB600F0337A /* AppCoordinator.swift */,
 				0217CA491C7BFCEE00B910FF /* CoreDataCoordinator.swift */,
 				0217CA4D1C7C037300B910FF /* NotificationCoordinator.swift */,
@@ -374,7 +374,6 @@
 			files = (
 				02D4B6621C7D351F000A60C0 /* HabitGridRoute.swift in Sources */,
 				02C197621C7B7CB300F0337A /* DatabaseService.swift in Sources */,
-				021EE5F61C74F7FD00F6AA3E /* NotificationController.swift in Sources */,
 				02D4B6601C7D34FE000A60C0 /* SettingsRoute.swift in Sources */,
 				023BA3561C502E99003DC61C /* Constants.swift in Sources */,
 				02D4B6661C7D3777000A60C0 /* CustomRoutable.swift in Sources */,
@@ -400,6 +399,7 @@
 				0217CA401C7BF3F200B910FF /* HabitGridViewController.swift in Sources */,
 				02D4B65C1C7D3483000A60C0 /* CreateHabitRoute.swift in Sources */,
 				02701E0B1C4C14570092E4D3 /* AppDelegate.swift in Sources */,
+				02D4B6681C7D425A000A60C0 /* NotificationService.swift in Sources */,
 				0223B6BA1C73D9070011C62E /* TimeTrigger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
