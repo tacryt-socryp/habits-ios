@@ -18,7 +18,6 @@ struct HabitGridRoute: CustomRoutable {
         let viewModel = HabitGridModel(coordinator: coordinator)
         vC.setup(viewModel)
 
-        print("doing some gucci shit")
         navigationController.pushViewController(vC, animated: true)
     }
 }

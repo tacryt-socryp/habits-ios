@@ -38,7 +38,7 @@ class NotificationCoordinator: NSObject {
         // TODO: Don't just iterate the number!
         var appIconBadgeNumber = 0
         databaseService.fetchAllHabits { habits in
-            habits?.forEach { habit in
+            habits.forEach { habit in
                 appIconBadgeNumber = appIconBadgeNumber + Int(habit.needsAction)
             }
             self.app.applicationIconBadgeNumber = appIconBadgeNumber

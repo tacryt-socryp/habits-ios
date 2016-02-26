@@ -8,6 +8,14 @@
 
 import UIKit
 import CoreData
+import Bond
+
+var fetchRequestTemplates = [String : NSFetchRequest]()
+
+class AppDataStore {
+    var habits: [Habit]? = nil
+    var currentHabit: Habit? = nil
+}
 
 class CoreDataCoordinator: NSObject {
 
@@ -15,7 +23,10 @@ class CoreDataCoordinator: NSObject {
     var notificationService: NotificationService!
 
     private var appCoordinator: AppCoordinator!
+
     var isCoreDataSetup = false
+    // where app data is stored!
+    var appDataService: AppDataService!
 
     init(coordinator: AppCoordinator, app: UIApplication) {
         super.init()
@@ -23,10 +34,24 @@ class CoreDataCoordinator: NSObject {
         self.databaseService = DatabaseService(coordinator: self)
 
         self.notificationService = NotificationService(coordinator: self, app: app)
+        AppDataService.getAppDataService({ aDS in
+            self.appDataService = aDS
+        }, coordinator: coordinator, databaseService: self.databaseService)
     }
 
     func shouldResetLocalNotifications() {
         self.notificationService.resetLocalNotifications()
+    }
+
+    func fetchInitialData() {
+        self.databaseService.fetchAllHabits { habits in
+            self.appDataService.allHabits = ObservableArray(arrayLiteral: habits)
+            self.appDataService.currentHabit = Observable(nil)
+        }
+
+        self.databaseService.fetchAllTriggers { triggers in
+            self.appDataService.allTriggers = ObservableArray(arrayLiteral: triggers)
+        }
     }
 
     // MARK: - iCloud Events
@@ -74,11 +99,13 @@ class CoreDataCoordinator: NSObject {
         print("did change")
         if (!isCoreDataSetup) {
             isCoreDataSetup = true
+            self.fetchInitialData()
             appCoordinator.initializeAfterCoreData()
         }
         databaseService.managedObjectContext.performBlock {
             self.databaseService.managedObjectContext.mergeChangesFromContextDidSaveNotification(notification)
             self.notificationService.resetLocalNotifications()
+
             // NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notifications.fetchTableData, object: nil)
 
         }

@@ -27,26 +27,22 @@ class NotificationService {
 
         self.databaseService.fetchAllTriggers { triggers in
 
-            if let allTriggers = triggers {
+            triggers.forEach { managedObject in
+                if let typeNum = managedObject.valueForKey("type") as? NSNumber,
+                    let type = TriggerTypes(rawValue: typeNum.integerValue) {
 
-                allTriggers.forEach { managedObject in
-                    if let typeNum = managedObject.valueForKey("type") as? NSNumber,
-                        let type = TriggerTypes(rawValue: typeNum.integerValue) {
-
-                            switch type {
-                            case .Time:
-                                let trigger: TimeTrigger = managedObject as! TimeTrigger
-                                trigger.parseFromData()
-                                trigger.createLocalNotifications().forEach { notif in
-                                    if let notification = notif {
-                                        self.scheduleLocalNotification(notification)
-                                    }
+                        switch type {
+                        case .Time:
+                            let trigger: TimeTrigger = managedObject as! TimeTrigger
+                            trigger.parseFromData()
+                            trigger.createLocalNotifications().forEach { notif in
+                                if let notification = notif {
+                                    self.scheduleLocalNotification(notification)
                                 }
                             }
+                        }
 
-                    }
                 }
-
             }
 
         }

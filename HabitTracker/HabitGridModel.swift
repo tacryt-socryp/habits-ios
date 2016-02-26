@@ -6,6 +6,23 @@
 //  Copyright © 2016 Logan Allen. All rights reserved.
 //
 
-class HabitGridModel: ViewModel {
+import Bond
 
+class HabitGridModel: ViewModel {
+    var databaseService: DatabaseService!
+    
+    var allHabits = ObservableArray<([Habit])>([])
+
+    override init(coordinator: AppCoordinator) {
+        super.init(coordinator: coordinator)
+        databaseService = coordinator.databaseCoordinator.databaseService
+        setup()
+    }
+
+    func setup() {
+        if let habits = appData?.allHabits {
+            allHabits.bidirectionalBindTo(habits)
+            print("bound to your habits!")
+        }
+    }
 }

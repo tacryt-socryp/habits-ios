@@ -17,8 +17,10 @@ protocol ViewModelProtocol {
 class ViewModel : NSObject, ViewModelProtocol {
 
     let coordinator: AppCoordinator
+    var appData: AppDataService? = nil
 
     init(coordinator: AppCoordinator) {
         self.coordinator = coordinator
+        appData = self.coordinator.databaseCoordinator.appDataService
     }
 }

@@ -45,7 +45,6 @@ class RouteCoordinator: NSObject {
         self.appCoordinator = coordinator
         self.window = window
         self.router = CustomRouter()
-        print(self.window.rootViewController)
         navigationController = self.window.rootViewController as! UINavigationController
 
         // Set up Compass
@@ -56,18 +55,13 @@ class RouteCoordinator: NSObject {
 
     func navigateToRoute(url: NSURL, options: [String : AnyObject]?) -> Bool {
         // if options specifies viewModel, use that. Otherwise, make one yourself!
-        print("yup I'm here too")
-        print(url.absoluteString)
         let result = Compass.parse(url) { route, arguments in
-            print(route)
-            print(arguments)
             self.router.navigate(route,
                 arguments: arguments,
                 navigationController: self.navigationController,
                 coordinator: self.appCoordinator
             )
         }
-        print(result)
         return result
     }
 

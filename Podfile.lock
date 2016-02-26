@@ -1,4 +1,5 @@
 PODS:
+  - Bond (4.3.0)
   - Charts (2.2.2):
     - Charts/Core (= 2.2.2)
   - Charts/Core (2.2.2)
@@ -8,11 +9,13 @@ PODS:
   - Sugar (1.0.5)
 
 DEPENDENCIES:
+  - Bond (~> 4.0)
   - Charts
   - Compass
   - Eureka (~> 1.3)
 
 SPEC CHECKSUMS:
+  Bond: ebe2364b18130690083cbceff036420b21494ae4
   Charts: e32b718fa716bdb7693b9e419d6d4a39a3f7992e
   Compass: f4b8c37f9b315f0ee4f5e4f71888c54c92992d5d
   Eureka: 10df73e578ed8ec1f30c8fda5b4ffc8739786b74

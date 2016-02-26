@@ -13,6 +13,15 @@ class DatabaseService {
     var coordinator: CoreDataCoordinator!
     var persistentStoreCoordinator: NSPersistentStoreCoordinator
     var managedObjectContext: NSManagedObjectContext
+    var managedObjectModel: NSManagedObjectModel
+
+    let allHabitsFetch: NSFetchRequest = {
+        let fetchRequest = NSFetchRequest(entityName: "Habit")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "order", ascending: true)]
+        return fetchRequest
+    }()
+
+    let fetchTemplates: [String : NSFetchRequest]
 
     init(coordinator: CoreDataCoordinator) {
         self.coordinator = coordinator
@@ -25,8 +34,12 @@ class DatabaseService {
         guard let mom = NSManagedObjectModel(contentsOfURL: modelURL) else {
             fatalError("Error initializing mom from: \(modelURL)")
         }
+        managedObjectModel = mom
+        fetchTemplates = [
+            "allHabits": allHabitsFetch
+        ]
 
-        persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: mom)
+        persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
         self.managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
         self.managedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator
 
@@ -50,7 +63,6 @@ class DatabaseService {
                         NSInferMappingModelAutomaticallyOption: true
                     ])
             } catch {
-                print("badness")
                 fatalError("Error migrating store: \(error)")
             }
         }
@@ -59,14 +71,13 @@ class DatabaseService {
 
     // MARK: - Habit Operations
 
-    func fetchAllHabits(callback: ((habits: [Habit]?) -> Void)) {
-        let request = NSFetchRequest(entityName: "Habit")
+    func fetchAllHabits(callback: ((habits: [Habit]) -> Void)) {
+        let request = self.fetchTemplates["allHabits"]!
 
         do {
-            let habits = try managedObjectContext.executeFetchRequest(request) as? [Habit]
+            let habits = try managedObjectContext.executeFetchRequest(request) as! [Habit]
             callback(habits: habits)
         } catch let error as NSError {
-            callback(habits: nil)
             print(error.localizedDescription)
         }
     }
@@ -197,15 +208,14 @@ class DatabaseService {
 
     // MARK: - Trigger Operations
 
-    func fetchAllTriggers(callback: ((triggers: [NSManagedObject]?) -> Void)) {
+    func fetchAllTriggers(callback: ((triggers: [NSManagedObject]) -> Void)) {
         let request = NSFetchRequest(entityName: "Trigger")
         request.includesSubentities = true
 
         do {
-            let triggers = try managedObjectContext.executeFetchRequest(request) as? [NSManagedObject]
+            let triggers = try managedObjectContext.executeFetchRequest(request) as! [NSManagedObject]
             callback(triggers: triggers)
         } catch let error as NSError {
-            callback(triggers: nil)
             print(error.localizedDescription)
         }
     }

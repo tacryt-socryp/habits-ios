@@ -7,5 +7,7 @@ target 'Tailor' do
   pod 'Eureka', '~> 1.3'
   pod 'Compass'
   pod 'Charts'
+
+  pod 'Bond', '~> 4.0'
 end
 

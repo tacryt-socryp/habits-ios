@@ -10,19 +10,18 @@ import UIKit
 
 class HabitGridViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, AppViewController {
 
-    var appCoordinator : AppCoordinator? = nil
-
-    var viewModel : ViewModel? = nil
+    var viewModel : HabitGridModel? = nil
 
     func setup(viewModel: ViewModel) {
-        self.viewModel = viewModel
-        print("setup!")
+        self.viewModel = viewModel as? HabitGridModel
+        self.bindModel()
     }
 
     // use bond
-    func bindModel() -> Bool {
-        let vm = self.viewModel as! HabitGridModel
-        return false
+    func bindModel() {
+//        if let vm = self.viewModel {
+//            // set your data!
+//        }
     }
 
     // MARK: - App Life Cycle
@@ -56,7 +55,7 @@ class HabitGridViewController: UIViewController, UICollectionViewDataSource, UIC
     // MARK: - Collection View
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 18
+        return viewModel?.appData?.allHabits.count ?? -1
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
