@@ -25,4 +25,11 @@ class HabitGridModel: ViewModel {
             print("bound to your habits!")
         }
     }
+
+    // MARK: - User Events
+    func addTapped() {
+        let habitGrid = routeCoordinator.routeEnumToURL(routesEnum.habitGrid)
+        routeCoordinator.navigateToRoute(habitGrid, options: nil)
+        print("add was tapped")
+    }
 }

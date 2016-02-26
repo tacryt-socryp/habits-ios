@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Compass
     func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
-        return appCoordinator.navigateToRoute(url, options: options)
+        return appCoordinator.routeCoordinator.navigateToRoute(url, options: options)
     }
 
 

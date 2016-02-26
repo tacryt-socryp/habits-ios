@@ -28,6 +28,8 @@ class HabitGridViewController: UIViewController, UICollectionViewDataSource, UIC
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "＋", style: .Plain, target: self, action: "addTapped")
+
         let space = 5.0 as CGFloat
         let flowLayout = UICollectionViewFlowLayout()
         // Set view cell size
@@ -49,7 +51,13 @@ class HabitGridViewController: UIViewController, UICollectionViewDataSource, UIC
         collectionView.dataSource = self
         collectionView.backgroundColor = UIColor.blackColor()
 
+
         self.view.addSubview(collectionView)
+    }
+
+    // MARK: - User Events
+    func addTapped() {
+        viewModel?.addTapped()
     }
 
     // MARK: - Collection View

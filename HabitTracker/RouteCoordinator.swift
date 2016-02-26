@@ -53,6 +53,10 @@ class RouteCoordinator: NSObject {
         router.routes = routerRoutes
     }
 
+    func routeEnumToURL(route: routesEnum) -> NSURL {
+        return NSURL(string: "\(Compass.scheme)\(route.rawValue)")!
+    }
+
     func navigateToRoute(url: NSURL, options: [String : AnyObject]?) -> Bool {
         // if options specifies viewModel, use that. Otherwise, make one yourself!
         let result = Compass.parse(url) { route, arguments in

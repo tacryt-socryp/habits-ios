@@ -41,8 +41,8 @@ class AppCoordinator {
     func start() {
         // Basic UI initialization
 
-        let url: NSURL = NSURL(string: "\(Compass.scheme)\(routesEnum.habitGrid.rawValue)")!
-        self.navigateToRoute(url, options: nil)
+        let url = routeCoordinator.routeEnumToURL(routesEnum.habitGrid)
+        routeCoordinator.navigateToRoute(url, options: nil)
 
         // Override point for customization after application launch.
         if(UIApplication.instancesRespondToSelector(Selector("registerUserNotificationSettings:"))) {
@@ -57,11 +57,6 @@ class AppCoordinator {
         } else {
             print("SOMETHING IS FUCKED UP")
         }
-    }
-
-    
-    func navigateToRoute(url: NSURL, options: [String : AnyObject]?) -> Bool {
-        return routeCoordinator.navigateToRoute(url, options: options)
     }
 
     /// pop the current scene to go back to the previous scene
