@@ -27,6 +27,8 @@
 		0264A7C71C7FC5D800F37FFA /* AppDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0264A7C61C7FC5D800F37FFA /* AppDataService.swift */; };
 		02701E0B1C4C14570092E4D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02701E0A1C4C14570092E4D3 /* AppDelegate.swift */; };
 		02701E0D1C4C14570092E4D3 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02701E0C1C4C14570092E4D3 /* MasterViewController.swift */; };
+		0285901A1C7FF9B80075D4EA /* HabitGridCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 028590191C7FF9B80075D4EA /* HabitGridCard.xib */; };
+		0285901C1C7FFAE90075D4EA /* HabitGridCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0285901B1C7FFAE90075D4EA /* HabitGridCardView.swift */; };
 		029B3F7F1C65823F00403D1A /* HabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029B3F7E1C65823F00403D1A /* HabitViewController.swift */; };
 		02C1975F1C7B7AB600F0337A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C1975E1C7B7AB600F0337A /* AppCoordinator.swift */; };
 		02C197621C7B7CB300F0337A /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C197611C7B7CB300F0337A /* DatabaseService.swift */; };
@@ -69,6 +71,8 @@
 		02701E0C1C4C14570092E4D3 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		02701E131C4C14570092E4D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02701E181C4C14570092E4D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		028590191C7FF9B80075D4EA /* HabitGridCard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HabitGridCard.xib; sourceTree = "<group>"; };
+		0285901B1C7FFAE90075D4EA /* HabitGridCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitGridCardView.swift; sourceTree = "<group>"; };
 		029B3F7E1C65823F00403D1A /* HabitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitViewController.swift; sourceTree = "<group>"; };
 		02C1975E1C7B7AB600F0337A /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		02C197611C7B7CB300F0337A /* DatabaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
@@ -109,6 +113,8 @@
 				02EBB31D1C5D511D00814DBA /* WeekDaysCell.xib */,
 				02C68CBD1C66940400158B2F /* HabitTableViewCell.swift */,
 				02C9CBA01C73D13E008332E8 /* FloatingChartMarker.swift */,
+				028590191C7FF9B80075D4EA /* HabitGridCard.xib */,
+				0285901B1C7FFAE90075D4EA /* HabitGridCardView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -316,6 +322,7 @@
 				022A6B041C4DDA6C0018E9F0 /* Assets.xcassets in Resources */,
 				02EBB31F1C5D511D00814DBA /* WeekDaysCell.xib in Resources */,
 				022B9ECC1C7D4DD700C3627F /* Main.storyboard in Resources */,
+				0285901A1C7FF9B80075D4EA /* HabitGridCard.xib in Resources */,
 				022B9EC91C7D4CFD00C3627F /* Launch Screen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,6 +392,7 @@
 				02C68CBE1C66940400158B2F /* HabitTableViewCell.swift in Sources */,
 				02C1975F1C7B7AB600F0337A /* AppCoordinator.swift in Sources */,
 				02D4B65E1C7D34B9000A60C0 /* ViewHabitRoute.swift in Sources */,
+				0285901C1C7FFAE90075D4EA /* HabitGridCardView.swift in Sources */,
 				02EBB31C1C5D502900814DBA /* CustomEurekaCells.swift in Sources */,
 				0223B6B81C73D9070011C62E /* Trigger.swift in Sources */,
 				02C9CBA11C73D13E008332E8 /* FloatingChartMarker.swift in Sources */,

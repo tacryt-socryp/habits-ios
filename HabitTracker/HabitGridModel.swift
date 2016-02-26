@@ -30,9 +30,8 @@ class HabitGridModel: ViewModel {
 
     // MARK: - User Events
     func addTapped() {
-        let habitGrid = routeCoordinator.routeEnumToURL(routesEnum.habitGrid)
-        routeCoordinator.navigateToRoute(habitGrid, options: nil)
+        // let habitGrid = routeCoordinator.routeEnumToURL(routesEnum.habitGrid)
+        // routeCoordinator.navigateToRoute(habitGrid, options: nil)
         databaseService.insertHabit("Running", numDays: nil, weekDays: Set<WeekDay>(arrayLiteral: .Wednesday, .Thursday, .Friday, .Sunday))
-        print("add was tapped")
     }
 }

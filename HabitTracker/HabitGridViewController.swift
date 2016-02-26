@@ -25,9 +25,9 @@ class HabitGridViewController: UIViewController, UICollectionViewDelegate, AppVi
     func bindModel() {
         if (collectionView == nil) { return }
         viewModel?.appData?.allHabits.lift().bindTo(collectionView!) { indexPath, array, collectionView in
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionCell", forIndexPath: indexPath)
-
-            cell.backgroundColor = UIColor.greenColor()
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CardCell", forIndexPath: indexPath) as! HabitGridCardView
+            let habit = array.array[indexPath.section].array[indexPath.row]
+            cell.habitName.text = habit.name
             return cell
         }
 
@@ -52,10 +52,10 @@ class HabitGridViewController: UIViewController, UICollectionViewDelegate, AppVi
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "＋", style: .Plain, target: self, action: "addTapped")
 
-        let space = 5.0 as CGFloat
+        let space = 20.0 as CGFloat
         let flowLayout = UICollectionViewFlowLayout()
         // Set view cell size
-        flowLayout.itemSize = CGSizeMake(50, 50)
+        flowLayout.itemSize = CGSizeMake(155, 155)
 
         // Set left and right margins
         flowLayout.minimumInteritemSpacing = space
@@ -70,7 +70,8 @@ class HabitGridViewController: UIViewController, UICollectionViewDelegate, AppVi
             forCellWithReuseIdentifier: "collectionCell"
         )
         collectionView!.delegate = self
-        collectionView!.backgroundColor = UIColor.blackColor()
+        collectionView!.backgroundColor = UIColor.groupTableViewBackgroundColor()
+        collectionView!.registerNib(UINib(nibName: "HabitGridCard", bundle: nil), forCellWithReuseIdentifier: "CardCell")
 
         self.view.addSubview(collectionView!)
     }
@@ -83,6 +84,6 @@ class HabitGridViewController: UIViewController, UICollectionViewDelegate, AppVi
     // MARK: - Collection View
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 20, left: 50, bottom: 20, right: 50)
+        return UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
     }
 }
