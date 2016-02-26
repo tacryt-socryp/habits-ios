@@ -43,19 +43,21 @@ class CoreDataCoordinator: NSObject {
         self.notificationService.resetLocalNotifications()
     }
 
-    func fetchInitialData() {
+    func refreshAppData() {
         self.databaseService.fetchAllHabits { habits in
-            self.appDataService.allHabits = ObservableArray(arrayLiteral: habits)
+            print(habits.count)
+            self.appDataService.diffOnRefreshedResults(habits)
             self.appDataService.currentHabit = Observable(nil)
         }
 
         self.databaseService.fetchAllTriggers { triggers in
-            self.appDataService.allTriggers = ObservableArray(arrayLiteral: triggers)
+            // print(triggers)
+            self.appDataService.diffOnRefreshedResults(newAllTriggers: triggers)
         }
     }
 
     // MARK: - iCloud Events
-    func registerCoordinatorForStoreNotifications(coordinator : NSPersistentStoreCoordinator) {
+    func registerCoordinatorForStoreNotifications(coordinator : NSPersistentStoreCoordinator, objectContext: NSManagedObjectContext) {
         let nc : NSNotificationCenter = NSNotificationCenter.defaultCenter();
 
         nc.addObserver(self, selector: "handleStoresWillChange:",
@@ -73,6 +75,9 @@ class CoreDataCoordinator: NSObject {
         nc.addObserver(self, selector: "handleStoreChangedUbiquitousContent:",
             name: NSPersistentStoreDidImportUbiquitousContentChangesNotification,
             object: coordinator)
+
+        nc.addObserver(self, selector: "handleObjectContextDidChange:",
+            name: NSManagedObjectContextObjectsDidChangeNotification, object: objectContext)
     }
 
     func handleStoresWillChange(notification: NSNotification) {
@@ -99,13 +104,12 @@ class CoreDataCoordinator: NSObject {
         print("did change")
         if (!isCoreDataSetup) {
             isCoreDataSetup = true
-            self.fetchInitialData()
             appCoordinator.initializeAfterCoreData()
         }
         databaseService.managedObjectContext.performBlock {
             self.databaseService.managedObjectContext.mergeChangesFromContextDidSaveNotification(notification)
             self.notificationService.resetLocalNotifications()
-
+            self.refreshAppData()
             // NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notifications.fetchTableData, object: nil)
 
         }
@@ -126,6 +130,11 @@ class CoreDataCoordinator: NSObject {
             self.notificationService.resetLocalNotifications()
         }
         print(notification)
+    }
+
+    func handleObjectContextDidChange(notification: NSNotification) {
+        print("changed object context")
+        self.refreshAppData()
     }
     
 }

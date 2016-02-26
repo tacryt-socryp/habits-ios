@@ -20,8 +20,8 @@ class AppCoordinator {
     private var app: UIApplication!
 
     // MARK: - Coordinators
-    var routeCoordinator: RouteCoordinator!
-    var databaseCoordinator: CoreDataCoordinator!
+    var routeCoordinator: RouteCoordinator? = nil
+    var databaseCoordinator: CoreDataCoordinator? = nil
     var notificationCoordinator: NotificationCoordinator? = nil
     
     init(window: UIWindow, app: UIApplication) {
@@ -33,7 +33,7 @@ class AppCoordinator {
 
     func initializeAfterCoreData() {
         self.notificationCoordinator = NotificationCoordinator(
-            databaseService: databaseCoordinator.databaseService,
+            databaseService: self.databaseCoordinator!.databaseService,
             app: self.app
         )
     }
@@ -41,8 +41,8 @@ class AppCoordinator {
     func start() {
         // Basic UI initialization
 
-        let url = routeCoordinator.routeEnumToURL(routesEnum.habitGrid)
-        routeCoordinator.navigateToRoute(url, options: nil)
+        let url = routeCoordinator!.routeEnumToURL(routesEnum.habitGrid)
+        routeCoordinator!.navigateToRoute(url, options: nil)
 
         // Override point for customization after application launch.
         if(UIApplication.instancesRespondToSelector(Selector("registerUserNotificationSettings:"))) {
@@ -55,7 +55,7 @@ class AppCoordinator {
                 UIUserNotificationSettings(forTypes:[.Sound, .Alert, .Badge], categories: nil)
             )
         } else {
-            print("SOMETHING IS FUCKED UP")
+            print("we don't have the notifications permission")
         }
     }
 

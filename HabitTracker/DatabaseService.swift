@@ -43,7 +43,7 @@ class DatabaseService {
         self.managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
         self.managedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator
 
-        coordinator.registerCoordinatorForStoreNotifications(persistentStoreCoordinator)
+        coordinator.registerCoordinatorForStoreNotifications(persistentStoreCoordinator, objectContext: managedObjectContext)
 
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
             let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
@@ -68,23 +68,39 @@ class DatabaseService {
         }
     }
 
+    func deleteAllHabits() {
+        let fetchRequest = NSFetchRequest(entityName: "Habit")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+        do {
+            try self.persistentStoreCoordinator.executeRequest(deleteRequest, withContext: self.managedObjectContext)
+        } catch let error as NSError {
+            // TODO: handle the error
+        }
+    }
+
 
     // MARK: - Habit Operations
 
     func fetchAllHabits(callback: ((habits: [Habit]) -> Void)) {
         let request = self.fetchTemplates["allHabits"]!
 
-        do {
-            let habits = try managedObjectContext.executeFetchRequest(request) as! [Habit]
-            callback(habits: habits)
-        } catch let error as NSError {
-            print(error.localizedDescription)
+        self.managedObjectContext.performBlock {
+            do {
+                let habits = try self.managedObjectContext.executeFetchRequest(request) as! [Habit]
+                callback(habits: habits)
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
         }
+
     }
 
     func fetchHabit(id: NSManagedObjectID, callback: ((habit: Habit?) -> Void)) {
-        let habit = managedObjectContext.objectWithID(id) as? Habit
-        callback(habit: habit)
+        self.managedObjectContext.performBlock {
+            let habit = self.managedObjectContext.objectWithID(id) as? Habit
+            callback(habit: habit)
+        }
     }
 
     func insertHabit(name: String, numDays: Int?, weekDays: Set<WeekDay>?) -> Habit {
@@ -212,11 +228,13 @@ class DatabaseService {
         let request = NSFetchRequest(entityName: "Trigger")
         request.includesSubentities = true
 
-        do {
-            let triggers = try managedObjectContext.executeFetchRequest(request) as! [NSManagedObject]
-            callback(triggers: triggers)
-        } catch let error as NSError {
-            print(error.localizedDescription)
+        self.managedObjectContext.performBlock {
+            do {
+                let triggers = try self.managedObjectContext.executeFetchRequest(request) as! [NSManagedObject]
+                callback(triggers: triggers)
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
         }
     }
 

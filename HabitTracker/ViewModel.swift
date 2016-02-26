@@ -23,7 +23,7 @@ class ViewModel : NSObject, ViewModelProtocol {
 
     init(coordinator: AppCoordinator) {
         self.coordinator = coordinator
-        appData = self.coordinator.databaseCoordinator.appDataService
-        routeCoordinator = self.coordinator.routeCoordinator
+        appData = self.coordinator.databaseCoordinator!.appDataService
+        routeCoordinator = self.coordinator.routeCoordinator!
     }
 }
