@@ -10,7 +10,6 @@ import Bond
 
 class HabitGridModel: ViewModel {
     var databaseService: DatabaseService!
-    var numTap: Int = 0
     
     var allHabits = ObservableArray<(Habit)>([])
 
@@ -25,9 +24,21 @@ class HabitGridModel: ViewModel {
 
     // MARK: - User Events
     func addTapped() {
-        // let habitGrid = routeCoordinator.routeEnumToURL(routesEnum.habitGrid)
-        // routeCoordinator.navigateToRoute(habitGrid, options: nil)
+        databaseService.insertHabit(
+            "Running",
+            weekDays: Set<WeekDay>(arrayLiteral: WeekDay.Monday, WeekDay.Tuesday)
+        )
+    }
 
-        databaseService.insertHabit("Running", weekDays: Set<WeekDay>(arrayLiteral: WeekDay.Monday, WeekDay.Tuesday))
+    func handleCollectionTapped(index: NSIndexPath) {
+        // set current habit in app data store
+        // open individual habit view
+        appData?.currentHabit.next(self.allHabits[index.row])
+        let viewHabit = routeCoordinator.routeEnumToURL(routesEnum.viewHabit)
+        routeCoordinator.navigateToRoute(viewHabit, options: nil)
+    }
+
+    func handleCollectionPressed(index: NSIndexPath) {
+        databaseService.insertEntry(self.allHabits[index.row])
     }
 }

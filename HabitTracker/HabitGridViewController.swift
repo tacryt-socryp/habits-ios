@@ -27,7 +27,7 @@ class HabitGridViewController: UIViewController, UICollectionViewDelegate, AppVi
         if (collectionView == nil) { return }
         viewModel?.allHabits.lift().bindTo(collectionView!) { indexPath, array, collectionView in
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CardCell", forIndexPath: indexPath) as! HabitGridCardView
-            let habit = array.array[indexPath.section].array[indexPath.row]
+            let habit = array[indexPath.section][indexPath.row]
             cell.habitName.text = habit.name
             return cell
         }
@@ -60,11 +60,17 @@ class HabitGridViewController: UIViewController, UICollectionViewDelegate, AppVi
             forCellWithReuseIdentifier: "collectionCell"
         )
         collectionView?.delegate = self
-        collectionView?.backgroundColor = UIColor.groupTableViewBackgroundColor()
+        collectionView?.backgroundColor = Constants.Colors.skyBlueBackground
         collectionView?.registerNib(UINib(
             nibName: "HabitGridCard",
             bundle: nil
         ), forCellWithReuseIdentifier: "CardCell")
+
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: "handleTap:")
+        let pressRecognizer = UILongPressGestureRecognizer(target: self, action: "handlePress:")
+
+        collectionView?.addGestureRecognizer(tapRecognizer)
+        collectionView?.addGestureRecognizer(pressRecognizer)
 
         self.view.addSubview(collectionView!)
     }
@@ -74,5 +80,20 @@ class HabitGridViewController: UIViewController, UICollectionViewDelegate, AppVi
         viewModel?.addTapped()
     }
 
+    func getIndexForLocation(gesture: UITapGestureRecognizer) -> NSIndexPath? {
+        return collectionView?.indexPathForItemAtPoint(gesture.locationInView(collectionView))
+    }
+
+    func handleTap(sender: UITapGestureRecognizer) {
+        if sender.state == .Ended, let index = self.getIndexForLocation(sender) {
+            viewModel?.handleCollectionTapped(index)
+        }
+    }
+
+    func handlePress(sender: UITapGestureRecognizer) {
+        if sender.state == .Ended, let index = self.getIndexForLocation(sender) {
+            viewModel?.handleCollectionPressed(index)
+        }
+    }
 
 }

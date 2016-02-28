@@ -110,7 +110,6 @@ class CoreDataCoordinator: NSObject {
             self.databaseService.managedObjectContext.mergeChangesFromContextDidSaveNotification(notification)
             self.notificationService.resetLocalNotifications()
             self.refreshAppData()
-            self.databaseService.deleteAllHabits()
             // NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notifications.fetchTableData, object: nil)
 
         }

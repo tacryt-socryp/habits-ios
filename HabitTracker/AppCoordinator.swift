@@ -41,6 +41,7 @@ class AppCoordinator {
     func start() {
         // Basic UI initialization
 
+        app.statusBarStyle = .LightContent
         let url = routeCoordinator!.routeEnumToURL(routesEnum.habitGrid)
         routeCoordinator!.navigateToRoute(url, options: nil)
 

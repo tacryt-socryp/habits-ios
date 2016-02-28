@@ -16,6 +16,7 @@ struct Constants {
         static let darkPrimary = Constants.UIColorConverter(0x0097A7)
         static let normalPrimary = Constants.UIColorConverter(0x00BCD4)
         static let accent = Constants.UIColorConverter(0x7C4DFF)
+        static let skyBlueBackground = Constants.UIColorConverter(0x84F5EC)
     }
 
     struct ViewControllers {

@@ -12,16 +12,16 @@ import Compass
 enum routesEnum: String {
     case habitGrid = "habitGrid"
     case createHabit = "createHabit"
-    case viewHabit = "viewHabit:{habit}"
-    case editHabit = "editHabit:{habit}"
+    case viewHabit = "viewHabit"
+    case editHabit = "editHabit"
     case settings = "settings"
 }
 
 let compassRoutes: [String] = [
     "habitGrid",
     "createHabit",
-    "viewHabit:{habit}",
-    "editHabit:{habit}",
+    "viewHabit",
+    "editHabit",
     "settings"
 ];
 
@@ -46,6 +46,12 @@ class RouteCoordinator: NSObject {
         self.window = window
         self.router = CustomRouter()
         navigationController = self.window.rootViewController as! UINavigationController
+        navigationController?.navigationBar.setBackgroundImage(
+            UIImage(),
+            forBarMetrics: UIBarMetrics.Default
+        )
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
 
         // Set up Compass
         Compass.scheme = "compass"
