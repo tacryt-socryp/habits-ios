@@ -13,10 +13,6 @@ import CoreData
 class Habit: NSManagedObject {
 
     @NSManaged var name: String
-    @NSManaged var order: NSNumber
-
-    @NSManaged var useNumDays: NSNumber?
-    @NSManaged var numDays: NSNumber?
 
     @NSManaged var monday: NSNumber?
     @NSManaged var tuesday: NSNumber?
@@ -26,22 +22,19 @@ class Habit: NSManagedObject {
     @NSManaged var saturday: NSNumber?
     @NSManaged var sunday: NSNumber?
 
-    @NSManaged var entries: NSArray
-    @NSManaged var triggers: NSArray
+    @NSManaged var entries: Array<Entry>
+    @NSManaged var triggers: Array<NSManagedObject>
 
     @NSManaged var needsAction: NSNumber
 
     func sortEntries() {
-        let mutableEntries = entries.mutableCopy() as! NSMutableArray
-
-        mutableEntries.sortUsingComparator({
-            (($0 as! Entry).date ).compare(($1 as! Entry).date)
-        })
-        entries = mutableEntries
+        entries.sortInPlace {
+            return $0.date.compare($1.date).rawValue > 0
+        }
     }
 
     var isTodayComplete: Bool {
-        if let lastObject = entries.lastObject as? Entry {
+        if let lastObject = entries.last {
             let formatter = NSDateFormatter()
             formatter.dateFormat = "yyyy.MM.dd"
             let todayString = formatter.stringFromDate(NSDate())

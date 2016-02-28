@@ -28,10 +28,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let request = NSFetchRequest(entityName: "Habit")
-        let orderSort = NSSortDescriptor(key: "order", ascending: true)
-        request.sortDescriptors = [orderSort]
 //
 //        dataController = (UIApplication.sharedApplication().delegate as! AppDelegate).dataController
 //        let moc = dataController.managedObjectContext

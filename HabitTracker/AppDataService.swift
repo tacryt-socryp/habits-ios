@@ -25,8 +25,7 @@ class AppDataService {
     init(coordinator: AppCoordinator, databaseService: DatabaseService) {
         self.coordinator = coordinator
         self.databaseService = databaseService
-        /*allHabits.observe({ event in
-            print("allHabits is now: \(event.sequence)")
+        allHabits.observe({ event in
             switch event.operation {
             case .Insert(let elements, let fromIndex):
                 print("Inserted \(elements) from index \(fromIndex)")
@@ -41,7 +40,7 @@ class AppDataService {
             }
         })
 
-        allTriggers.observe({ event in
+        /*allTriggers.observe({ event in
             print("allTriggers is now: \(event.sequence)")
             switch event.operation {
             case .Insert(let elements, let fromIndex):

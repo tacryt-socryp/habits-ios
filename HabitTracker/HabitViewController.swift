@@ -13,8 +13,6 @@ class HabitViewController: FormViewController {
 
     struct rowNames {
         static let nameRow = "Habit Name"
-        static let useNumberOfDaysRow = "Use Number of Days"
-        static let numberOfDaysRow = "Number of Days"
         static let weekDaysRow = "Week Days"
         static let createRow = "Save Habit"
     }
@@ -61,18 +59,6 @@ class HabitViewController: FormViewController {
                 }
                 $0.updateCell()
                 $0.title = $0.tag
-            }
-            <<< SwitchRow(rowNames.useNumberOfDaysRow) {
-                if isCreateMode {
-                    $0.value = false
-                } else {
-                    if let h = habit {
-                        $0.value = h.useNumDays == 1
-                    }
-                }
-
-                $0.title = $0.tag
-
             }
             <<< WeekDayRow(rowNames.weekDaysRow) {
                 if isCreateMode {
@@ -136,21 +122,13 @@ class HabitViewController: FormViewController {
     func writeHabit() {
         let values = form.values()
         let name = values[rowNames.nameRow] as! String
-        let useNumDays = values[rowNames.useNumberOfDaysRow] as! Bool
 
-        var numDays: Int? = nil
-        var weekDays: Set<WeekDay>? = nil
-
-        if useNumDays {
-            numDays = values[rowNames.numberOfDaysRow] as? Int
-        } else {
-            weekDays = values[rowNames.weekDaysRow] as? Set<WeekDay>
-        }
+        let weekDays: Set<WeekDay>? = values[rowNames.weekDaysRow] as? Set<WeekDay>
 
         if currentState.contains(.Create) {
-            dataController.insertHabit(name, numDays: numDays, weekDays: weekDays)
+            dataController.insertHabit(name, weekDays: weekDays)
         } else {
-            dataController.updateHabit(habit!.objectID, name: name, numDays: numDays, weekDays: weekDays)
+            dataController.updateHabit(habit!.objectID, name: name, weekDays: weekDays)
             testNotification(habit!)
         }
     }

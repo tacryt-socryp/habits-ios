@@ -17,7 +17,10 @@ class DatabaseService {
 
     let allHabitsFetch: NSFetchRequest = {
         let fetchRequest = NSFetchRequest(entityName: "Habit")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "order", ascending: true)]
+        fetchRequest.sortDescriptors = [
+            NSSortDescriptor(key: "needsAction", ascending: true),
+            NSSortDescriptor(key: "name", ascending: true)
+        ]
         return fetchRequest
     }()
 
@@ -87,6 +90,7 @@ class DatabaseService {
 
         self.managedObjectContext.performBlock {
             do {
+                print("right here")
                 let habits = try self.managedObjectContext.executeFetchRequest(request) as! [Habit]
                 callback(habits: habits)
             } catch let error as NSError {
@@ -103,20 +107,14 @@ class DatabaseService {
         }
     }
 
-    func insertHabit(name: String, numDays: Int?, weekDays: Set<WeekDay>?) -> Habit {
+    func insertHabit(name: String, weekDays: Set<WeekDay>?) -> Habit {
         let habit = NSEntityDescription.insertNewObjectForEntityForName("Habit", inManagedObjectContext: self.managedObjectContext) as! Habit
         // set properties
         var dict: [String:AnyObject] = [
             "name": name
         ]
 
-        if let nD = numDays {
-            dict.updateValue(1, forKey: "useNumDays")
-            dict.updateValue(nD, forKey: "numDays")
-        }
-
         if let wD = weekDays {
-            dict.updateValue(0, forKey: "useNumDays")
             dict.updateValue(wD.contains(.Sunday), forKey: "sunday")
             dict.updateValue(wD.contains(.Monday), forKey: "monday")
             dict.updateValue(wD.contains(.Tuesday), forKey: "tuesday")
@@ -126,8 +124,6 @@ class DatabaseService {
             dict.updateValue(wD.contains(.Saturday), forKey: "saturday")
         }
 
-        // TODO: determine order based on max order within the list
-        dict.updateValue(0, forKey: "order")
         dict.updateValue(0, forKey: "needsAction")
         habit.setValuesForKeysWithDictionary(dict)
 
@@ -145,7 +141,6 @@ class DatabaseService {
 
     func updateHabit(id: NSManagedObjectID,
         name: String? = nil,
-        numDays: Int? = nil,
         weekDays: Set<WeekDay>? = nil
         ) -> Habit? {
 
@@ -156,13 +151,7 @@ class DatabaseService {
                 dict.updateValue(n, forKey: "name")
             }
 
-            if let nD = numDays {
-                dict.updateValue(1, forKey: "useNumDays")
-                dict.updateValue(nD, forKey: "numDays")
-            }
-
             if let wD = weekDays {
-                dict.updateValue(0, forKey: "useNumDays")
                 dict.updateValue(wD.contains(.Sunday), forKey: "sunday")
                 dict.updateValue(wD.contains(.Monday), forKey: "monday")
                 dict.updateValue(wD.contains(.Tuesday), forKey: "tuesday")
@@ -172,8 +161,6 @@ class DatabaseService {
                 dict.updateValue(wD.contains(.Saturday), forKey: "saturday")
             }
 
-            // TODO: determine order based on max order within the list
-            dict.updateValue(0, forKey: "order")
             habit?.setValuesForKeysWithDictionary(dict)
 
             self.managedObjectContext.performBlock {
@@ -333,7 +320,6 @@ class DatabaseService {
         if let n = note {
             dict.updateValue(n, forKey: "note")
         }
-        // TODO: determine order based on max order within the list
         entry.setValuesForKeysWithDictionary(dict)
         entry.habit = habit
 
@@ -357,7 +343,6 @@ class DatabaseService {
         if let n = note {
             dict.updateValue(n, forKey: "note")
         }
-        // TODO: determine order based on max order within the list
         entry?.setValuesForKeysWithDictionary(dict)
         
         self.managedObjectContext.performBlock {
