@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Bond
 
 class HabitGridViewController: UIViewController, UICollectionViewDelegate, AppViewController {
 
@@ -28,6 +29,7 @@ class HabitGridViewController: UIViewController, UICollectionViewDelegate, AppVi
         viewModel?.allHabits.lift().bindTo(collectionView!) { indexPath, array, collectionView in
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CardCell", forIndexPath: indexPath) as! HabitGridCardView
             let habit = array[indexPath.section][indexPath.row]
+            cell.backgroundColor = habit.isTodayComplete ? UIColor.greenColor() : UIColor.whiteColor()
             cell.habitName.text = habit.name
             return cell
         }

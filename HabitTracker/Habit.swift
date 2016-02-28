@@ -22,19 +22,18 @@ class Habit: NSManagedObject {
     @NSManaged var saturday: NSNumber?
     @NSManaged var sunday: NSNumber?
 
-    @NSManaged var entries: Array<Entry>
-    @NSManaged var triggers: Array<NSManagedObject>
+    @NSManaged var entries: Set<Entry>
+    @NSManaged var triggers: Set<NSManagedObject>
 
     @NSManaged var needsAction: NSNumber
 
-    func sortEntries() {
-        entries.sortInPlace {
-            return $0.date.compare($1.date).rawValue > 0
-        }
+    var orderedEntries: Array<Entry> {
+        let ordered = self.entries.sort { $0.date.compare($1.date).rawValue > 0 }
+        return ordered
     }
 
-    var isTodayComplete: Bool {
-        if let lastObject = entries.last {
+    lazy var isTodayComplete: Bool = {
+        if let lastObject = self.orderedEntries.last {
             let formatter = NSDateFormatter()
             formatter.dateFormat = "yyyy.MM.dd"
             let todayString = formatter.stringFromDate(NSDate())
@@ -42,6 +41,6 @@ class Habit: NSManagedObject {
             return todayString == mostRecentEntryString
         }
         return false
-    }
+    }()
 
 }

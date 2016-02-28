@@ -40,5 +40,10 @@ class HabitGridModel: ViewModel {
 
     func handleCollectionPressed(index: NSIndexPath) {
         databaseService.insertEntry(self.allHabits[index.row])
+        allHabits.performBatchUpdates{ array in
+            let habit = array.removeAtIndex(index.row)
+            habit.isTodayComplete = true
+            array.insert(habit, atIndex: index.row)
+        }
     }
 }
