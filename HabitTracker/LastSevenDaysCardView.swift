@@ -18,7 +18,6 @@ class LastSevenDaysCardView: CardView {
             entries.forEach { entry in
                 text += String(entry.day) + " "
             }
-            print("TEXT: \n\n\n\n\n" + text)
             entriesLabel.text = text
         }
     }

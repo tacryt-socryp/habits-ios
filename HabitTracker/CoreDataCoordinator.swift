@@ -12,11 +12,6 @@ import Bond
 
 var fetchRequestTemplates = [String : NSFetchRequest]()
 
-class AppDataStore {
-    var habits: [Habit]? = nil
-    var currentHabit: Habit? = nil
-}
-
 class CoreDataCoordinator: NSObject {
 
     var databaseService: DatabaseService!
@@ -45,9 +40,7 @@ class CoreDataCoordinator: NSObject {
 
     func refreshAppData() {
         self.databaseService.fetchAllHabits { habits in
-            print(habits.count)
             self.appDataService.diffOnRefreshedResults(habits)
-            self.appDataService.currentHabit = Observable(nil)
         }
 
         self.databaseService.fetchAllTriggers { triggers in

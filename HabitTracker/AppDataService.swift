@@ -44,9 +44,11 @@ class AppDataService {
         })
 
         currentHabit.observe { habit in
-            if let habit = habit {
-                self.diffOnRefreshedResults(newCurrHabitEntries: habit.orderedEntries)
-                self.diffOnRefreshedResults(newCurrHabitTriggers: habit.orderedTriggers)
+            if let h = habit {
+                print("current habit observed")
+                print(h.orderedEntries)
+                self.diffOnRefreshedResults(newCurrHabitEntries: h.orderedEntries)
+                self.diffOnRefreshedResults(newCurrHabitTriggers: h.orderedTriggers)
             }
         }
 
@@ -76,6 +78,7 @@ class AppDataService {
             self.allTriggers.diffInPlace(newAllTriggers)
         }
         if let newCurrHabitEntries = newCurrHabitEntries {
+            print(newCurrHabitEntries)
             self.currentHabitEntries.diffInPlace(newCurrHabitEntries)
         }
         if let newCurrHabitTriggers = newCurrHabitTriggers {

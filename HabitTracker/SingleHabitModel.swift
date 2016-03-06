@@ -48,6 +48,8 @@ class SingleHabitModel: ViewModel {
 
 
         }
+        // print(self.currentHabit.value)
+        print(self.currentHabit.value!.entries)
 
         appData?.currentHabitEntries.bindTo(self.entries)
         self.entries.observe { newEntries in
@@ -55,9 +57,12 @@ class SingleHabitModel: ViewModel {
             let weekAgo = NSDate.previousDay(now, numberOfDays: 7)
             self.lastWeekEntries.diffInPlace(
                 newEntries.sequence.filter { entry in
-                    return entry.date.timeIntervalSinceDate(weekAgo) < 0
+                    return entry.date.timeIntervalSinceDate(weekAgo) > 0
                 }
             )
+            print(weekAgo)
+            print(newEntries.sequence)
+            print(self.lastWeekEntries.array)
         }
 
         let example2Card = LastSevenDaysCardData()
