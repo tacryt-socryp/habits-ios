@@ -59,15 +59,34 @@ class SingleHabitModel: ViewModel {
                 }
             )
         }
+
+        let example2Card = LastSevenDaysCardData()
+        self.lastWeekEntries.observe { entries in
+            example2Card.entryArray = entries.sequence
+        }
+        allCards.insert(example2Card, atIndex: 1)
     }
 
     // MARK: - User Events
 
     func handleCollectionTapped(index: NSIndexPath) {
-        // expand the card that had been tapped (graph expands into larger graph, etc, Fitbit style)
+
     }
 
     func handleCollectionPressed(index: NSIndexPath) {
-        // should we allow interactions of this kind?
+        
+    }
+
+    func handleItemSize(index: NSIndexPath) -> CGSize? {
+        let cardData = self.allCards.array[index.row]
+        if let cardType = Constants.CardEnum(rawValue: cardData.cardType) {
+            switch cardType {
+            case .habitGridCard:
+                return (cardData as! HabitGridCardData).itemSize()
+            case .lastSevenDaysCard:
+                return (cardData as! LastSevenDaysCardData).itemSize()
+            }
+        }
+        return nil
     }
 }

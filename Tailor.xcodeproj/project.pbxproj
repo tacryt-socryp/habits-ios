@@ -34,6 +34,8 @@
 		0264A7C71C7FC5D800F37FFA /* AppDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0264A7C61C7FC5D800F37FFA /* AppDataService.swift */; };
 		02701E0B1C4C14570092E4D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02701E0A1C4C14570092E4D3 /* AppDelegate.swift */; };
 		02701E0D1C4C14570092E4D3 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02701E0C1C4C14570092E4D3 /* MasterViewController.swift */; };
+		027D669E1C8C9CCC003F5484 /* LastSevenDaysCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027D669D1C8C9CCC003F5484 /* LastSevenDaysCardView.swift */; };
+		027D66A11C8C9E17003F5484 /* LastSevenDaysCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 027D66A01C8C9E17003F5484 /* LastSevenDaysCard.xib */; };
 		0285901A1C7FF9B80075D4EA /* HabitGridCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 028590191C7FF9B80075D4EA /* HabitGridCard.xib */; };
 		0285901C1C7FFAE90075D4EA /* HabitGridCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0285901B1C7FFAE90075D4EA /* HabitGridCardView.swift */; };
 		029B3F7F1C65823F00403D1A /* HabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029B3F7E1C65823F00403D1A /* HabitViewController.swift */; };
@@ -85,6 +87,8 @@
 		02701E0C1C4C14570092E4D3 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		02701E131C4C14570092E4D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02701E181C4C14570092E4D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		027D669D1C8C9CCC003F5484 /* LastSevenDaysCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastSevenDaysCardView.swift; sourceTree = "<group>"; };
+		027D66A01C8C9E17003F5484 /* LastSevenDaysCard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LastSevenDaysCard.xib; sourceTree = "<group>"; };
 		028590191C7FF9B80075D4EA /* HabitGridCard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HabitGridCard.xib; sourceTree = "<group>"; };
 		0285901B1C7FFAE90075D4EA /* HabitGridCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitGridCardView.swift; sourceTree = "<group>"; };
 		029B3F7E1C65823F00403D1A /* HabitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitViewController.swift; sourceTree = "<group>"; };
@@ -123,13 +127,11 @@
 		020A71051C4C153300E3BCB7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				027D669F1C8C9D24003F5484 /* Cards */,
 				02EBB31B1C5D502900814DBA /* CustomEurekaCells.swift */,
 				02EBB31D1C5D511D00814DBA /* WeekDaysCell.xib */,
 				02C68CBD1C66940400158B2F /* HabitTableViewCell.swift */,
 				02C9CBA01C73D13E008332E8 /* FloatingChartMarker.swift */,
-				028590191C7FF9B80075D4EA /* HabitGridCard.xib */,
-				0285901B1C7FFAE90075D4EA /* HabitGridCardView.swift */,
-				0216EB001C8C7F9D00A094CB /* CardView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -172,7 +174,6 @@
 				0217CA411C7BF42500B910FF /* HabitGridModel.swift */,
 				0216EAF11C8A688900A094CB /* SingleHabitModel.swift */,
 				0216EAFA1C8A999B00A094CB /* GraphModel.swift */,
-				0216EB021C8C824600A094CB /* CardData.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -226,6 +227,19 @@
 				02C68CBF1C669D3000158B2F /* HabitDetailViewController.swift */,
 			);
 			name = OldControllers;
+			sourceTree = "<group>";
+		};
+		027D669F1C8C9D24003F5484 /* Cards */ = {
+			isa = PBXGroup;
+			children = (
+				0216EB001C8C7F9D00A094CB /* CardView.swift */,
+				0216EB021C8C824600A094CB /* CardData.swift */,
+				0285901B1C7FFAE90075D4EA /* HabitGridCardView.swift */,
+				028590191C7FF9B80075D4EA /* HabitGridCard.xib */,
+				027D669D1C8C9CCC003F5484 /* LastSevenDaysCardView.swift */,
+				027D66A01C8C9E17003F5484 /* LastSevenDaysCard.xib */,
+			);
+			name = Cards;
 			sourceTree = "<group>";
 		};
 		02C197601C7B7CA800F0337A /* Services */ = {
@@ -350,6 +364,7 @@
 			files = (
 				022A6B041C4DDA6C0018E9F0 /* Assets.xcassets in Resources */,
 				02EBB31F1C5D511D00814DBA /* WeekDaysCell.xib in Resources */,
+				027D66A11C8C9E17003F5484 /* LastSevenDaysCard.xib in Resources */,
 				022B9ECC1C7D4DD700C3627F /* Main.storyboard in Resources */,
 				0285901A1C7FF9B80075D4EA /* HabitGridCard.xib in Resources */,
 				022B9EC91C7D4CFD00C3627F /* Launch Screen.storyboard in Resources */,
@@ -434,6 +449,7 @@
 				02701E0D1C4C14570092E4D3 /* MasterViewController.swift in Sources */,
 				02163E611C5BCF6C002B50D8 /* Entry.swift in Sources */,
 				0217CA3D1C7BF18500B910FF /* ViewModel.swift in Sources */,
+				027D669E1C8C9CCC003F5484 /* LastSevenDaysCardView.swift in Sources */,
 				029B3F7F1C65823F00403D1A /* HabitViewController.swift in Sources */,
 				02163E5F1C5BCF6C002B50D8 /* Habit.swift in Sources */,
 				0217CA4A1C7BFCEE00B910FF /* CoreDataCoordinator.swift in Sources */,

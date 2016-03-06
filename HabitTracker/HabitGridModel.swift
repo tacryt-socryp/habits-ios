@@ -61,4 +61,9 @@ class HabitGridModel: ViewModel {
         }
 
     }
+
+    func handleItemSize(index: NSIndexPath) -> CGSize? {
+        let cardData = self.allCards.array[index.row] as! HabitGridCardData
+        return cardData.itemSize()
+    }
 }

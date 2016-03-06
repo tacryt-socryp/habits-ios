@@ -6,22 +6,34 @@
 //  Copyright © 2016 Logan Allen. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class CardData: NSObject {
-    var cardType: Constants.CardEnum? = nil
+    var cardType = ""
 }
 
 class HabitGridCardData: CardData {
     var habit: Habit? = nil
+    
+    override init() {
+        super.init()
+        self.cardType = Constants.CardEnum.habitGridCard.rawValue
+    }
+
+    func itemSize() -> CGSize {
+        return CGSizeMake(165,165)
+    }
 }
 
 class LastSevenDaysCardData: CardData {
-    var entryArray: [Entry]
+    var entryArray: [Entry]? = nil
 
-    init(entries: [Entry]) {
-        self.entryArray = entries
+    override init() {
         super.init()
-        self.cardType = Constants.CardEnum.lastSevenDaysCard
+        self.cardType = Constants.CardEnum.lastSevenDaysCard.rawValue
+    }
+
+    func itemSize() -> CGSize {
+        return CGSizeMake(345,165)
     }
 }

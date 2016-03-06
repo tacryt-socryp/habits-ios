@@ -32,9 +32,15 @@ class SingleHabitViewController: UIViewController, UICollectionViewDelegate, App
             // pass in a CardData object to CardView
             // call setup on CardView, which calls setup on CardData, which adds views to itself
             let cardData = array[indexPath.section][indexPath.row]
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CardCell", forIndexPath: indexPath) as! CardView
-
+            var cell: CardView
+            switch Constants.CardEnum(rawValue: cardData.cardType)! {
+            case .habitGridCard:
+                cell = collectionView.dequeueReusableCellWithReuseIdentifier("HabitGridCard", forIndexPath: indexPath) as! HabitGridCardView
+            case .lastSevenDaysCard:
+                cell = collectionView.dequeueReusableCellWithReuseIdentifier("LastSevenDaysCard", forIndexPath: indexPath) as! LastSevenDaysCardView
+            }
             cell.cardData = cardData
+            cell.setup()
 
             return cell
         }
@@ -47,7 +53,7 @@ class SingleHabitViewController: UIViewController, UICollectionViewDelegate, App
         let space = 15.0 as CGFloat
         let flowLayout = UICollectionViewFlowLayout()
         // Set view cell size
-        flowLayout.itemSize = CGSizeMake(165, 165)
+        // flowLayout.itemSize = CGSizeMake(165, 165)
 
         // Set left and right margins
         flowLayout.minimumInteritemSpacing = space
@@ -60,19 +66,19 @@ class SingleHabitViewController: UIViewController, UICollectionViewDelegate, App
 
 
         collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: flowLayout)
-        collectionView?.registerClass(
-            UICollectionViewCell.self,
-            forCellWithReuseIdentifier: "collectionCell"
-        )
         collectionView?.delegate = self
 
         // TODO: set this programmatically based on the animal
         collectionView?.backgroundColor = Constants.Colors.skyBlueBackground
         // register the different types of habit cards
         collectionView?.registerNib(UINib(
+            nibName: "LastSevenDaysCard",
+            bundle: nil
+            ), forCellWithReuseIdentifier: "LastSevenDaysCard")
+        collectionView?.registerNib(UINib(
             nibName: "HabitGridCard",
             bundle: nil
-            ), forCellWithReuseIdentifier: "CardCell")
+        ), forCellWithReuseIdentifier: "HabitGridCard")
 
         let tapRecognizer = UITapGestureRecognizer(target: self, action: "handleTap:")
         let pressRecognizer = UILongPressGestureRecognizer(target: self, action: "handlePress:")
@@ -99,6 +105,11 @@ class SingleHabitViewController: UIViewController, UICollectionViewDelegate, App
         if sender.state == .Ended, let index = self.getIndexForLocation(sender) {
             viewModel?.handleCollectionPressed(index)
         }
+    }
+
+    func collectionView(_: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+            return viewModel?.handleItemSize(indexPath) ?? CGSizeMake(0,0)
     }
     
 }

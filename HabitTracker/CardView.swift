@@ -9,11 +9,7 @@
 import UIKit
 
 class CardView: UICollectionViewCell {
-    var cardData: CardData? = nil {
-        didSet {
-            self.setup()
-        }
-    }
+    var cardData: CardData? = nil
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -25,15 +21,6 @@ class CardView: UICollectionViewCell {
     }
 
     func setup() {
-        if let cardType = cardData?.cardType {
-            switch cardType {
-            case .habitGridCard:
-                (self as! HabitGridCardView).setup()
-            case .lastSevenDaysCard:
-                break
-            case .none:
-                break
-            }
-        }
+        print("don't call this; its a stub")
     }
 }

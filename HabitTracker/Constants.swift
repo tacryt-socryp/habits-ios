@@ -46,10 +46,9 @@ struct Constants {
         static let Cell = "Cell"
     }
 
-    enum CardEnum {
-        case habitGridCard
-        case lastSevenDaysCard
-        case none
+    enum CardEnum: String {
+        case habitGridCard = "habitGridCard"
+        case lastSevenDaysCard = "lastSevenDaysCard"
     }
 
     enum EntityEnum {
