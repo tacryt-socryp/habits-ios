@@ -27,8 +27,13 @@ class Habit: NSManagedObject {
 
     @NSManaged var needsAction: NSNumber
 
-    var orderedEntries: Array<Entry> {
+    var orderedEntries: [Entry] {
         let ordered = self.entries.sort { $0.date.compare($1.date).rawValue > 0 }
+        return ordered
+    }
+
+    var orderedTriggers: [NSManagedObject] {
+        let ordered = self.triggers.sort { $0.hashValue > $1.hashValue }
         return ordered
     }
 

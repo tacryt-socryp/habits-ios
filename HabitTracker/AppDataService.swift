@@ -16,8 +16,11 @@ class AppDataService {
 
     // Bond Data
     var allHabits = ObservableArray<Habit>([])
-    var currentHabit = Observable<Habit?>(nil)
     var allTriggers = ObservableArray<NSManagedObject>([])
+
+    var currentHabit = Observable<Habit?>(nil)
+    var currentHabitEntries = ObservableArray<Entry>([])
+    var currentHabitTriggers = ObservableArray<NSManagedObject>([])
 
 
     // MARK: - Lifecycle
@@ -40,6 +43,13 @@ class AppDataService {
             }
         })
 
+        currentHabit.observe { habit in
+            if let habit = habit {
+                self.diffOnRefreshedResults(newCurrHabitEntries: habit.orderedEntries)
+                self.diffOnRefreshedResults(newCurrHabitTriggers: habit.orderedTriggers)
+            }
+        }
+
         /*allTriggers.observe({ event in
             print("allTriggers is now: \(event.sequence)")
             switch event.operation {
@@ -57,12 +67,19 @@ class AppDataService {
         })*/
     }
 
-    func diffOnRefreshedResults(newAllHabits: [Habit]? = nil, newAllTriggers: [NSManagedObject]? = nil) {
+    func diffOnRefreshedResults(newAllHabits: [Habit]? = nil, newAllTriggers: [NSManagedObject]? = nil,
+            newCurrHabitEntries: [Entry]? = nil, newCurrHabitTriggers: [NSManagedObject]? = nil) {
         if let newAllHabits = newAllHabits {
             self.allHabits.diffInPlace(newAllHabits)
         }
         if let newAllTriggers = newAllTriggers {
             self.allTriggers.diffInPlace(newAllTriggers)
+        }
+        if let newCurrHabitEntries = newCurrHabitEntries {
+            self.currentHabitEntries.diffInPlace(newCurrHabitEntries)
+        }
+        if let newCurrHabitTriggers = newCurrHabitTriggers {
+            self.currentHabitTriggers.diffInPlace(newCurrHabitTriggers)
         }
     }
 

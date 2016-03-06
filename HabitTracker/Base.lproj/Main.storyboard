@@ -22,7 +22,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6nY-tJ-taD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-38" y="937"/>
+            <point key="canvasLocation" x="-34" y="937"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uBf-Zl-PNR">
@@ -39,6 +39,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p4e-ZN-7Y4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-856" y="937"/>
+        </scene>
+        <!--Single Habit View Controller-->
+        <scene sceneID="FSK-Nv-fHE">
+            <objects>
+                <viewController storyboardIdentifier="singleHabitVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZM0-nu-qLs" customClass="SingleHabitViewController" customModule="Tailor" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="98h-2I-xB2"/>
+                        <viewControllerLayoutGuide type="bottom" id="FW7-IU-vUv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WCg-2g-2mH">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="h4I-IL-eRG"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NKt-6r-z3Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-34" y="1761"/>
         </scene>
     </scenes>
 </document>

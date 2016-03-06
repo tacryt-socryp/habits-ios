@@ -77,7 +77,7 @@ class DatabaseService {
 
         do {
             try self.persistentStoreCoordinator.executeRequest(deleteRequest, withContext: self.managedObjectContext)
-        } catch let error as NSError {
+        } catch {
             // TODO: handle the error
         }
     }

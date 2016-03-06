@@ -24,41 +24,6 @@ class TimeTrigger: Trigger {
         static let repeatInterval = "repeatInterval"
     }
 
-
-    // MARK: - Helper functions
-
-    func startOfWeek(date: NSDate) -> NSDate {
-        let calendar = NSCalendar.currentCalendar()
-        calendar.timeZone = NSTimeZone.defaultTimeZone()
-
-        let components = calendar.components([.WeekOfYear, .Weekday, .Hour, .Minute, .YearForWeekOfYear], fromDate: date)
-        components.weekday = 1
-
-        return calendar.dateFromComponents(components)!
-    }
-
-    func nextDay(date: NSDate) -> NSDate {
-        return date.dateByAddingTimeInterval(86400)
-    }
-
-    func setDay(date: NSDate, day: WeekDay) -> NSDate {
-        var newDate = startOfWeek(date)
-
-        if (day.rawValue != 0) {
-            for var i = 0; i <= day.rawValue; i++ {
-                newDate = nextDay(newDate)
-            }
-        }
-
-        return newDate
-    }
-
-    func getTimeZone(date: NSDate) -> NSTimeZone? {
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.TimeZone], fromDate: date)
-        return components.timeZone
-    }
-
     // MARK: - Trigger functions
 
     override func parseFromData() {
@@ -104,10 +69,10 @@ class TimeTrigger: Trigger {
 
                 // set to be correct day of this week to start repeat interval
                 // hour and minute should already be set
-                let fireDate: NSDate = self.setDay(storedDate, day: day)
+                let fireDate = NSDate.setDay(storedDate, day: day)
                 
                 notification.fireDate = fireDate
-                notification.timeZone = self.getTimeZone(fireDate)
+                notification.timeZone = NSDate.getTimeZone(fireDate)
                 notification.applicationIconBadgeNumber = 1
                 return notification
             }

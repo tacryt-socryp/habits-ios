@@ -28,8 +28,8 @@ let compassRoutes: [String] = [
 let routerRoutes: [String : CustomRoutable] = [
     (routesEnum.habitGrid.rawValue): HabitGridRoute(),
     (routesEnum.createHabit.rawValue): CreateHabitRoute(),
-    (routesEnum.viewHabit.rawValue): ViewHabitRoute(),
-    (routesEnum.editHabit.rawValue): ViewHabitRoute(),
+    (routesEnum.viewHabit.rawValue): SingleHabitRoute(),
+    (routesEnum.editHabit.rawValue): SingleHabitRoute(),
     (routesEnum.settings.rawValue): SettingsRoute()
 ]
 
