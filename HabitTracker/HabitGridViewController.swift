@@ -26,20 +26,12 @@ class HabitGridViewController: UIViewController, UICollectionViewDelegate, AppVi
     // use bond
     func bindModel() {
         if (collectionView == nil) { return }
-        viewModel?.allHabits.lift().bindTo(collectionView!) { indexPath, array, collectionView in
-            var cardData = array[indexPath.section][indexPath.row]
+        viewModel?.allCards.lift().bindTo(collectionView!) { indexPath, array, collectionView in
+            let cardData = array[indexPath.section][indexPath.row]
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CardCell", forIndexPath: indexPath) as! CardView
 
             cell.cardData = cardData
-            // do a switch statement on the data to see what type of card view to retrieve, then do set up
 
-            return cell
-
-
-            /*let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CardCell", forIndexPath: indexPath) as! HabitGridCardView
-            let habit = array[indexPath.section][indexPath.row]
-            cell.backgroundColor = habit.isTodayComplete ? UIColor.greenColor() : UIColor.whiteColor()
-            cell.habitName.text = habit.name*/
             return cell
         }
     }

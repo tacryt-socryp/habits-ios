@@ -37,12 +37,16 @@ class SingleHabitModel: ViewModel {
 
     func setup() {
         appData?.currentHabit.bidirectionalBindTo(self.currentHabit)
-
+        let exampleCard = HabitGridCardData()
+        self.currentHabit.observe { habit in
+            exampleCard.habit = habit
+        }
+        allCards.insert(exampleCard, atIndex: 0)
 
         appData?.currentHabitTriggers.bindTo(self.triggers)
         self.triggers.observe { newTriggers in
 
-            
+
         }
 
         appData?.currentHabitEntries.bindTo(self.entries)

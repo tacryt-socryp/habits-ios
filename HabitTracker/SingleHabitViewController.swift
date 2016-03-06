@@ -31,11 +31,10 @@ class SingleHabitViewController: UIViewController, UICollectionViewDelegate, App
             // initialize a CardView
             // pass in a CardData object to CardView
             // call setup on CardView, which calls setup on CardData, which adds views to itself
-            var cardData = array[indexPath.section][indexPath.row]
+            let cardData = array[indexPath.section][indexPath.row]
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CardCell", forIndexPath: indexPath) as! CardView
 
             cell.cardData = cardData
-            // do a switch statement on the data to see what type of card view to retrieve, then do set up
 
             return cell
         }

@@ -41,17 +41,24 @@ class HabitGridModel: ViewModel {
     func handleCollectionTapped(index: NSIndexPath) {
         // set current habit in app data store
         // open individual habit view
-        // appData?.currentHabit.next(self.allHabits[index.row])
-        let viewHabit = routeCoordinator.routeEnumToURL(routesEnum.viewHabit)
-        routeCoordinator.navigateToRoute(viewHabit, options: nil)
+        if let cardData = self.allCards[index.row] as? HabitGridCardData, let habit = cardData.habit {
+            appData?.currentHabit.next(habit)
+            let viewHabit = routeCoordinator.routeEnumToURL(routesEnum.viewHabit)
+            routeCoordinator.navigateToRoute(viewHabit, options: nil)
+        }
     }
 
     func handleCollectionPressed(index: NSIndexPath) {
-        // databaseService.insertEntry(self.allHabits[index.row])
-        /*allHabits.performBatchUpdates{ array in
-            let habit = array.removeAtIndex(index.row)
-            habit.isTodayComplete = true
-            array.insert(habit, atIndex: index.row)
-        }*/
+
+        if let cardData = self.allCards[index.row] as? HabitGridCardData, let habit = cardData.habit {
+            databaseService.insertEntry(habit)
+            self.allCards.performBatchUpdates{ array in
+                if let card = array.removeAtIndex(index.row) as? HabitGridCardData {
+                    card.habit?.isTodayComplete = true
+                    array.insert(card, atIndex: index.row)
+                }
+            }
+        }
+
     }
 }
