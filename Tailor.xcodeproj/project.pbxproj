@@ -17,6 +17,8 @@
 		0216EAF71C8A710900A094CB /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0216EAF61C8A710900A094CB /* DateExtensions.swift */; };
 		0216EAF91C8A74E600A094CB /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0216EAF81C8A74E600A094CB /* GraphViewController.swift */; };
 		0216EAFB1C8A999B00A094CB /* GraphModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0216EAFA1C8A999B00A094CB /* GraphModel.swift */; };
+		0216EB011C8C7F9D00A094CB /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0216EB001C8C7F9D00A094CB /* CardView.swift */; };
+		0216EB031C8C824600A094CB /* CardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0216EB021C8C824600A094CB /* CardData.swift */; };
 		0217CA3D1C7BF18500B910FF /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0217CA3C1C7BF18500B910FF /* ViewModel.swift */; };
 		0217CA401C7BF3F200B910FF /* HabitGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0217CA3F1C7BF3F200B910FF /* HabitGridViewController.swift */; };
 		0217CA421C7BF42500B910FF /* HabitGridModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0217CA411C7BF42500B910FF /* HabitGridModel.swift */; };
@@ -62,6 +64,8 @@
 		0216EAF61C8A710900A094CB /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		0216EAF81C8A74E600A094CB /* GraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
 		0216EAFA1C8A999B00A094CB /* GraphModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphModel.swift; sourceTree = "<group>"; };
+		0216EB001C8C7F9D00A094CB /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		0216EB021C8C824600A094CB /* CardData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardData.swift; sourceTree = "<group>"; };
 		0217CA3C1C7BF18500B910FF /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		0217CA3F1C7BF3F200B910FF /* HabitGridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitGridViewController.swift; sourceTree = "<group>"; };
 		0217CA411C7BF42500B910FF /* HabitGridModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitGridModel.swift; sourceTree = "<group>"; };
@@ -125,6 +129,7 @@
 				02C9CBA01C73D13E008332E8 /* FloatingChartMarker.swift */,
 				028590191C7FF9B80075D4EA /* HabitGridCard.xib */,
 				0285901B1C7FFAE90075D4EA /* HabitGridCardView.swift */,
+				0216EB001C8C7F9D00A094CB /* CardView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -167,6 +172,7 @@
 				0217CA411C7BF42500B910FF /* HabitGridModel.swift */,
 				0216EAF11C8A688900A094CB /* SingleHabitModel.swift */,
 				0216EAFA1C8A999B00A094CB /* GraphModel.swift */,
+				0216EB021C8C824600A094CB /* CardData.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -412,6 +418,7 @@
 				02D4B6601C7D34FE000A60C0 /* SettingsRoute.swift in Sources */,
 				023BA3561C502E99003DC61C /* Constants.swift in Sources */,
 				02D4B6661C7D3777000A60C0 /* CustomRoutable.swift in Sources */,
+				0216EB031C8C824600A094CB /* CardData.swift in Sources */,
 				02163E471C5BC69D002B50D8 /* DataModel.xcdatamodeld in Sources */,
 				0217CA441C7BF4B800B910FF /* AppViewController.swift in Sources */,
 				02C68CBE1C66940400158B2F /* HabitTableViewCell.swift in Sources */,
@@ -430,6 +437,7 @@
 				029B3F7F1C65823F00403D1A /* HabitViewController.swift in Sources */,
 				02163E5F1C5BCF6C002B50D8 /* Habit.swift in Sources */,
 				0217CA4A1C7BFCEE00B910FF /* CoreDataCoordinator.swift in Sources */,
+				0216EB011C8C7F9D00A094CB /* CardView.swift in Sources */,
 				02C68CC01C669D3000158B2F /* HabitDetailViewController.swift in Sources */,
 				0216EAFB1C8A999B00A094CB /* GraphModel.swift in Sources */,
 				02D4B6641C7D373C000A60C0 /* CustomRouter.swift in Sources */,

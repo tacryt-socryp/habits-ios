@@ -11,7 +11,7 @@ import Bond
 class HabitGridModel: ViewModel {
     var databaseService: DatabaseService!
     
-    var allHabits = ObservableArray<(Habit)>([])
+    var allCards = ObservableArray<CardData>([])
 
     override init(coordinator: AppCoordinator) {
         super.init(coordinator: coordinator)
@@ -19,7 +19,15 @@ class HabitGridModel: ViewModel {
     }
 
     func setup() {
-        appData?.allHabits.bidirectionalBindTo(self.allHabits)
+
+        appData?.allHabits.observe({ event in
+            self.allCards.diffInPlace(event.sequence.map({ (habit: Habit) -> CardData in
+                let cardData = HabitGridCardData()
+                cardData.habit = habit
+                return cardData
+            }))
+        })
+
     }
 
     // MARK: - User Events
@@ -33,17 +41,17 @@ class HabitGridModel: ViewModel {
     func handleCollectionTapped(index: NSIndexPath) {
         // set current habit in app data store
         // open individual habit view
-        appData?.currentHabit.next(self.allHabits[index.row])
+        // appData?.currentHabit.next(self.allHabits[index.row])
         let viewHabit = routeCoordinator.routeEnumToURL(routesEnum.viewHabit)
         routeCoordinator.navigateToRoute(viewHabit, options: nil)
     }
 
     func handleCollectionPressed(index: NSIndexPath) {
-        databaseService.insertEntry(self.allHabits[index.row])
-        allHabits.performBatchUpdates{ array in
+        // databaseService.insertEntry(self.allHabits[index.row])
+        /*allHabits.performBatchUpdates{ array in
             let habit = array.removeAtIndex(index.row)
             habit.isTodayComplete = true
             array.insert(habit, atIndex: index.row)
-        }
+        }*/
     }
 }

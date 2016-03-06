@@ -9,13 +9,21 @@
 import Bond
 import CoreData
 
+// cards all go in one array
+// different types of cards can have different types of data sources
+// data sources should be observable
+// different types of cards should inherit
+
 class SingleHabitModel: ViewModel {
     var databaseService: DatabaseService!
 
     var currentHabit = Observable<Habit?>(nil)
+    var allCards = ObservableArray<CardData>()
 
     // bind a bunch of graphs and data analysis to entries
     var entries = ObservableArray<Entry>([])
+
+    // for last week entries graph card
     var lastWeekEntries = ObservableArray<Entry>([])
 
     // bind the list of triggers to a card
@@ -29,7 +37,13 @@ class SingleHabitModel: ViewModel {
 
     func setup() {
         appData?.currentHabit.bidirectionalBindTo(self.currentHabit)
+
+
         appData?.currentHabitTriggers.bindTo(self.triggers)
+        self.triggers.observe { newTriggers in
+
+            
+        }
 
         appData?.currentHabitEntries.bindTo(self.entries)
         self.entries.observe { newEntries in

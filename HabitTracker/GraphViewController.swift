@@ -6,7 +6,6 @@
 //  Copyright © 2016 Logan Allen. All rights reserved.
 //
 
-
 import UIKit
 import Charts
 import Bond

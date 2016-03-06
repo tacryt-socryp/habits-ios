@@ -8,16 +8,15 @@
 
 import UIKit
 
-class HabitGridCardView: UICollectionViewCell {
+class HabitGridCardView: CardView {
 
     @IBOutlet var habitName: UILabel!
 
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
+    override func setup() {
+        if let cardData = cardData as? HabitGridCardData, let habit = cardData.habit {
+            habitName.text = habit.name
+            self.backgroundColor = habit.isTodayComplete ? UIColor.greenColor() : UIColor.whiteColor()
+        }
 
-    override func didMoveToSuperview() {
-        self.setNeedsLayout()
-        self.layoutIfNeeded()
     }
 }
