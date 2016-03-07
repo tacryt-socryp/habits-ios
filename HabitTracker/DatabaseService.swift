@@ -90,7 +90,6 @@ class DatabaseService {
 
         self.managedObjectContext.performBlock {
             do {
-                print("right here")
                 let habits = try self.managedObjectContext.executeFetchRequest(request) as! [Habit]
                 callback(habits: habits)
             } catch let error as NSError {

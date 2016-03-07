@@ -44,7 +44,6 @@ class CoreDataCoordinator: NSObject {
         }
 
         self.databaseService.fetchAllTriggers { triggers in
-            // print(triggers)
             self.appDataService.diffOnRefreshedResults(newAllTriggers: triggers)
         }
     }
@@ -90,7 +89,6 @@ class CoreDataCoordinator: NSObject {
             // disable UI
             // basically go back to onboarding screen?
         }
-        print(notification)
     }
 
     func handleStoresDidChange(notification: NSNotification) {
@@ -104,14 +102,11 @@ class CoreDataCoordinator: NSObject {
             self.notificationService.resetLocalNotifications()
             self.refreshAppData()
             // NSNotificationCenter.defaultCenter().postNotificationName(Constants.Notifications.fetchTableData, object: nil)
-
         }
-        print(notification)
     }
 
     func handleStoresWillRemove(notification: NSNotification) {
         print("will remove")
-        print(notification)
         notificationService.cancelLocalNotifications()
     }
 
@@ -122,7 +117,6 @@ class CoreDataCoordinator: NSObject {
             self.databaseService.managedObjectContext.mergeChangesFromContextDidSaveNotification(notification) // merge in memory
             self.notificationService.resetLocalNotifications()
         }
-        print(notification)
     }
 
     func handleObjectContextDidChange(notification: NSNotification) {

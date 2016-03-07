@@ -28,9 +28,6 @@ class SingleHabitViewController: UIViewController, UICollectionViewDelegate, App
     func bindModel() {
         if (collectionView == nil) { return }
         viewModel?.allCards.lift().bindTo(collectionView!) { indexPath, array, collectionView in
-            // initialize a CardView
-            // pass in a CardData object to CardView
-            // call setup on CardView, which calls setup on CardData, which adds views to itself
             let cardData = array[indexPath.section][indexPath.row]
             var cell: CardView
             switch Constants.CardEnum(rawValue: cardData.cardType)! {
@@ -52,8 +49,6 @@ class SingleHabitViewController: UIViewController, UICollectionViewDelegate, App
 
         let space = 15.0 as CGFloat
         let flowLayout = UICollectionViewFlowLayout()
-        // Set view cell size
-        // flowLayout.itemSize = CGSizeMake(165, 165)
 
         // Set left and right margins
         flowLayout.minimumInteritemSpacing = space

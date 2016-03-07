@@ -60,9 +60,6 @@ class SingleHabitModel: ViewModel {
                     return entry.date.timeIntervalSinceDate(weekAgo) > 0
                 }
             )
-            print(weekAgo)
-            print(newEntries.sequence)
-            print(self.lastWeekEntries.array)
         }
 
         let example2Card = LastSevenDaysCardData()
