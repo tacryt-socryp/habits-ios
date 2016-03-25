@@ -35,10 +35,13 @@
 		02701E0B1C4C14570092E4D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02701E0A1C4C14570092E4D3 /* AppDelegate.swift */; };
 		02701E0D1C4C14570092E4D3 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02701E0C1C4C14570092E4D3 /* MasterViewController.swift */; };
 		027D669E1C8C9CCC003F5484 /* LastSevenDaysCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027D669D1C8C9CCC003F5484 /* LastSevenDaysCardView.swift */; };
-		027D66A11C8C9E17003F5484 /* LastSevenDaysCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 027D66A01C8C9E17003F5484 /* LastSevenDaysCard.xib */; };
 		0285901A1C7FF9B80075D4EA /* HabitGridCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 028590191C7FF9B80075D4EA /* HabitGridCard.xib */; };
 		0285901C1C7FFAE90075D4EA /* HabitGridCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0285901B1C7FFAE90075D4EA /* HabitGridCardView.swift */; };
 		029B3F7F1C65823F00403D1A /* HabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029B3F7E1C65823F00403D1A /* HabitViewController.swift */; };
+		02BE44FB1CA4B7CB00F8951B /* WeekButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BE44FA1CA4B7CB00F8951B /* WeekButton.swift */; };
+		02BE44FD1CA4BABE00F8951B /* CenteredImageTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02BE44FC1CA4BABE00F8951B /* CenteredImageTextView.xib */; };
+		02BE44FF1CA4BCED00F8951B /* CenteredImageTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BE44FE1CA4BCED00F8951B /* CenteredImageTextView.swift */; };
+		02BE45011CA4E73D00F8951B /* LastSevenDaysCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 02BE45001CA4E73D00F8951B /* LastSevenDaysCard.xib */; };
 		02C1975F1C7B7AB600F0337A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C1975E1C7B7AB600F0337A /* AppCoordinator.swift */; };
 		02C197621C7B7CB300F0337A /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C197611C7B7CB300F0337A /* DatabaseService.swift */; };
 		02C68CBE1C66940400158B2F /* HabitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C68CBD1C66940400158B2F /* HabitTableViewCell.swift */; };
@@ -88,10 +91,13 @@
 		02701E131C4C14570092E4D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02701E181C4C14570092E4D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		027D669D1C8C9CCC003F5484 /* LastSevenDaysCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastSevenDaysCardView.swift; sourceTree = "<group>"; };
-		027D66A01C8C9E17003F5484 /* LastSevenDaysCard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LastSevenDaysCard.xib; sourceTree = "<group>"; };
 		028590191C7FF9B80075D4EA /* HabitGridCard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HabitGridCard.xib; sourceTree = "<group>"; };
 		0285901B1C7FFAE90075D4EA /* HabitGridCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitGridCardView.swift; sourceTree = "<group>"; };
 		029B3F7E1C65823F00403D1A /* HabitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitViewController.swift; sourceTree = "<group>"; };
+		02BE44FA1CA4B7CB00F8951B /* WeekButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekButton.swift; sourceTree = "<group>"; };
+		02BE44FC1CA4BABE00F8951B /* CenteredImageTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CenteredImageTextView.xib; sourceTree = "<group>"; };
+		02BE44FE1CA4BCED00F8951B /* CenteredImageTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenteredImageTextView.swift; sourceTree = "<group>"; };
+		02BE45001CA4E73D00F8951B /* LastSevenDaysCard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LastSevenDaysCard.xib; sourceTree = "<group>"; };
 		02C1975E1C7B7AB600F0337A /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		02C197611C7B7CB300F0337A /* DatabaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		02C68CBD1C66940400158B2F /* HabitTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitTableViewCell.swift; sourceTree = "<group>"; };
@@ -132,6 +138,9 @@
 				02EBB31D1C5D511D00814DBA /* WeekDaysCell.xib */,
 				02C68CBD1C66940400158B2F /* HabitTableViewCell.swift */,
 				02C9CBA01C73D13E008332E8 /* FloatingChartMarker.swift */,
+				02BE44FA1CA4B7CB00F8951B /* WeekButton.swift */,
+				02BE44FE1CA4BCED00F8951B /* CenteredImageTextView.swift */,
+				02BE44FC1CA4BABE00F8951B /* CenteredImageTextView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -237,7 +246,7 @@
 				0285901B1C7FFAE90075D4EA /* HabitGridCardView.swift */,
 				028590191C7FF9B80075D4EA /* HabitGridCard.xib */,
 				027D669D1C8C9CCC003F5484 /* LastSevenDaysCardView.swift */,
-				027D66A01C8C9E17003F5484 /* LastSevenDaysCard.xib */,
+				02BE45001CA4E73D00F8951B /* LastSevenDaysCard.xib */,
 			);
 			name = Cards;
 			sourceTree = "<group>";
@@ -364,9 +373,10 @@
 			files = (
 				022A6B041C4DDA6C0018E9F0 /* Assets.xcassets in Resources */,
 				02EBB31F1C5D511D00814DBA /* WeekDaysCell.xib in Resources */,
-				027D66A11C8C9E17003F5484 /* LastSevenDaysCard.xib in Resources */,
 				022B9ECC1C7D4DD700C3627F /* Main.storyboard in Resources */,
 				0285901A1C7FF9B80075D4EA /* HabitGridCard.xib in Resources */,
+				02BE44FD1CA4BABE00F8951B /* CenteredImageTextView.xib in Resources */,
+				02BE45011CA4E73D00F8951B /* LastSevenDaysCard.xib in Resources */,
 				022B9EC91C7D4CFD00C3627F /* Launch Screen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,6 +447,7 @@
 				02163E471C5BC69D002B50D8 /* DataModel.xcdatamodeld in Sources */,
 				0217CA441C7BF4B800B910FF /* AppViewController.swift in Sources */,
 				02C68CBE1C66940400158B2F /* HabitTableViewCell.swift in Sources */,
+				02BE44FB1CA4B7CB00F8951B /* WeekButton.swift in Sources */,
 				02C1975F1C7B7AB600F0337A /* AppCoordinator.swift in Sources */,
 				02D4B65E1C7D34B9000A60C0 /* SingleHabitRoute.swift in Sources */,
 				0285901C1C7FFAE90075D4EA /* HabitGridCardView.swift in Sources */,
@@ -452,6 +463,7 @@
 				027D669E1C8C9CCC003F5484 /* LastSevenDaysCardView.swift in Sources */,
 				029B3F7F1C65823F00403D1A /* HabitViewController.swift in Sources */,
 				02163E5F1C5BCF6C002B50D8 /* Habit.swift in Sources */,
+				02BE44FF1CA4BCED00F8951B /* CenteredImageTextView.swift in Sources */,
 				0217CA4A1C7BFCEE00B910FF /* CoreDataCoordinator.swift in Sources */,
 				0216EB011C8C7F9D00A094CB /* CardView.swift in Sources */,
 				02C68CC01C669D3000158B2F /* HabitDetailViewController.swift in Sources */,
@@ -582,6 +594,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = HabitTracker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.loganallc.TailorHabits;
 				PRODUCT_NAME = Tailor;
@@ -598,6 +611,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = HabitTracker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.loganallc.TailorHabits;
 				PRODUCT_NAME = Tailor;

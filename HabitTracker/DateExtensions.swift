@@ -31,12 +31,25 @@ public extension NSDate {
         var newDate = startOfWeek(date)
 
         if (day.rawValue != 0) {
-            for var i = 0; i <= day.rawValue; i++ {
+            var i = 0
+            while i <= day.rawValue {
                 newDate = nextDay(newDate)
+                i += 1
             }
         }
 
         return newDate
+    }
+
+    static func sameDay(date: NSDate, otherDate: NSDate) -> Bool {
+        let calendar = NSCalendar.currentCalendar()
+        calendar.timeZone = NSTimeZone.defaultTimeZone()
+
+        let dateComponent = calendar.components([.WeekOfYear, .Weekday, .TimeZone, .YearForWeekOfYear], fromDate: date)
+        let dateComponent2 = calendar.components([.WeekOfYear, .Weekday, .TimeZone, .YearForWeekOfYear], fromDate: otherDate)
+
+        return calendar.dateFromComponents(dateComponent)!.timeIntervalSince1970 ==
+            calendar.dateFromComponents(dateComponent2)!.timeIntervalSince1970
     }
 
     static func getTimeZone(date: NSDate) -> NSTimeZone? {

@@ -21,6 +21,6 @@ class CardView: UICollectionViewCell {
     }
 
     func setup() {
-        print("don't call this; its a stub")
+        print("don't call this; it's a stub")
     }
 }

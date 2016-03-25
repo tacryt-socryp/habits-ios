@@ -75,8 +75,8 @@ class SingleHabitViewController: UIViewController, UICollectionViewDelegate, App
             bundle: nil
         ), forCellWithReuseIdentifier: "HabitGridCard")
 
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: "handleTap:")
-        let pressRecognizer = UILongPressGestureRecognizer(target: self, action: "handlePress:")
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(SingleHabitViewController.handleTap(_:)))
+        let pressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(SingleHabitViewController.handlePress(_:)))
 
         collectionView?.addGestureRecognizer(tapRecognizer)
         collectionView?.addGestureRecognizer(pressRecognizer)

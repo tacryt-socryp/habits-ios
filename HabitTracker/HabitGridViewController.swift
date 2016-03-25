@@ -40,7 +40,7 @@ class HabitGridViewController: UIViewController, UICollectionViewDelegate, AppVi
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "＋", style: .Plain, target: self, action: "addTapped")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "＋", style: .Plain, target: self, action: #selector(HabitGridViewController.addTapped))
 
         let space = 15.0 as CGFloat
         let flowLayout = UICollectionViewFlowLayout()
@@ -65,8 +65,8 @@ class HabitGridViewController: UIViewController, UICollectionViewDelegate, AppVi
             bundle: nil
         ), forCellWithReuseIdentifier: "HabitGridCard")
 
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: "handleTap:")
-        let pressRecognizer = UILongPressGestureRecognizer(target: self, action: "handlePress:")
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(HabitGridViewController.handleTap(_:)))
+        let pressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(HabitGridViewController.handlePress(_:)))
 
         collectionView?.addGestureRecognizer(tapRecognizer)
         collectionView?.addGestureRecognizer(pressRecognizer)

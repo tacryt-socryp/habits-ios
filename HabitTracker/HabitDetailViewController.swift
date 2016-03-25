@@ -45,7 +45,7 @@ class HabitDetailViewController: UIViewController, ChartViewDelegate {
     }
 
     func configureView() {
-        let editButton = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: "editHabit")
+        let editButton = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: #selector(HabitDetailViewController.editHabit))
         self.navigationItem.rightBarButtonItem = editButton
         configureData()
     }

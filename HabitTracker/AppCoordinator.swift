@@ -46,7 +46,7 @@ class AppCoordinator {
         routeCoordinator!.navigateToRoute(url, options: nil)
 
         // Override point for customization after application launch.
-        if(UIApplication.instancesRespondToSelector(Selector("registerUserNotificationSettings:"))) {
+        if(UIApplication.instancesRespondToSelector(#selector(UIApplication.registerUserNotificationSettings(_:)))) {
             // let notificationCategory:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
             // notificationCategory.identifier = "TRIGGER_CATEGORY"
             // notificationCategory .setActions([replyAction], forContext: UIUserNotificationActionContext.Default)

@@ -37,7 +37,7 @@ class HabitTableViewCell: UITableViewCell {
     func configureView() {
         if habitItem != nil {
             if !habitItem!.isTodayComplete {
-                let swipePan: UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: "handleSwipePan:")
+                let swipePan: UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(HabitTableViewCell.handleSwipePan(_:)))
                 swipePan.delegate = self
                 addGestureRecognizer(swipePan)
 

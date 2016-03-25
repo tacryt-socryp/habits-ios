@@ -52,23 +52,23 @@ class CoreDataCoordinator: NSObject {
     func registerCoordinatorForStoreNotifications(coordinator : NSPersistentStoreCoordinator, objectContext: NSManagedObjectContext) {
         let nc : NSNotificationCenter = NSNotificationCenter.defaultCenter();
 
-        nc.addObserver(self, selector: "handleStoresWillChange:",
+        nc.addObserver(self, selector: #selector(CoreDataCoordinator.handleStoresWillChange(_:)),
             name: NSPersistentStoreCoordinatorStoresWillChangeNotification,
             object: coordinator)
 
-        nc.addObserver(self, selector: "handleStoresDidChange:",
+        nc.addObserver(self, selector: #selector(CoreDataCoordinator.handleStoresDidChange(_:)),
             name: NSPersistentStoreCoordinatorStoresDidChangeNotification,
             object: coordinator)
 
-        nc.addObserver(self, selector: "handleStoresWillRemove:",
+        nc.addObserver(self, selector: #selector(CoreDataCoordinator.handleStoresWillRemove(_:)),
             name: NSPersistentStoreCoordinatorWillRemoveStoreNotification,
             object: coordinator)
 
-        nc.addObserver(self, selector: "handleStoreChangedUbiquitousContent:",
+        nc.addObserver(self, selector: #selector(CoreDataCoordinator.handleStoreChangedUbiquitousContent(_:)),
             name: NSPersistentStoreDidImportUbiquitousContentChangesNotification,
             object: coordinator)
 
-        nc.addObserver(self, selector: "handleObjectContextDidChange:",
+        nc.addObserver(self, selector: #selector(CoreDataCoordinator.handleObjectContextDidChange(_:)),
             name: NSManagedObjectContextObjectsDidChangeNotification, object: objectContext)
     }
 

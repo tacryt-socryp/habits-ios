@@ -53,7 +53,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "createNewHabit")
+        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(MasterViewController.createNewHabit))
         self.navigationItem.rightBarButtonItem = addButton
         if let split = self.splitViewController {
             let controllers = split.viewControllers
@@ -64,7 +64,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     func registerTableViewNotifications() {
         let nc : NSNotificationCenter = NSNotificationCenter.defaultCenter();
 
-        nc.addObserver(self, selector: "fetchTableData", name: Constants.Notifications.fetchTableData, object: nil)
+        nc.addObserver(self, selector: #selector(MasterViewController.fetchTableData), name: Constants.Notifications.fetchTableData, object: nil)
     }
 
     func fetchTableData() {

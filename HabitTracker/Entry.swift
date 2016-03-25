@@ -39,4 +39,25 @@ class Entry: NSManagedObject {
         formatter.dateFormat = "Z"
         self.timezone = Int(formatter.stringFromDate(nowDate))!
     }
+
+    func sameDay(date: NSDate) -> Bool {
+        let formatter = NSDateFormatter()
+
+        formatter.dateFormat = "yyyy"
+        let year = Int(formatter.stringFromDate(date))!
+
+        formatter.dateFormat = "MM"
+        let month = Int(formatter.stringFromDate(date))!
+
+        formatter.dateFormat = "dd"
+        let day = Int(formatter.stringFromDate(date))!
+
+        formatter.dateFormat = "Z"
+        let timezone = Int(formatter.stringFromDate(date))!
+
+        if (year == self.year && month == self.month && day == self.day && timezone == self.timezone) {
+            return true
+        }
+        return NSDate.sameDay(self.date, otherDate: date)
+    }
 }
