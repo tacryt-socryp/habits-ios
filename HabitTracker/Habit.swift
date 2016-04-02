@@ -27,6 +27,7 @@ class Habit: NSManagedObject {
 
     @NSManaged var needsAction: NSNumber
 
+    // latest entry is first
     var orderedEntries: [Entry] {
         let ordered = self.entries.sort { $0.date.compare($1.date).rawValue > 0 }
         return ordered
@@ -38,11 +39,11 @@ class Habit: NSManagedObject {
     }
 
     lazy var isTodayComplete: Bool = {
-        if let lastObject = self.orderedEntries.last {
+        if let firstObject = self.orderedEntries.first {
             let formatter = NSDateFormatter()
             formatter.dateFormat = "yyyy.MM.dd"
             let todayString = formatter.stringFromDate(NSDate())
-            let mostRecentEntryString = formatter.stringFromDate(lastObject.date)
+            let mostRecentEntryString = formatter.stringFromDate(firstObject.date)
             return todayString == mostRecentEntryString
         }
         return false

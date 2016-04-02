@@ -48,8 +48,6 @@ class SingleHabitModel: ViewModel {
 
 
         }
-        // print(self.currentHabit.value)
-        print(self.currentHabit.value!.entries)
 
         appData?.currentHabitEntries.bindTo(self.entries)
         self.entries.observe { newEntries in

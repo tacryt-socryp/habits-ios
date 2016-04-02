@@ -69,7 +69,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     func fetchTableData() {
         do {
-            print("fetching")
             try self.fetchedResults.performFetch()
             self.tableView.reloadData()
         } catch {

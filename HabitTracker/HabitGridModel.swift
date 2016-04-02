@@ -32,10 +32,8 @@ class HabitGridModel: ViewModel {
 
     // MARK: - User Events
     func addTapped() {
-        databaseService.insertHabit(
-            "Running",
-            weekDays: Set<WeekDay>(arrayLiteral: WeekDay.Monday, WeekDay.Tuesday)
-        )
+        let createHabit = routeCoordinator.routeEnumToURL(routesEnum.createHabit)
+        routeCoordinator.navigateToRoute(createHabit, options: nil)
     }
 
     func handleCollectionTapped(index: NSIndexPath) {

@@ -52,10 +52,6 @@ class LastSevenDaysCardView: CardView {
                     if (entry.sameDay(
                             NSDate.setDay(NSDate(), day: day)
                         )) {
-                        print(entry)
-                        print(NSDate.setDay(NSDate(), day: day))
-                        print(day)
-                        print(i)
                         pastWeek.insert(day)
                     }
                     i += 1

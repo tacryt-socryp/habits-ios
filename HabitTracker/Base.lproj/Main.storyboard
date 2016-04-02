@@ -24,6 +24,24 @@
             </objects>
             <point key="canvasLocation" x="-34" y="937"/>
         </scene>
+        <!--Create Habit View Controller-->
+        <scene sceneID="pa6-wj-cnx">
+            <objects>
+                <viewController storyboardIdentifier="createHabitVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="X6O-z7-7DY" customClass="CreateHabitViewController" customModule="Tailor" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Z1n-Ud-51D"/>
+                        <viewControllerLayoutGuide type="bottom" id="Lep-V0-Znd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XLz-hr-RNL">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WDL-Rc-PUR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="670" y="937"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="uBf-Zl-PNR">
             <objects>
@@ -57,7 +75,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NKt-6r-z3Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-34" y="1761"/>
+            <point key="canvasLocation" x="-34" y="1671"/>
         </scene>
     </scenes>
 </document>

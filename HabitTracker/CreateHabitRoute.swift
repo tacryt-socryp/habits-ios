@@ -11,7 +11,12 @@ import UIKit
 
 struct CreateHabitRoute: CustomRoutable {
     func resolve(arguments: [String: AnyObject], navigationController: UINavigationController, coordinator: AppCoordinator) {
-        let habitGridController = HabitGridViewController()
-        navigationController.pushViewController(habitGridController, animated: true)
+
+        let storyboard = navigationController.storyboard
+        let vC = storyboard?.instantiateViewControllerWithIdentifier("createHabitVC") as! CreateHabitViewController
+        let viewModel = CreateHabitModel(coordinator: coordinator)
+        vC.setup(viewModel)
+
+        navigationController.pushViewController(vC, animated: true)
     }
 }

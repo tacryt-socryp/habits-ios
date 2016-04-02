@@ -129,7 +129,6 @@ class DatabaseService {
         self.managedObjectContext.performBlock {
             do {
                 try self.managedObjectContext.save()
-                print("successfully added habit")
             } catch {
                 fatalError("Failed to create habit: \(error)")
             }
@@ -165,7 +164,6 @@ class DatabaseService {
             self.managedObjectContext.performBlock {
                 do {
                     try self.managedObjectContext.save()
-                    print("successfully updated habit")
                 } catch {
                     fatalError("Failed to update habit: \(error)")
                 }
@@ -184,7 +182,6 @@ class DatabaseService {
             self.managedObjectContext.performBlock {
                 do {
                     try self.managedObjectContext.save()
-                    print("successfully set needs action")
                 } catch {
                     fatalError("Failed to update habit: \(error)")
                 }
@@ -200,7 +197,6 @@ class DatabaseService {
             do {
                 try self.managedObjectContext.save()
                 self.triggersDidChange()
-                print("successfully deleted habit")
             } catch {
                 fatalError("Failed to delete habit: \(error)")
             }
@@ -231,7 +227,6 @@ class DatabaseService {
         reminderText: String? = nil
         ) {
             let entityName = TriggerTypeToEntityName[type]!
-            print(entityName)
             let trigger = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: self.managedObjectContext)
 
             // set properties
@@ -251,7 +246,6 @@ class DatabaseService {
                 do {
                     try self.managedObjectContext.save()
                     self.triggersDidChange()
-                    print("successfully added trigger")
                 } catch {
                     fatalError("Failed to create trigger: \(error)")
                 }
@@ -280,7 +274,6 @@ class DatabaseService {
                 do {
                     try self.managedObjectContext.save()
                     self.triggersDidChange()
-                    print("successfully updated trigger")
                 } catch {
                     fatalError("Failed to update trigger: \(error)")
                 }
@@ -295,7 +288,6 @@ class DatabaseService {
             do {
                 try self.managedObjectContext.save()
                 self.triggersDidChange()
-                print("successfully deleted trigger")
             } catch {
                 fatalError("Failed to delete trigger: \(error)")
             }
@@ -303,7 +295,6 @@ class DatabaseService {
     }
 
     func triggersDidChange() {
-        print("reset local notifications")
         self.coordinator.shouldResetLocalNotifications()
     }
 
@@ -325,7 +316,6 @@ class DatabaseService {
         self.managedObjectContext.performBlock {
             do {
                 try self.managedObjectContext.save()
-                print("successfully added entry")
             } catch {
                 fatalError("Failed to create entry: \(error)")
             }
@@ -347,7 +337,6 @@ class DatabaseService {
         self.managedObjectContext.performBlock {
             do {
                 try self.managedObjectContext.save()
-                print("successfully updated entry")
             } catch {
                 fatalError("Failed to update entry: \(error)")
             }
@@ -362,7 +351,6 @@ class DatabaseService {
         self.managedObjectContext.performBlock {
             do {
                 try self.managedObjectContext.save()
-                print("successfully deleted entry")
             } catch {
                 fatalError("Failed to delete entry: \(error)")
             }
